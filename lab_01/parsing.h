@@ -105,7 +105,7 @@ int parse_mantissa_part(const long_t entered_num, num_t *const validated_num)
         return MANTISSA_PARSE_ERROR;
     }
 
-    int i = 0;
+    short int i = 0;
 
     while (start_cut_pos < end_cut_pos)
     {
@@ -113,6 +113,39 @@ int parse_mantissa_part(const long_t entered_num, num_t *const validated_num)
         i++;
         start_cut_pos++;
     }
+
+    validated_num->mantissa_part[i] = '\0';
+
+    return OK;
+}
+
+int parse_order_part(const long_t entered_num, num_t *const validated_num)
+{
+    if (parse_mantissa_part(entered_num, validated_num) != OK)
+    {
+        return PARSE_ERROR;
+    }
+
+    short int entered_num_len = strlen(entered_num);
+
+    short int start_cut_pos = validated_num->exp_position + 1,
+              end_cut_pos = entered_num_len;
+
+    if (end_cut_pos - start_cut_pos > MAX_ORDER_PART_LEN)
+    {
+        return ORDER_PARSE_ERROR;
+    }
+
+    short int i = 0;
+
+    while (start_cut_pos < end_cut_pos)
+    {
+        validated_num->order_part[i] = entered_num[i];
+        i++;
+        start_cut_pos++;
+    }
+
+    validated_num->order_part[i] = '\0';
 
     return OK;
 }
