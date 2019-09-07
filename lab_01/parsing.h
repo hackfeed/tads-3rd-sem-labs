@@ -1,8 +1,4 @@
-#include <string.h>
-#include <ctype.h>
-
-#include "data_structures.h"
-#include "defines.h"
+#include "includes.h"
 
 /* 
 Parsing number sign from long_t to num_t struct.
@@ -45,7 +41,7 @@ Return code - OK, PARSE_ERROR or DOT_PARSE_ERROR.
 */
 int parse_dot(const long_t entered_num, num_t *const parsed_num)
 {
-    if (parse_sign(entered_num, parsed_num) == SIGN_PARSE_ERROR)
+    if (parse_sign(entered_num, parsed_num) != OK)
     {
         return PARSE_ERROR;
     }
@@ -91,7 +87,7 @@ Return code - OK or PARSE_ERROR.
 */
 int parse_exp_sign(const long_t entered_num, num_t *const parsed_num)
 {
-    if (parse_dot(entered_num, parsed_num) == DOT_PARSE_ERROR)
+    if (parse_dot(entered_num, parsed_num) != OK)
     {
         return PARSE_ERROR;
     }
@@ -133,7 +129,7 @@ Return code - OK, PARSE_ERROR or MANTISSA_PARSE_ERROR.
 */
 int parse_mantissa_part(const long_t entered_num, num_t *const parsed_num)
 {
-    if (parse_exp_sign(entered_num, parsed_num) == PARSE_ERROR)
+    if (parse_exp_sign(entered_num, parsed_num) != OK)
     {
         return PARSE_ERROR;
     }

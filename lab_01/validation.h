@@ -1,7 +1,4 @@
-#include <string.h>
-
-#include "data_structures.h"
-#include "defines.h"
+#include "includes.h"
 
 /* 
 Checking containing only integer digits in mantissa part of long_t number 
@@ -71,7 +68,7 @@ or ORDER_VALIDATION_ERROR.
 */
 int validate_order_part(num_t *const parsed_num)
 {
-    if (validate_mantissa_part(parsed_num) == MANTISSA_VALIDATION_ERROR)
+    if (validate_mantissa_part(parsed_num) != OK)
     {
         return VALIDATION_ERROR;
     }
@@ -96,6 +93,44 @@ int validate_order_part(num_t *const parsed_num)
         {
             return ORDER_VALIDATION_ERROR;
         }
+    }
+
+    return OK;
+}
+
+/* 
+Creating integer representation of order part in num_t struct.
+
+Input data:
+* num_t *const parsed_num -  parsed long_t num into num_t struct. 
+
+Output data:
+Return code - OK or VALIDATION_ERROR.
+*/
+int int_represent_order_part(num_t *const parsed_num)
+{
+    if (validate_order_part(parsed_num) != OK)
+    {
+        return VALIDATION_ERROR;
+    }
+
+    short int order_part_len = strlen(parsed_num->order_part);
+    short int order_part_int = 0;
+
+    for (short int i = 1; i < order_part_len; ++i)
+    {
+        order_part_int += (parsed_num->order_part[i] - '0') *
+                          (10 * (order_part_len - i));
+    }
+
+    if (parsed_num->order_part[0] == '+')
+    {
+        parsed_num->order_int = order_part_int;
+    }
+
+    else
+    {
+        parsed_num->order_int = -1 * order_part_int;
     }
 
     return OK;
