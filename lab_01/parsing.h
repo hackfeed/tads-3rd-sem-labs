@@ -4,18 +4,28 @@
 #include "data_structures.h"
 #include "defines.h"
 
-int parse_sign(const long_t entered_num, num_t *const validated_num)
+/* 
+Parsing number sign from long_t to num_t struct.
+
+Input data:
+* const long_t entered_num - initial entered number.
+* num_t *const parsed_num -  parsed long_t num into num_t struct. 
+
+Output data:
+Return code - OK or SIGN_PARSE_ERROR.
+*/
+int parse_sign(const long_t entered_num, num_t *const parsed_num)
 {
     if (entered_num[0] == '-')
     {
-        validated_num->num_sign = NEGATIVE;
+        parsed_num->num_sign = NEGATIVE;
 
         return OK;
     }
 
     if (entered_num[0] == '+')
     {
-        validated_num->num_sign = POSITIVE;
+        parsed_num->num_sign = POSITIVE;
 
         return OK;
     }
@@ -23,9 +33,19 @@ int parse_sign(const long_t entered_num, num_t *const validated_num)
     return SIGN_PARSE_ERROR;
 }
 
-int parse_dot(const long_t entered_num, num_t *const validated_num)
+/* 
+Parsing float dot position from long_t to num_t struct.
+
+Input data:
+* const long_t entered_num - initial entered number.
+* num_t *const parsed_num -  parsed long_t num into num_t struct. 
+
+Output data:
+Return code - OK, PARSE_ERROR or DOT_PARSE_ERROR.
+*/
+int parse_dot(const long_t entered_num, num_t *const parsed_num)
 {
-    if (parse_sign(entered_num, validated_num) == SIGN_PARSE_ERROR)
+    if (parse_sign(entered_num, parsed_num) == SIGN_PARSE_ERROR)
     {
         return PARSE_ERROR;
     }
@@ -54,14 +74,24 @@ int parse_dot(const long_t entered_num, num_t *const validated_num)
         i++;
     }
 
-    validated_num->dot_position = dot_pos;
+    parsed_num->dot_position = dot_pos - 1;
 
     return OK;
 }
 
-int parse_exp_sign(const long_t entered_num, num_t *const validated_num)
+/* 
+Parsing exponent sign position from long_t to num_t struct.
+
+Input data:
+* const long_t entered_num - initial entered number.
+* num_t *const parsed_num -  parsed long_t num into num_t struct. 
+
+Output data:
+Return code - OK or PARSE_ERROR.
+*/
+int parse_exp_sign(const long_t entered_num, num_t *const parsed_num)
 {
-    if (parse_dot(entered_num, validated_num) == DOT_PARSE_ERROR)
+    if (parse_dot(entered_num, parsed_num) == DOT_PARSE_ERROR)
     {
         return PARSE_ERROR;
     }
@@ -86,19 +116,29 @@ int parse_exp_sign(const long_t entered_num, num_t *const validated_num)
         exp_pos = i--;
     }
 
-    validated_num->exp_position = exp_pos;
+    parsed_num->exp_position = exp_pos;
 
     return OK;
 }
 
-int parse_mantissa_part(const long_t entered_num, num_t *const validated_num)
+/* 
+Parsing mantissa part from long_t to num_t struct.
+
+Input data:
+* const long_t entered_num - initial entered number.
+* num_t *const parsed_num -  parsed long_t num into num_t struct. 
+
+Output data:
+Return code - OK, PARSE_ERROR or MANTISSA_PARSE_ERROR.
+*/
+int parse_mantissa_part(const long_t entered_num, num_t *const parsed_num)
 {
-    if (parse_exp_sign(entered_num, validated_num) == PARSE_ERROR)
+    if (parse_exp_sign(entered_num, parsed_num) == PARSE_ERROR)
     {
         return PARSE_ERROR;
     }
 
-    short int start_cut_pos = 1, end_cut_pos = validated_num->exp_position;
+    short int start_cut_pos = 1, end_cut_pos = parsed_num->exp_position;
 
     if (end_cut_pos - start_cut_pos > MAX_INT_NUM_LEN)
     {
@@ -109,29 +149,39 @@ int parse_mantissa_part(const long_t entered_num, num_t *const validated_num)
 
     while (start_cut_pos < end_cut_pos)
     {
-        validated_num->mantissa_part[i] = entered_num[i];
+        parsed_num->mantissa_part[i] = entered_num[i];
         i++;
         start_cut_pos++;
     }
 
-    validated_num->mantissa_part[i] = '\0';
+    parsed_num->mantissa_part[i] = '\0';
 
     return OK;
 }
 
-int parse_order_part(const long_t entered_num, num_t *const validated_num)
+/* 
+Parsing post-exponent order part from long_t to num_t struct.
+
+Input data:
+* const long_t entered_num - initial entered number.
+* num_t *const parsed_num -  parsed long_t num into num_t struct. 
+
+Output data:
+Return code - OK, PARSE_ERROR or ORDER_PARSE_ERROR.
+*/
+int parse_order_part(const long_t entered_num, num_t *const parsed_num)
 {
-    if (parse_mantissa_part(entered_num, validated_num) != OK)
+    if (parse_mantissa_part(entered_num, parsed_num) != OK)
     {
         return PARSE_ERROR;
     }
 
     short int entered_num_len = strlen(entered_num);
 
-    short int start_cut_pos = validated_num->exp_position + 1,
+    short int start_cut_pos = parsed_num->exp_position + 1,
               end_cut_pos = entered_num_len;
 
-    if (end_cut_pos - start_cut_pos > MAX_ORDER_PART_LEN)
+    if (end_cut_pos - start_cut_pos > MAX_ORDER_PART_LEN - 1)
     {
         return ORDER_PARSE_ERROR;
     }
@@ -140,12 +190,12 @@ int parse_order_part(const long_t entered_num, num_t *const validated_num)
 
     while (start_cut_pos < end_cut_pos)
     {
-        validated_num->order_part[i] = entered_num[i];
+        parsed_num->order_part[i] = entered_num[i];
         i++;
         start_cut_pos++;
     }
 
-    validated_num->order_part[i] = '\0';
+    parsed_num->order_part[i] = '\0';
 
     return OK;
 }
