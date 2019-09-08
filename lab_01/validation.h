@@ -81,7 +81,8 @@ int validate_order_part(num_t *const parsed_num)
 
     short int order_part_len = strlen(parsed_num->order_part);
 
-    if (order_part_len > 2 && parsed_num->order_part[1] == '0')
+    if (order_part_len > 2 && parsed_num->order_part[1] == '0' ||
+        order_part_len == 1)
     {
         return ORDER_VALIDATION_ERROR;
     }
@@ -98,6 +99,16 @@ int validate_order_part(num_t *const parsed_num)
     return OK;
 }
 
+/*
+Pow function implementation.
+
+Input data:
+* const int base - num to be powered.
+* const int p - power to be applied to num.
+
+Output data:
+* powered num.
+*/
 int power(const int base, const int p)
 {
     if (p == 0)
@@ -125,7 +136,7 @@ int int_represent_order_part(num_t *const parsed_num)
     }
 
     short int order_part_len = strlen(parsed_num->order_part);
-    short int order_part_int = 0;
+    int order_part_int = 0;
 
     for (short int i = 1; i < order_part_len; ++i)
     {

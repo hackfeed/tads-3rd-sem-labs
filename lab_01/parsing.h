@@ -133,7 +133,8 @@ int parse_mantissa_part(const long_t entered_num, num_t *const parsed_num)
         return PARSE_ERROR;
     }
 
-    short int start_cut_pos = 1, end_cut_pos = parsed_num->exp_position;
+    short int start_cut_pos = 1;
+    short int end_cut_pos = parsed_num->exp_position == -1 ? strlen(entered_num) : parsed_num->exp_position;
 
     if (end_cut_pos - start_cut_pos > MAX_INT_NUM_LEN)
     {
@@ -169,6 +170,15 @@ int parse_order_part(const long_t entered_num, num_t *const parsed_num)
     }
 
     short int entered_num_len = strlen(entered_num);
+
+    if (parsed_num->exp_position == -1)
+    {
+        parsed_num->order_part[0] = '+';
+        parsed_num->order_part[1] = '0';
+        parsed_num->order_part[2] = '\0';
+
+        return OK;
+    }
 
     short int start_cut_pos = parsed_num->exp_position + 1,
               end_cut_pos = entered_num_len;
