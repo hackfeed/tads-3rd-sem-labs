@@ -1,5 +1,3 @@
-#include "defines.h"
-
 /* Data structure for entered num. */
 typedef char long_t[MAX_INT_NUM_LEN];
 
@@ -19,7 +17,7 @@ entered number.
 typedef struct
 {
     char num_sign;
-    char mantissa_part[MAX_MANTISSA_PART_LEN];
+    char mantissa_part[MAX_MANTISSA_PART_LEN * 2];
     char order_part[MAX_ORDER_PART_LEN];
     short int dot_position;
     short int exp_position;

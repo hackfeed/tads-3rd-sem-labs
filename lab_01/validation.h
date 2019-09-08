@@ -1,5 +1,3 @@
-#include "includes.h"
-
 /* 
 Checking containing only integer digits in mantissa part of long_t number 
 and leading zeros absence.
@@ -14,7 +12,7 @@ int validate_mantissa_part(num_t *const parsed_num)
 {
     short int mantissa_len = strlen(parsed_num->mantissa_part);
 
-    if (parsed_num->dot_position == -1)
+    if (parsed_num->dot_position == -2)
     {
         if (mantissa_len > 1 && parsed_num->mantissa_part[0] == '0')
         {
@@ -42,7 +40,7 @@ int validate_mantissa_part(num_t *const parsed_num)
 
         parsed_num->mantissa_part[parsed_num->dot_position] = '1';
 
-        for (short int i = 0; i < mantissa_len; ++i)
+        for (short int i = 0; i < end_cut_pos; ++i)
         {
             if (parsed_num->mantissa_part[i] < '0' ||
                 parsed_num->mantissa_part[i] > '9')
@@ -50,6 +48,8 @@ int validate_mantissa_part(num_t *const parsed_num)
                 return MANTISSA_VALIDATION_ERROR;
             }
         }
+
+        parsed_num->mantissa_part[parsed_num->dot_position] = '.';
     }
 
     return OK;
@@ -73,7 +73,7 @@ int validate_order_part(num_t *const parsed_num)
         return VALIDATION_ERROR;
     }
 
-    if (parsed_num->order_part[0] != '+' ||
+    if (parsed_num->order_part[0] != '+' &&
         parsed_num->order_part[0] != '-')
     {
         return ORDER_SIGN_VALIDATION_ERROR;
@@ -98,6 +98,16 @@ int validate_order_part(num_t *const parsed_num)
     return OK;
 }
 
+int power(const int base, const int p)
+{
+    if (p == 0)
+    {
+        return 1;
+    }
+
+    return (base * power(base, p - 1));
+}
+
 /* 
 Creating integer representation of order part in num_t struct.
 
@@ -120,7 +130,7 @@ int int_represent_order_part(num_t *const parsed_num)
     for (short int i = 1; i < order_part_len; ++i)
     {
         order_part_int += (parsed_num->order_part[i] - '0') *
-                          (10 * (order_part_len - i));
+                          power(10, order_part_len - i - 1);
     }
 
     if (parsed_num->order_part[0] == '+')

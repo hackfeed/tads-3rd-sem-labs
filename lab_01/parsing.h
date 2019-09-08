@@ -1,5 +1,3 @@
-#include "includes.h"
-
 /* 
 Parsing number sign from long_t to num_t struct.
 
@@ -51,7 +49,7 @@ int parse_dot(const long_t entered_num, num_t *const parsed_num)
     short int i = 0;
     short int dot_pos = -1, dot_flag = FALSE;
 
-    while (i < entered_num_len || toupper(entered_num[i]) != 'E')
+    while (i < entered_num_len)
     {
         if (entered_num[i] == '.')
         {
@@ -97,19 +95,20 @@ int parse_exp_sign(const long_t entered_num, num_t *const parsed_num)
     short int i = 0;
     short int exp_pos;
 
-    while (i < entered_num_len || toupper(entered_num[i]) != 'E')
+    while (i < entered_num_len)
     {
+        if (toupper(entered_num[i]) == 'E')
+        {
+            exp_pos = i--;
+            break;
+        }
+
         i++;
     }
 
     if (i == entered_num_len)
     {
         exp_pos = -1;
-    }
-
-    else
-    {
-        exp_pos = i--;
     }
 
     parsed_num->exp_position = exp_pos;
@@ -141,16 +140,13 @@ int parse_mantissa_part(const long_t entered_num, num_t *const parsed_num)
         return MANTISSA_PARSE_ERROR;
     }
 
-    short int i = 0;
-
     while (start_cut_pos < end_cut_pos)
     {
-        parsed_num->mantissa_part[i] = entered_num[i];
-        i++;
+        parsed_num->mantissa_part[start_cut_pos - 1] = entered_num[start_cut_pos];
         start_cut_pos++;
     }
 
-    parsed_num->mantissa_part[i] = '\0';
+    parsed_num->mantissa_part[start_cut_pos - 1] = '\0';
 
     return OK;
 }
@@ -186,7 +182,7 @@ int parse_order_part(const long_t entered_num, num_t *const parsed_num)
 
     while (start_cut_pos < end_cut_pos)
     {
-        parsed_num->order_part[i] = entered_num[i];
+        parsed_num->order_part[i] = entered_num[start_cut_pos];
         i++;
         start_cut_pos++;
     }
