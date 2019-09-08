@@ -35,6 +35,9 @@ int main()
         {
             printf("Validation done without errors.\n");
             num_t_print(structed_num);
+            printf("\n\n");
+            normalize_float_num_t(&structed_num);
+            num_t_print(structed_num);
             return OK;
         }
     }
