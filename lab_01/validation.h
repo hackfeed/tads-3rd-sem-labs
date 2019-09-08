@@ -156,3 +156,45 @@ int int_represent_order_part(num_t *const parsed_num)
 
     return OK;
 }
+
+/*
+Validate that integer num in exp form would be integer, not 
+real after expansion.
+
+Input data:
+* num_t *const parsed_num -  parsed long_t num into num_t struct. 
+
+Output data:
+Return code - OK, VALIDATION_ERROR or EQUATION_VALIDATION_ERROR.
+*/
+int validate_int_exp_equation(num_t *const parsed_num)
+{
+    if (int_represent_order_part(parsed_num) != OK)
+    {
+        return VALIDATION_ERROR;
+    }
+
+    if (parsed_num->dot_position == -2 &&
+        parsed_num->exp_position != -1 &&
+        parsed_num->order_int < 0)
+    {
+        return EQUATION_VALIDATION_ERROR;
+    }
+
+    if (parsed_num->dot_position != -2 &&
+        parsed_num->exp_position != -1)
+    {
+        if (parsed_num->order_int < 0)
+        {
+            return EQUATION_VALIDATION_ERROR;
+        }
+
+        if (strlen(parsed_num->mantissa_part) - parsed_num->dot_position - 1 >
+            parsed_num->order_int)
+        {
+            return EQUATION_VALIDATION_ERROR;
+        }
+    }
+
+    return OK;
+}
