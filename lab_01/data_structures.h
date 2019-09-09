@@ -9,9 +9,9 @@ Data structure fo parsed num.
 of entered number.
 * order_part - part after exponent sign.
 * dot_position - position number of float dot sign of 
-entered number.
+entered number (numeration begins from mantissa's start).
 * exp_position - position number of exponent sign of 
-entered number.
+entered number (numeration begins from number's start).
 * order_int - integer representation of parsed order part.
 */
 typedef struct

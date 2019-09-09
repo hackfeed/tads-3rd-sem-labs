@@ -14,16 +14,10 @@ int validate_mantissa_part(num_t *const parsed_num)
 
     if (parsed_num->dot_position == -2)
     {
-        if (mantissa_len > 1 && parsed_num->mantissa_part[0] == '0' ||
-            mantissa_len > MAX_MANTISSA_PART_LEN - 2)
+        for (short int letter_ind = 0; letter_ind < mantissa_len; ++letter_ind)
         {
-            return MANTISSA_VALIDATION_ERROR;
-        }
-
-        for (short int i = 0; i < mantissa_len; ++i)
-        {
-            if (parsed_num->mantissa_part[i] < '0' ||
-                parsed_num->mantissa_part[i] > '9')
+            if (parsed_num->mantissa_part[letter_ind] < '0' ||
+                parsed_num->mantissa_part[letter_ind] > '9')
             {
                 return MANTISSA_VALIDATION_ERROR;
             }
@@ -34,19 +28,12 @@ int validate_mantissa_part(num_t *const parsed_num)
     {
         short int start_cut_pos = 0, end_cut_pos = parsed_num->dot_position;
 
-        if (end_cut_pos - start_cut_pos > 1 &&
-                parsed_num->mantissa_part[0] == '0' ||
-            mantissa_len > MAX_MANTISSA_PART_LEN - 1)
-        {
-            return MANTISSA_VALIDATION_ERROR;
-        }
-
         parsed_num->mantissa_part[parsed_num->dot_position] = '1';
 
-        for (short int i = 0; i < end_cut_pos; ++i)
+        for (short int letter_ind = 0; letter_ind < end_cut_pos; ++letter_ind)
         {
-            if (parsed_num->mantissa_part[i] < '0' ||
-                parsed_num->mantissa_part[i] > '9')
+            if (parsed_num->mantissa_part[letter_ind] < '0' ||
+                parsed_num->mantissa_part[letter_ind] > '9')
             {
                 return MANTISSA_VALIDATION_ERROR;
             }
@@ -84,16 +71,10 @@ int validate_order_part(num_t *const parsed_num)
 
     short int order_part_len = strlen(parsed_num->order_part);
 
-    if (order_part_len > 2 && parsed_num->order_part[1] == '0' ||
-        order_part_len == 1)
+    for (short int letter_ind = 1; letter_ind < order_part_len; ++letter_ind)
     {
-        return ORDER_VALIDATION_ERROR;
-    }
-
-    for (short int i = 1; i < order_part_len; ++i)
-    {
-        if (parsed_num->order_part[i] < '0' ||
-            parsed_num->order_part[i] > '9')
+        if (parsed_num->order_part[letter_ind] < '0' ||
+            parsed_num->order_part[letter_ind] > '9')
         {
             return ORDER_VALIDATION_ERROR;
         }
@@ -112,14 +93,14 @@ Input data:
 Output data:
 * powered num.
 */
-int power(const int base, const int p)
+int power(const int base, const int pwr)
 {
-    if (p == 0)
+    if (pwr == 0)
     {
         return 1;
     }
 
-    return (base * power(base, p - 1));
+    return (base * power(base, pwr - 1));
 }
 
 /* 
@@ -141,10 +122,10 @@ int int_represent_order_part(num_t *const parsed_num)
     short int order_part_len = strlen(parsed_num->order_part);
     int order_part_int = 0;
 
-    for (short int i = 1; i < order_part_len; ++i)
+    for (short int letter_int = 1; letter_int < order_part_len; ++letter_int)
     {
-        order_part_int += (parsed_num->order_part[i] - '0') *
-                          power(10, order_part_len - i - 1);
+        order_part_int += (parsed_num->order_part[letter_int] - '0') *
+                          power(10, order_part_len - letter_int - 1);
     }
 
     if (parsed_num->order_part[0] == '+')
