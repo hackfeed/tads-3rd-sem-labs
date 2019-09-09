@@ -31,12 +31,12 @@ int main()
     if (parse_order_part(entered_num, &structed_num) == OK)
     {
         printf("Parsing done without errors. \n");
-        if (validate_int_exp_equation(&structed_num) == OK)
+        if (int_represent_order_part(&structed_num) == OK)
         {
             printf("Validation done without errors.\n");
             num_t_print(structed_num);
             printf("\n\n");
-            normalize_float_num_t(&structed_num);
+            normalize_structed_mantissa(&structed_num);
             num_t_print(structed_num);
             return OK;
         }

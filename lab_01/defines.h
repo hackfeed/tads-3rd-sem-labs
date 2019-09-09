@@ -17,7 +17,7 @@ boolean constants definition.
 #define ORDER_VALIDATION_ERROR 9
 #define EQUATION_VALIDATION_ERROR 10
 
-#define MAX_MANTISSA_PART_LEN 33
+#define MAX_MANTISSA_PART_LEN 32
 #define MAX_INT_NUM_LEN 31
 #define MAX_ORDER_PART_LEN 7
 

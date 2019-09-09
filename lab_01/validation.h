@@ -14,7 +14,8 @@ int validate_mantissa_part(num_t *const parsed_num)
 
     if (parsed_num->dot_position == -2)
     {
-        if (mantissa_len > 1 && parsed_num->mantissa_part[0] == '0')
+        if (mantissa_len > 1 && parsed_num->mantissa_part[0] == '0' ||
+            mantissa_len > MAX_MANTISSA_PART_LEN - 2)
         {
             return MANTISSA_VALIDATION_ERROR;
         }
@@ -33,7 +34,9 @@ int validate_mantissa_part(num_t *const parsed_num)
     {
         short int start_cut_pos = 0, end_cut_pos = parsed_num->dot_position;
 
-        if (end_cut_pos - start_cut_pos > 1 && parsed_num->mantissa_part[0] == '0')
+        if (end_cut_pos - start_cut_pos > 1 &&
+                parsed_num->mantissa_part[0] == '0' ||
+            mantissa_len > MAX_MANTISSA_PART_LEN - 1)
         {
             return MANTISSA_VALIDATION_ERROR;
         }
