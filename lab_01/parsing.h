@@ -46,16 +46,16 @@ int parse_dot(const long_t entered_num, num_t *const parsed_num)
 
     short int entered_num_len = strlen(entered_num);
 
-    short int i = 0;
+    short int letter_ind = 0;
     short int dot_pos = -1, dot_flag = FALSE;
 
-    while (i < entered_num_len)
+    while (letter_ind < entered_num_len)
     {
-        if (entered_num[i] == '.')
+        if (entered_num[letter_ind] == '.')
         {
             if (!dot_flag)
             {
-                dot_pos = i;
+                dot_pos = letter_ind;
                 dot_flag = TRUE;
             }
 
@@ -65,7 +65,7 @@ int parse_dot(const long_t entered_num, num_t *const parsed_num)
             }
         }
 
-        i++;
+        letter_ind++;
     }
 
     parsed_num->dot_position = dot_pos - 1;
@@ -92,21 +92,21 @@ int parse_exp_sign(const long_t entered_num, num_t *const parsed_num)
 
     short int entered_num_len = strlen(entered_num);
 
-    short int i = 0;
+    short int letter_ind = 0;
     short int exp_pos;
 
-    while (i < entered_num_len)
+    while (letter_ind < entered_num_len)
     {
-        if (toupper(entered_num[i]) == 'E')
+        if (toupper(entered_num[letter_ind]) == 'E')
         {
-            exp_pos = i--;
+            exp_pos = letter_ind--;
             break;
         }
 
-        i++;
+        letter_ind++;
     }
 
-    if (i == entered_num_len)
+    if (letter_ind == entered_num_len)
     {
         exp_pos = -1;
     }
@@ -189,16 +189,16 @@ int parse_order_part(const long_t entered_num, num_t *const parsed_num)
         return ORDER_PARSE_ERROR;
     }
 
-    short int i = 0;
+    short int letter_ind = 0;
 
     while (start_cut_pos < end_cut_pos)
     {
-        parsed_num->order_part[i] = entered_num[start_cut_pos];
-        i++;
+        parsed_num->order_part[letter_ind] = entered_num[start_cut_pos];
+        letter_ind++;
         start_cut_pos++;
     }
 
-    parsed_num->order_part[i] = '\0';
+    parsed_num->order_part[letter_ind] = '\0';
 
     return OK;
 }
