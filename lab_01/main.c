@@ -10,16 +10,7 @@
 #include "parsing.h"
 #include "validation.h"
 #include "normalization.h"
-
-void num_t_print(const num_t structed_num)
-{
-    printf("%c\n", structed_num.num_sign);
-    printf("%s\n", structed_num.mantissa_part);
-    printf("%s\n", structed_num.order_part);
-    printf("%d\n", structed_num.dot_position);
-    printf("%d\n", structed_num.exp_position);
-    printf("%d\n", structed_num.order_int);
-}
+#include "debug.h"
 
 int main()
 {
@@ -27,22 +18,27 @@ int main()
     num_t structed_num;
 
     input_long_t_num(&entered_num);
-    printf("%s\n", entered_num);
+
     if (parse_order_part(entered_num, &structed_num) == OK)
     {
         printf("Parsing done without errors. \n");
-        if (int_represent_order_part(&structed_num) == OK)
+
+        if (decide_type_by_exp(&structed_num) == TYPE_INT)
         {
-            printf("Validation done without errors.\n");
+            printf("Validation done without errors. TYPE_INT\n");
             num_t_print(structed_num);
-            printf("\n\n");
-            normalize_structed_mantissa(&structed_num);
+
+            return OK;
+        }
+
+        if (decide_type_by_exp(&structed_num) == TYPE_FLOAT)
+        {
+            printf("Validation done without errors. TYPE_FLOAT\n");
             num_t_print(structed_num);
+
             return OK;
         }
     }
-
-    num_t_print(structed_num);
 
     return VALIDATION_ERROR;
 }
