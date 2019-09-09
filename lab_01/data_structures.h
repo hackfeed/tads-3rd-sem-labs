@@ -1,5 +1,5 @@
 /* Data structure for entered num. */
-typedef char long_t[MAX_INT_NUM_LEN];
+typedef char long_t[MAX_LONG_T_NUM_LEN];
 
 /* 
 Data structure fo parsed num. 

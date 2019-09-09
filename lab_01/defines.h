@@ -21,6 +21,7 @@ boolean constants definition.
 
 #define MAX_MANTISSA_PART_LEN 32
 #define MAX_INT_NUM_LEN 31
+#define MAX_LONG_T_NUM_LEN 40
 #define MAX_ORDER_PART_LEN 7
 
 #define TRUE 1
