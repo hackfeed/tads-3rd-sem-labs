@@ -16,8 +16,10 @@ boolean constants definition.
 #define ORDER_SIGN_VALIDATION_ERROR 8
 #define ORDER_VALIDATION_ERROR 9
 
-#define TYPE_INT 10
-#define TYPE_FLOAT 11
+#define TYPE_ERROR 10
+
+#define TYPE_INT 11
+#define TYPE_FLOAT 12
 
 #define MAX_MANTISSA_PART_LEN 32
 #define MAX_INT_NUM_LEN 30
@@ -28,4 +30,8 @@ boolean constants definition.
 #define FALSE 0
 #define POSITIVE '+'
 #define NEGATIVE '-'
-#define NONE 'N'
+
+#define ANSI_COLOR_RED "\x1b[31m"
+#define ANSI_COLOR_GREEN "\x1b[32m"
+#define ANSI_COLOR_YELLOW "\x1b[33m"
+#define ANSI_COLOR_RESET "\x1b[0m"
