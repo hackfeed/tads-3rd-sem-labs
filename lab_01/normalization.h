@@ -5,7 +5,7 @@ Normalization means .xxxxxxE+-yyyy representation.
 Input data:
 * num_t *const structed_num - number to be normalized.
 */
-void normalize_structed_mantissa(num_t *const structed_num)
+void base_mantissa_normalization(num_t *const structed_num)
 {
     if (structed_num->dot_position == -2)
     {
