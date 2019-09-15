@@ -42,6 +42,7 @@ void float_input(long_t *const entered_num)
 
 void debug_print(const num_t structed_num)
 {
+    printf(ANSI_COLOR_YELLOW "***DEBUG BEGIN***\n" ANSI_COLOR_RESET);
     printf("Parsed sign: %c\n",
            structed_num.num_sign);
     printf("Parsed mantissa: %s\n",
@@ -54,4 +55,5 @@ void debug_print(const num_t structed_num)
            structed_num.exp_position);
     printf("Represented order in int: %d\n",
            structed_num.order_int);
+    printf(ANSI_COLOR_YELLOW "***DEBUG END***\n" ANSI_COLOR_RESET);
 }
