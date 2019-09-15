@@ -25,7 +25,14 @@ void base_mantissa_normalization(num_t *const structed_num)
     }
 }
 
-/*void presub_mantissa_normalization(num_t *const divided_num, num_t *const divider_num)
+void presub_mantissa_normalization(num_t *const divided_num, num_t *const divider_num)
 {
-
-}*/
+    while (strlen(divided_num->mantissa_part) < strlen(divider_num->mantissa_part))
+    {
+        short int divided_num_mantissa = strlen(divided_num->mantissa_part);
+        
+        divided_num->mantissa_part[divided_num_mantissa] = '0';
+        divided_num->mantissa_part[divided_num_mantissa + 1] = '\0';
+        divided_num->order_int -= 1;
+    }
+}

@@ -27,9 +27,7 @@ int main()
 
         if (decided_type == TYPE_INT)
         {
-            debug_print(structed_int_num);
             base_mantissa_normalization(&structed_int_num);
-            debug_print(structed_int_num);
         }
 
         if (decided_type == TYPE_FLOAT)
@@ -65,9 +63,7 @@ int main()
 
         if (decided_type == TYPE_FLOAT)
         {
-            debug_print(structed_float_num);
             base_mantissa_normalization(&structed_float_num);
-            debug_print(structed_float_num);
         }
 
         if (decided_type == TYPE_INT)
@@ -85,6 +81,10 @@ int main()
 
             return PARSE_ERROR;
         }
+
+        presub_mantissa_normalization(&structed_int_num, &structed_float_num);
+        debug_print(structed_int_num);
+        debug_print(structed_float_num);
     }
 
     else
