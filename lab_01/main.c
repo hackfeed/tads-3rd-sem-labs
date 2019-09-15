@@ -36,6 +36,7 @@ int main()
         {
             printf(ANSI_COLOR_RED
                    "Ошибка типа. Введено действительное число." ANSI_COLOR_RESET);
+
             return TYPE_ERROR;
         }
 
@@ -43,6 +44,7 @@ int main()
         {
             printf(ANSI_COLOR_RED
                    "Ошибка ввода. Соблюдайте правила ввода." ANSI_COLOR_RESET);
+
             return PARSE_ERROR;
         }
     }
@@ -51,6 +53,7 @@ int main()
     {
         printf(ANSI_COLOR_RED
                "Ошибка ввода. Соблюдайте правила ввода." ANSI_COLOR_RESET);
+
         return PARSE_ERROR;
     }
 
@@ -71,6 +74,7 @@ int main()
         {
             printf(ANSI_COLOR_RED
                    "Ошибка типа. Введено целое число." ANSI_COLOR_RESET);
+
             return TYPE_ERROR;
         }
 
@@ -78,6 +82,7 @@ int main()
         {
             printf(ANSI_COLOR_RED
                    "Ошибка ввода. Соблюдайте правила ввода." ANSI_COLOR_RESET);
+
             return PARSE_ERROR;
         }
     }
@@ -86,6 +91,7 @@ int main()
     {
         printf(ANSI_COLOR_RED
                "Ошибка ввода. Соблюдайте правила ввода." ANSI_COLOR_RESET);
+
         return PARSE_ERROR;
     }
 }
