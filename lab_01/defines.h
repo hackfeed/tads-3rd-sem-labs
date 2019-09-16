@@ -5,19 +5,32 @@ boolean constants definition.
 
 #define OK 0
 
+/* 
+parsing.h return codes.
+*/
 #define PARSE_ERROR 1
 #define SIGN_PARSE_ERROR 2
 #define DOT_PARSE_ERROR 3
 #define MANTISSA_PARSE_ERROR 4
 #define ORDER_PARSE_ERROR 5
 
+/*
+validation.h return codes.
+*/
 #define VALIDATION_ERROR 6
 #define MANTISSA_VALIDATION_ERROR 7
 #define ORDER_SIGN_VALIDATION_ERROR 8
 #define ORDER_VALIDATION_ERROR 9
-
 #define TYPE_ERROR 10
 
+/*
+arithmetic.h return codes.
+*/
+#define OVERFLOW_ERROR 11
+
+/*
+Macroreplacements.
+*/
 #define TYPE_INT 11
 #define TYPE_FLOAT 12
 
@@ -28,9 +41,13 @@ boolean constants definition.
 
 #define TRUE 1
 #define FALSE 0
+#define EQUAL 2
 #define POSITIVE '+'
 #define NEGATIVE '-'
 
+/*
+Colored printf ouptut.
+*/
 #define ANSI_COLOR_RED "\x1b[31m"
 #define ANSI_COLOR_GREEN "\x1b[32m"
 #define ANSI_COLOR_YELLOW "\x1b[33m"
