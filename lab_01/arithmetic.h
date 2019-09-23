@@ -10,35 +10,51 @@ FALSE (if divider_num is greater), EQUAL (if nums are equal).
 */
 int is_greater(num_t *const divided_num, num_t *const divider_num)
 {
-    short int divided_num_len = strlen(divided_num->mantissa_part);
-    short int divider_num_len = strlen(divider_num->mantissa_part);
+    short int num_len = strlen(divided_num->mantissa_part);
 
-    if (divided_num_len > divider_num_len)
+    for (short int letter_ind = 0; letter_ind < num_len; ++letter_ind)
     {
-        return TRUE;
+        if (divided_num->mantissa_part[letter_ind] >
+            divider_num->mantissa_part[letter_ind])
+        {
+            return TRUE;
+        }
+
+        else
+        {
+            if (divided_num->mantissa_part[letter_ind] <
+                divider_num->mantissa_part[letter_ind])
+            {
+                return FALSE;
+            }
+        }
     }
 
-    if (divided_num_len < divider_num_len)
+    return EQUAL;
+}
+
+/*
+Check if num is nil.
+
+Input data:
+* const num_t *const structed_num - number to be checked.
+
+Output data:
+* Return code - IS_NIL or NOT_NIL.
+*/
+int is_nil(const num_t *const structed_num)
+{
+    short int num_len = strlen(structed_num->mantissa_part);
+
+    for (short int el_ind = 0; el_ind < num_len; ++el_ind)
     {
-        return FALSE;
+        if (structed_num->mantissa_part[el_ind] != '0')
+        {
+            return FALSE;
+        }
     }
 
-    short int compare_range = strcmp(divided_num->mantissa_part, divider_num->mantissa_part);
-
-    if (compare_range == 0)
-    {
-        return EQUAL;
-    }
-
-    if (compare_range > 0)
-    {
-        return TRUE;
-    }
-
-    if (compare_range < 0)
-    {
-        return FALSE;
-    }
+    return TRUE;
 }
 
 /*

@@ -83,6 +83,8 @@ int main()
         }
 
         presub_mantissa_normalization(&structed_int_num, &structed_float_num);
+        debug_print(structed_int_num);
+        debug_print(structed_float_num);
         division_by_subtraction(&structed_int_num, &structed_float_num, &structed_result_num);
         result_print(structed_result_num);
     }
