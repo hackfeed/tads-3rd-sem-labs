@@ -27,12 +27,13 @@ validation.h return codes.
 arithmetic.h return codes.
 */
 #define OVERFLOW_ERROR 11
+#define DIVISION_BY_ZERO_ERROR 12
 
 /*
 Macroreplacements.
 */
-#define TYPE_INT 11
-#define TYPE_FLOAT 12
+#define TYPE_INT 13
+#define TYPE_FLOAT 14
 
 #define MAX_MANTISSA_PART_LEN 32
 #define MAX_INT_NUM_LEN 30
@@ -41,7 +42,6 @@ Macroreplacements.
 
 #define TRUE 1
 #define FALSE 0
-#define EQUAL 2
 #define POSITIVE '+'
 #define NEGATIVE '-'
 

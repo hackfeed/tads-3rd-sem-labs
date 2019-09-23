@@ -94,3 +94,21 @@ void presub_mantissa_normalization(num_t *const divided_num, num_t *const divide
         }
     }
 }
+
+void mantissa_offset(num_t *const structed_num, const int offset_rate)
+{
+    for (short int letter_ind = 0;
+         letter_ind < MAX_MANTISSA_PART_LEN - 1 - offset_rate;
+         ++letter_ind)
+    {
+        structed_num->mantissa_part[letter_ind] =
+            structed_num->mantissa_part[letter_ind + offset_rate];
+    }
+
+    for (short int letter_ind = MAX_MANTISSA_PART_LEN - 1 - offset_rate;
+         letter_ind < MAX_MANTISSA_PART_LEN - 1;
+         ++letter_ind)
+    {
+        structed_num->mantissa_part[letter_ind] = 0;
+    }
+}
