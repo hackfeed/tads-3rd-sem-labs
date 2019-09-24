@@ -57,6 +57,15 @@ int is_nil(const num_t *const structed_num)
     return TRUE;
 }
 
+/*
+Preparation for classic division algorithm.
+
+Input data:
+* num_t *const divided_num, num_t *const divider_num - divided and divider numbers.
+
+Output data:
+* Return code - OK or MANTISSA_SUBTRACTION_ERROR.
+*/
 int mantissa_subtraction(num_t *const divided_num, num_t *const divider_num)
 {
     if (is_greater(divided_num, divider_num) == TRUE)
@@ -95,6 +104,15 @@ int mantissa_subtraction(num_t *const divided_num, num_t *const divider_num)
     return MANTISSA_SUBTRACTION_ERROR;
 }
 
+/*
+Count amount of possible subtractions.
+
+Input data:
+* num_t *const divided_num, num_t *const divider_num - divided and divider numbers.
+
+Output data:
+* iters - found amount of possible subtractions.
+*/
 int count_div_iters(num_t *const divided_num, num_t *const divider_num)
 {
     short int iters = 0;
