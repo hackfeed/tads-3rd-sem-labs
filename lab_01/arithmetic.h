@@ -264,6 +264,8 @@ int division_by_subtraction(num_t *const divided_num,
     result_num->order_int = divided_num->order_int - divider_num->order_int + 1 + inc;
     if (result_num->order_int > 99999)
     {
+        printf(ANSI_COLOR_RED "Ошибка! Переполнение порядка!" ANSI_COLOR_RESET);
+
         return OVERFLOW_ERROR;
     }
 
