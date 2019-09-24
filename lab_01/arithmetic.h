@@ -249,7 +249,7 @@ int division_by_subtraction(num_t *const divided_num,
         inc = FALSE;
     }
 
-    result_num->mantissa_part[MAX_MANTISSA_PART_LEN - 1] = '\0';
+    result_num->mantissa_part[MAX_MANTISSA_PART_LEN - 3] = '\0';
 
     if (divided_num->num_sign != divider_num->num_sign)
     {
