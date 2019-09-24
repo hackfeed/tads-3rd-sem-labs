@@ -14,16 +14,16 @@ int is_greater(num_t *const divided_num, num_t *const divider_num)
 
     for (short int letter_ind = 0; letter_ind < num_len; ++letter_ind)
     {
-        if (divided_num->mantissa_part[letter_ind] >
-            divider_num->mantissa_part[letter_ind])
+        if ((int)(divided_num->mantissa_part[letter_ind] -
+                  divider_num->mantissa_part[letter_ind]) > 0)
         {
             return TRUE;
         }
 
         else
         {
-            if (divided_num->mantissa_part[letter_ind] <
-                divider_num->mantissa_part[letter_ind])
+            if ((int)(divided_num->mantissa_part[letter_ind] -
+                      divider_num->mantissa_part[letter_ind]) < 0)
             {
                 return FALSE;
             }
@@ -59,9 +59,7 @@ int is_nil(const num_t *const structed_num)
 
 int mantissa_subtraction(num_t *const divided_num, num_t *const divider_num)
 {
-    short int which_greater = is_greater(divided_num, divider_num);
-
-    if (which_greater == TRUE)
+    if (is_greater(divided_num, divider_num) == TRUE)
     {
         for (short int base = strlen(divider_num->mantissa_part) - 1; base >= 0; --base)
         {
@@ -94,7 +92,7 @@ int mantissa_subtraction(num_t *const divided_num, num_t *const divider_num)
         return OK;
     }
 
-    return FALSE;
+    return MANTISSA_SUBTRACTION_ERROR;
 }
 
 int count_div_iters(num_t *const divided_num, num_t *const divider_num)
@@ -153,21 +151,19 @@ int division_by_subtraction(num_t *const divided_num,
         return OVERFLOW_ERROR;
     }
 
-    short int temp = 0;
-
-    if (!is_greater(divided_num, divider_num))
+    if (is_greater(divided_num, divider_num) != TRUE)
     {
         divided_num->order_int -= 1;
         mantissa_offset(divided_num, 1);
     }
 
     result_num->mantissa_part[0] = '0';
-    temp = count_div_iters(divided_num, divider_num);
+    short int temp = count_div_iters(divided_num, divider_num);
     result_num->mantissa_part[1] = '0' + temp;
 
     short int iters;
 
-    for (iters = 2; iters < MAX_MANTISSA_PART_LEN; ++iters)
+    for (iters = 2; iters < MAX_MANTISSA_PART_LEN - 1; ++iters)
     {
         if (is_nil(divided_num))
         {
@@ -179,7 +175,7 @@ int division_by_subtraction(num_t *const divided_num,
         if (!is_greater(divided_num, divider_num))
         {
             mantissa_offset(divided_num, 1);
-            result_num->mantissa_part[iters] - '0';
+            result_num->mantissa_part[iters] = '0';
         }
 
         else
@@ -190,7 +186,7 @@ int division_by_subtraction(num_t *const divided_num,
     }
 
     result_num->mantissa_part[MAX_MANTISSA_PART_LEN - 1] = '\0';
-    if (iters == MAX_MANTISSA_PART_LEN - 1 && (temp = count_div_iters(divided_num, divider_num) >= 5))
+    if ((iters == MAX_MANTISSA_PART_LEN - 1) && (temp = count_div_iters(divided_num, divider_num)) >= 5)
     {
         result_num->mantissa_part[MAX_MANTISSA_PART_LEN - 2] += 1;
     }
@@ -202,7 +198,7 @@ int division_by_subtraction(num_t *const divided_num,
 
     result_num->mantissa_part[MAX_MANTISSA_PART_LEN - 1] = '\0';
 
-    short int inc = 0;
+    short int inc = FALSE;
 
     for (iters = MAX_MANTISSA_PART_LEN - 2; iters >= 0; --iters)
     {
@@ -211,7 +207,7 @@ int division_by_subtraction(num_t *const divided_num,
         if (result_num->mantissa_part[iters] == ':')
         {
             result_num->mantissa_part[iters] = '0';
-            inc = 1;
+            inc = TRUE;
         }
 
         else
@@ -232,10 +228,11 @@ int division_by_subtraction(num_t *const divided_num,
 
     else
     {
-        inc = 0;
+        inc = FALSE;
     }
 
     result_num->mantissa_part[MAX_MANTISSA_PART_LEN - 1] = '\0';
+
     if (divided_num->num_sign != divider_num->num_sign)
     {
         result_num->num_sign = NEGATIVE;
@@ -245,6 +242,7 @@ int division_by_subtraction(num_t *const divided_num,
     {
         result_num->num_sign = POSITIVE;
     }
+
     result_num->order_int = divided_num->order_int - divider_num->order_int + 1 + inc;
 
     return OK;
