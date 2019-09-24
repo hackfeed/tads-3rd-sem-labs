@@ -145,6 +145,13 @@ int division_by_subtraction(num_t *const divided_num,
     short int if_nil_divided = is_nil(divided_num);
     short int if_nil_divider = is_nil(divider_num);
 
+    if (if_nil_divider == TRUE)
+    {
+        printf(ANSI_COLOR_RED "Ошибка! Деление на ноль!\n" ANSI_COLOR_RESET);
+
+        return DIVISION_BY_ZERO_ERROR;
+    }
+
     if (if_nil_divided == TRUE)
     {
         result_num->num_sign = POSITIVE;
@@ -153,13 +160,6 @@ int division_by_subtraction(num_t *const divided_num,
         result_num->order_int = 0;
 
         return OK;
-    }
-
-    if (if_nil_divider == TRUE)
-    {
-        printf(ANSI_COLOR_RED "Ошибка! Деление на ноль!\n" ANSI_COLOR_RESET);
-
-        return DIVISION_BY_ZERO_ERROR;
     }
 
     if (abs(divided_num->order_int - divider_num->order_int) > 99999)
