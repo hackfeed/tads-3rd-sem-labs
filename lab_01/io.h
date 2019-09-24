@@ -89,7 +89,7 @@ Input data:
 void result_print(const num_t result_num)
 {
        printf(ANSI_COLOR_GREEN "Результат вычисления:       " ANSI_COLOR_RESET
-                               "%c0.%sE%+d",
+                               "%c0.%sE%+d\n",
               result_num.num_sign,
               &result_num.mantissa_part[1], result_num.order_int);
 }
