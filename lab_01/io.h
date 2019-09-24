@@ -49,8 +49,8 @@ void float_input(long_t *const entered_num)
 {
        printf("%s",
               ANSI_COLOR_GREEN
-              "                            ±|          мантисса          |E±|pwr|\n"
-              "                            -|--------|---------|---------|--|---|\n"
+              "                            ±|          мантисса           |E±|pwr|\n"
+              "                            -|--------|---------|----------|--|---|\n"
               "                             1       10        20        31  1   5\n" ANSI_COLOR_RESET
               "Введите вещественное число: ");
        scanf("%s", entered_num);
