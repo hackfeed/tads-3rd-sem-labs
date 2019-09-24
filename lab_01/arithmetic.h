@@ -157,14 +157,14 @@ int division_by_subtraction(num_t *const divided_num,
 
     if (if_nil_divider == TRUE)
     {
-        printf("Error bruh");
+        printf(ANSI_COLOR_RED "Ошибка! Деление на ноль!\n" ANSI_COLOR_RESET);
 
         return DIVISION_BY_ZERO_ERROR;
     }
 
     if (abs(divided_num->order_int - divider_num->order_int) > 99999)
     {
-        printf("Order bruh");
+        printf(ANSI_COLOR_RED "Ошибка! Переполнение порядка!" ANSI_COLOR_RESET);
 
         return OVERFLOW_ERROR;
     }

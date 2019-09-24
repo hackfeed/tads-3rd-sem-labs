@@ -34,7 +34,7 @@ int main()
         if (decided_type == TYPE_FLOAT)
         {
             printf(ANSI_COLOR_RED
-                   "Ошибка типа. Введено действительное число." ANSI_COLOR_RESET);
+                   "Ошибка типа! Введено действительное число!" ANSI_COLOR_RESET);
 
             return TYPE_ERROR;
         }
@@ -42,7 +42,7 @@ int main()
         if (decided_type == VALIDATION_ERROR)
         {
             printf(ANSI_COLOR_RED
-                   "Ошибка ввода. Соблюдайте правила ввода." ANSI_COLOR_RESET);
+                   "Ошибка ввода! Соблюдайте правила ввода!" ANSI_COLOR_RESET);
 
             return PARSE_ERROR;
         }
@@ -51,7 +51,7 @@ int main()
     else
     {
         printf(ANSI_COLOR_RED
-               "Ошибка ввода. Соблюдайте правила ввода." ANSI_COLOR_RESET);
+               "Ошибка ввода! Соблюдайте правила ввода!" ANSI_COLOR_RESET);
 
         return PARSE_ERROR;
     }
@@ -70,7 +70,7 @@ int main()
         if (decided_type == TYPE_INT)
         {
             printf(ANSI_COLOR_RED
-                   "Ошибка типа. Введено целое число." ANSI_COLOR_RESET);
+                   "Ошибка типа! Введено целое число!" ANSI_COLOR_RESET);
 
             return TYPE_ERROR;
         }
@@ -78,15 +78,17 @@ int main()
         if (decided_type == VALIDATION_ERROR)
         {
             printf(ANSI_COLOR_RED
-                   "Ошибка ввода. Соблюдайте правила ввода." ANSI_COLOR_RESET);
+                   "Ошибка ввода! Соблюдайте правила ввода!" ANSI_COLOR_RESET);
 
             return PARSE_ERROR;
         }
 
         presub_mantissa_normalization(&structed_int_num, &structed_float_num);
-        debug_print(structed_int_num);
-        debug_print(structed_float_num);
-        division_by_subtraction(&structed_int_num, &structed_float_num, &structed_result_num);
+        if (division_by_subtraction(&structed_int_num, &structed_float_num, &structed_result_num) != OK)
+        {
+            return SUBTRACTION_ERROR;
+        }
+
         remove_post_zeros(&structed_result_num);
         result_print(structed_result_num);
     }
@@ -94,7 +96,7 @@ int main()
     else
     {
         printf(ANSI_COLOR_RED
-               "Ошибка ввода. Соблюдайте правила ввода." ANSI_COLOR_RESET);
+               "Ошибка ввода! Соблюдайте правила ввода!" ANSI_COLOR_RESET);
 
         return PARSE_ERROR;
     }

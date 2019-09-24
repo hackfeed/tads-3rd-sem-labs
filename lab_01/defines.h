@@ -29,12 +29,13 @@ arithmetic.h return codes.
 #define OVERFLOW_ERROR 11
 #define DIVISION_BY_ZERO_ERROR 12
 #define MANTISSA_SUBTRACTION_ERROR 13
+#define SUBTRACTION_ERROR 14
 
 /*
 Macroreplacements.
 */
-#define TYPE_INT 14
-#define TYPE_FLOAT 15
+#define TYPE_INT 15
+#define TYPE_FLOAT 16
 
 #define MAX_MANTISSA_PART_LEN 32
 #define MAX_INT_NUM_LEN 30
