@@ -76,6 +76,12 @@ void remove_leading_zeros(num_t *const structed_num)
     structed_num->mantissa_part[num_len - cur_digit] = '\0';
 }
 
+/*
+Add one leading zero for mantissa offset.
+
+Input data:
+* num_t *const structed_num - number needed in leading zero.
+*/
 void add_one_leading_zero(num_t *const structed_num)
 {
     short int num_len = strlen(structed_num->mantissa_part);
@@ -90,6 +96,12 @@ void add_one_leading_zero(num_t *const structed_num)
     structed_num->mantissa_part[num_len + 1] = '\0';
 }
 
+/*
+Removing useless zeros in mantissa.
+
+Input data:
+* num_t *const structed_num - number to be cut.
+*/
 void remove_post_zeros(num_t *const structed_num)
 {
     short int letter_ind, num_len = strlen(structed_num->mantissa_part);
@@ -120,6 +132,13 @@ void presub_mantissa_normalization(num_t *const divided_num, num_t *const divide
     add_one_leading_zero(divider_num);
 }
 
+/*
+Mantissa shifting for subtraction.
+
+Input data:
+* num_t *const structed_num - number to be shifted.
+* const int offset_rate - number's parts to be shifted.
+*/
 void mantissa_offset(num_t *const structed_num, const int offset_rate)
 {
     for (short int letter_ind = 0;
