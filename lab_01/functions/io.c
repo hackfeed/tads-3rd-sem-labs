@@ -1,7 +1,11 @@
-/*
-Input rules.
-*/
+#include <stdio.h>
+#include "../headers/defines.h"
+#include "../headers/data_structures.h"
+#include "../headers/io.h"
 
+/*
+Welcomming print with input rules.
+*/
 void welcome_print()
 {
        printf("%s",

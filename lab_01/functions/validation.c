@@ -1,3 +1,11 @@
+/*
+Parsed number validation interface.
+*/
+
+#include <string.h>
+#include "../headers/defines.h"
+#include "../headers/data_structures.h"
+
 /* 
 Checking containing only integer digits in mantissa part of long_t number 
 and leading zeros absence.

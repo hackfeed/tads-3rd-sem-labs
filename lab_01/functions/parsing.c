@@ -1,3 +1,12 @@
+/*
+Number parsing interface.
+*/
+
+#include <string.h>
+#include <ctype.h>
+#include "../headers/defines.h"
+#include "../headers/data_structures.h"
+
 /* 
 Parsing number sign from long_t to num_t struct.
 

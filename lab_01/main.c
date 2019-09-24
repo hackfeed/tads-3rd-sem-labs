@@ -1,17 +1,13 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 
-#include "defines.h"
-#include "data_structures.h"
+#include "headers/defines.h"
+#include "headers/data_structures.h"
 
-#include "io.h"
-
-#include "parsing.h"
-#include "validation.h"
-#include "normalization.h"
-#include "arithmetic.h"
+#include "headers/io.h"
+#include "headers/parsing.h"
+#include "headers/validation.h"
+#include "headers/normalization.h"
+#include "headers/arithmetic.h"
 
 int main()
 {
@@ -91,6 +87,8 @@ int main()
 
         remove_post_zeros(&structed_result_num);
         result_print(structed_result_num);
+
+        return OK;
     }
 
     else
@@ -100,4 +98,6 @@ int main()
 
         return PARSE_ERROR;
     }
+
+    return SUBTRACTION_ERROR;
 }

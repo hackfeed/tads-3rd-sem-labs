@@ -1,4 +1,12 @@
 /*
+Number normalization interface.
+*/
+
+#include <string.h>
+#include "../headers/defines.h"
+#include "../headers/data_structures.h"
+
+/*
 Normalization of structed num.
 Normalization means xxxxxxE+-yyyy representation.
 

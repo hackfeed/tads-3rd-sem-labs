@@ -1,4 +1,15 @@
 /*
+Arithmetic operations interface.
+*/
+
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "../headers/defines.h"
+#include "../headers/data_structures.h"
+#include "../headers/normalization.h"
+
+/*
 Decide which num is greater.
 
 Input data:
