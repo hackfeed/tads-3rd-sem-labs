@@ -84,8 +84,8 @@ Book-table-based key-value table.
 */
 typedef struct
 {
-    int book_table_index;
-    int page_count;
+    int *book_table_index;
+    int *page_count;
 } book_key_t;
 
 /*
@@ -93,8 +93,8 @@ All-in-one pointing struct.
 */
 typedef struct
 {
-    book_t main_table;
-    book_key_t key_table;
+    book_t *main_table;
+    book_key_t *key_table;
     int size_of_table;
 } aio_table_t;
 
