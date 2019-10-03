@@ -13,7 +13,6 @@ Welcomming print with available features.
 */
 void welcome_print()
 {
-    system("clear");
     printf("%s",
            ANSI_COLOR_GREEN
            " ___  ___  ___ _____    ___ ___  __  __ ___  _   ___ ___\n"
