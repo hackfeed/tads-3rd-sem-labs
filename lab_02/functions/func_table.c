@@ -153,7 +153,7 @@ int add_record(aio_table_t *const table)
     }
 
     printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
-           "Введите количество страниц: ");
+           "Введите количество страниц (от 1 до 999): ");
     if (input_number_between(&new_record.page_count, 1, 999) != OK)
     {
         return INVALID_INT_INPUT_ERROR;
@@ -214,12 +214,6 @@ int add_record(aio_table_t *const table)
             return INVALID_INT_INPUT_ERROR;
         }
 
-        if (new_record.variative_part.fiction_book.is_novel &&
-            new_record.variative_part.fiction_book.is_play)
-        {
-            return MULTIPLE_GENRES_ERROR;
-        }
-
         printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
                "Является ли данная книга сборником стихов (1 - да, 0 - нет):");
         if (input_number_between(&new_record.variative_part.fiction_book.is_poetry, 0, 1) != OK)
@@ -227,12 +221,36 @@ int add_record(aio_table_t *const table)
             return INVALID_INT_INPUT_ERROR;
         }
 
-        if (new_record.variative_part.fiction_book.is_poetry &&
-                (new_record.variative_part.fiction_book.is_novel ||
-                 new_record.variative_part.fiction_book.is_play) ||
-            !(new_record.variative_part.fiction_book.is_poetry ||
-              new_record.variative_part.fiction_book.is_novel ||
-              new_record.variative_part.fiction_book.is_play))
+        if (new_record.variative_part.fiction_book.is_novel == TRUE)
+        {
+            if (new_record.variative_part.fiction_book.is_play == TRUE ||
+                new_record.variative_part.fiction_book.is_poetry == TRUE)
+            {
+                return MULTIPLE_GENRES_ERROR;
+            }
+        }
+
+        if (new_record.variative_part.fiction_book.is_play == TRUE)
+        {
+            if (new_record.variative_part.fiction_book.is_novel == TRUE ||
+                new_record.variative_part.fiction_book.is_poetry == TRUE)
+            {
+                return MULTIPLE_GENRES_ERROR;
+            }
+        }
+
+        if (new_record.variative_part.fiction_book.is_poetry == TRUE)
+        {
+            if (new_record.variative_part.fiction_book.is_play == TRUE ||
+                new_record.variative_part.fiction_book.is_novel == TRUE)
+            {
+                return MULTIPLE_GENRES_ERROR;
+            }
+        }
+
+        if (new_record.variative_part.fiction_book.is_novel == FALSE &&
+            new_record.variative_part.fiction_book.is_play == FALSE &&
+            new_record.variative_part.fiction_book.is_poetry == FALSE)
         {
             return MULTIPLE_GENRES_ERROR;
         }
@@ -254,10 +272,10 @@ int add_record(aio_table_t *const table)
             return INVALID_INT_INPUT_ERROR;
         }
 
-        if (new_record.variative_part.kids_book.is_poetry &&
-                new_record.variative_part.kids_book.is_fairytale ||
-            !(new_record.variative_part.kids_book.is_poetry ||
-              new_record.variative_part.kids_book.is_fairytale))
+        if (new_record.variative_part.kids_book.is_fairytale == TRUE &&
+                new_record.variative_part.kids_book.is_poetry == TRUE ||
+            new_record.variative_part.kids_book.is_fairytale == FALSE &&
+                new_record.variative_part.kids_book.is_poetry == FALSE)
         {
             return MULTIPLE_GENRES_ERROR;
         }
@@ -266,7 +284,83 @@ int add_record(aio_table_t *const table)
     table->main_table[table->size_of_table] = new_record;
     table->key_table[table->size_of_table].book_table_index = table->size_of_table;
     table->key_table[table->size_of_table].page_count = new_record.page_count;
-    table->size_of_table += 1;
+    table->size_of_table++;
 
     return OK;
+}
+
+/*
+Delete records in table by specified page count.
+
+Input data:
+* aio_table_t *const table - table to be modified.
+* const int *const pages - page count which will be removed.
+
+Output data:
+* int deletions_count - amout of deleted records.
+*/
+int delete_record_by_pages(aio_table_t *const table, const int *const pages)
+{
+    int deletions_count = 0;
+
+    for (int record = 0; record < table->size_of_table; ++record)
+    {
+        if (table->main_table[record].page_count == *pages)
+        {
+            for (int record_offset = record;
+                 record_offset < table->size_of_table - 1;
+                 ++record_offset)
+            {
+                table->main_table[record_offset] = table->main_table[record_offset + 1];
+                table->key_table[record_offset] = table->key_table[record_offset + 1];
+            }
+
+            deletions_count++;
+            record--;
+            table->size_of_table--;
+        }
+    }
+
+    return deletions_count;
+}
+
+void bubble_sort_table(aio_table_t *const table, const boolean_t table_to_sort)
+{
+    if (table_to_sort == TRUE)
+    {
+        for (int record = 0; record < table->size_of_table; ++record)
+        {
+            for (int record_offset = 0;
+                 record_offset < table->size_of_table - 1;
+                 ++record_offset)
+            {
+                if (table->main_table[record_offset].page_count >
+                    table->main_table[record_offset + 1].page_count)
+                {
+                    book_t tmp = table->main_table[record_offset];
+                    table->main_table[record_offset] = table->main_table[record_offset + 1];
+                    table->main_table[record_offset + 1] = tmp;
+                }
+            }
+        }
+    }
+
+    if (table_to_sort == FALSE)
+    {
+        for (int record = 0; record < table->size_of_table; ++record)
+        {
+            for (int record_offset = 0;
+                 record_offset < table->size_of_table - 1;
+                 ++record_offset)
+            {
+                if (table->key_table[record_offset].page_count >
+                    table->key_table[record_offset + 1].page_count)
+                {
+                    book_key_t tmp = table->key_table[record_offset];
+                    table->key_table[record_offset] = table->key_table[record_offset + 1];
+                    table->key_table[record_offset + 1] = tmp;
+                }
+            }
+        }
+    }
 }

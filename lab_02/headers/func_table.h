@@ -13,4 +13,8 @@ void parse_table(const char *const filename, aio_table_t *const table);
 
 int add_record(aio_table_t *const table);
 
+int delete_record_by_pages(aio_table_t *const table, const int *const pages);
+
+void bubble_sort_table(aio_table_t *const table, const boolean_t table_to_sort);
+
 #endif
