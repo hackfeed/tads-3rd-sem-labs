@@ -13,11 +13,7 @@ boolean constants definition.
 #define EMPTY_FILE_ERROR 4
 #define INVALID_STRING_INPUT_ERROR 5
 #define INVALID_INT_INPUT_ERROR 6
-#define NON_POSITIVE_INPUT_ERROR 7
-#define WRONG_BOOK_TYPE_ERROR 8
-#define WRONG_SIGN_ERROR 9
-#define WRONG_YEAR_ERROR 10
-#define MULTIPLE_GENRES_ERROR 11
+#define MULTIPLE_GENRES_ERROR 7
 
 /*
 Macroreplacements.
