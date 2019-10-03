@@ -47,7 +47,7 @@ Input data:
 * const char *const filename - name of data file.
 * aio_table_t *const table - table for parsing result.
 */
-void parse_table(const char *const filename, aio_table_t *const table)
+int parse_table(const char *const filename, aio_table_t *const table)
 {
     FILE *table_file = fopen(filename, "r");
 
@@ -80,6 +80,10 @@ void parse_table(const char *const filename, aio_table_t *const table)
         strcpy(tmp, line);
         table->main_table[record].book_type = atoi(get_csv_field(tmp, 5));
 
+        table->key_table[record].book_table_index = record;
+        strcpy(tmp, line);
+        table->key_table[record].page_count = atoi(get_csv_field(tmp, 4));
+
         if (table->main_table[record].book_type == technical)
         {
             strcpy(tmp, line);
@@ -110,4 +114,6 @@ void parse_table(const char *const filename, aio_table_t *const table)
             table->main_table[record].variative_part.kids_book.is_poetry = atoi(get_csv_field(tmp, 7));
         }
     }
+
+    return OK;
 }

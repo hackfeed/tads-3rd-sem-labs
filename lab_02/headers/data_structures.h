@@ -59,8 +59,7 @@ typedef struct
 /*
 Variative part for book structure.
 */
-typedef union 
-{
+typedef union {
     technical_t technical_book;
     fiction_t fiction_book;
     kids_t kids_book;
@@ -84,8 +83,8 @@ Book-table-based key-value table.
 */
 typedef struct
 {
-    int *book_table_index;
-    int *page_count;
+    int book_table_index;
+    int page_count;
 } book_key_t;
 
 /*
