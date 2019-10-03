@@ -324,6 +324,115 @@ int delete_record_by_pages(aio_table_t *const table, const int *const pages)
     return deletions_count;
 }
 
+/*
+Quick sort implementation for aio_table_t.
+
+Input data:
+* aio_table_t *const table - table to be sorted.
+* const boolean_t table_to_sort - sign which table should 
+be sorted (TRUE - main_table, FALSE - key_table).
+* const int first, const int last - first and last indexes.
+*/
+void quick_sort_table(aio_table_t *const table, const boolean_t table_to_sort,
+                      const int first, const int last)
+{
+    if (table_to_sort == TRUE)
+    {
+        unsigned int i, j, pivot;
+        book_t first_record, last_record, pivot_record;
+
+        if (first < last)
+        {
+            pivot = (first + last) / 2;
+            i = first;
+            j = last;
+
+            while (i < j)
+            {
+                first_record = table->main_table[i];
+                last_record = table->main_table[j];
+                pivot_record = table->main_table[pivot];
+
+                while (first_record.page_count <= pivot_record.page_count && i < last)
+                {
+                    i++;
+                    first_record = table->main_table[i];
+                }
+
+                while (last_record.page_count > pivot_record.page_count)
+                {
+                    j--;
+                    last_record = table->main_table[j];
+                }
+
+                if (i < j)
+                {
+                    table->main_table[i] = last_record;
+                    table->main_table[j] = first_record;
+                }
+            }
+
+            table->main_table[pivot] = last_record;
+            table->main_table[j] = pivot_record;
+
+            quick_sort_table(table, 1, first, i - 1);
+            quick_sort_table(table, 1, j + 1, last);
+        }
+    }
+
+    if (table_to_sort == FALSE)
+    {
+        unsigned int i, j, pivot;
+        book_key_t first_record, last_record, pivot_record;
+
+        if (first < last)
+        {
+            pivot = (first + last) / 2;
+            i = first;
+            j = last;
+
+            while (i < j)
+            {
+                first_record = table->key_table[i];
+                last_record = table->key_table[j];
+                pivot_record = table->key_table[pivot];
+
+                while (first_record.page_count <= pivot_record.page_count && i < last)
+                {
+                    i++;
+                    first_record = table->key_table[i];
+                }
+
+                while (last_record.page_count > pivot_record.page_count)
+                {
+                    j--;
+                    last_record = table->key_table[j];
+                }
+
+                if (i < j)
+                {
+                    table->key_table[i] = last_record;
+                    table->key_table[j] = first_record;
+                }
+            }
+
+            table->key_table[pivot] = last_record;
+            table->key_table[j] = pivot_record;
+
+            quick_sort_table(table, 0, first, i - 1);
+            quick_sort_table(table, 0, j + 1, last);
+        }
+    }
+}
+
+/*
+Bubble sort implementation for aio_table_t.
+
+Input data:
+* aio_table_t *const table - table to be sorted.
+* const boolean_t table_to_sort - sign which table should 
+be sorted (TRUE - main_table, FALSE - key_table).
+*/
 void bubble_sort_table(aio_table_t *const table, const boolean_t table_to_sort)
 {
     if (table_to_sort == TRUE)

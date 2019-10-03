@@ -17,4 +17,6 @@ int delete_record_by_pages(aio_table_t *const table, const int *const pages);
 
 void bubble_sort_table(aio_table_t *const table, const boolean_t table_to_sort);
 
+void quick_sort_table(aio_table_t *const table, const boolean_t table_to_sort, const int first, const int last);
+
 #endif
