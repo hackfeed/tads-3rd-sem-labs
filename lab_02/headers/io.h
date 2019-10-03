@@ -18,4 +18,6 @@ void output_main_table(const aio_table_t *const table);
 
 void output_key_table(const aio_table_t *const table);
 
+void output_table_by_techfield(const aio_table_t *const table, char needed_field[MAX_STRING_FIELD_SIZE]);
+
 #endif

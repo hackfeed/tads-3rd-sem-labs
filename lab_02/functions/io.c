@@ -3,7 +3,7 @@ IO module.
 */
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
 #include "../headers/data_structures.h"
 #include "../headers/defines.h"
@@ -38,12 +38,16 @@ void welcome_print()
            "2. Вывести на экран выгруженную таблицу.\n"
            "3. Добавить запись в таблицу.\n"
            "4. Удалить запись из таблицы по количеству страниц книги.\n"
-           "5. Отсортировать таблицу ключей.\n"
-           "6. Вывести отсортированную исходную таблицу по количеству страниц в книге.\n"
-           "7. Вывести отсортированную исходную таблицу по количеству страниц в книге,\n"
+           "5. Отсортировать таблицу ключей сортировкой O(n^2).\n"
+           "6. Отсортировать таблицу ключей сортировкой O(logn).\n"
+           "7. Вывести отсортированную таблицу ключей.\n"
+           "8. Вывести отсортированную исходную таблицу по количеству страниц в книге сортировкой O(n^2).\n"
+           "9. Вывести отсортированную исходную таблицу по количеству страниц в книге сортировкой O(logn).\n"
+           "10. Вывести отсортированную исходную таблицу по количеству страниц в книге,\n"
            "используя упорядоченную таблицу ключей.\n"
-           "8. Вывести сравнение времени сортировки таблицы сортировками со\n"
-           "сложностями O(n^2) и O(logn).\n\n"
+           "11. Вывести сравнение времени сортировки таблицы сортировками со\n"
+           "сложностями O(n^2) и O(logn) и сравнение времени обычной сортировки и сортировки с использованием\n"
+           "массива ключей.\n\n"
            "0. Выход из программы.\n" ANSI_COLOR_RESET);
 }
 
@@ -161,4 +165,45 @@ void output_key_table(const aio_table_t *const table)
     }
 
     printf("┗━━━┻━━━┛\n");
+}
+
+/*
+Output table by user-defined techfield.
+*/
+void output_table_by_techfield(const aio_table_t *const table,
+                               char needed_field[MAX_STRING_FIELD_SIZE])
+{
+    int entries_count = 0;
+
+    printf("┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━"
+           "━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+           "━━━━━━━━┳━━━┳━┳━━━━━━━━━━━━━━━━━━━━"
+           "┳━┳━┳━━━━┳━┳━┳━┳━┳━┓\n");
+
+    for (int record = 0; record < table->size_of_table; ++record)
+    {
+        if (table->main_table[record].book_type == technical &&
+            table->main_table[record].variative_part.technical_book.is_national == 1 &&
+            strcmp(table->main_table[record].variative_part.technical_book.field,
+                   needed_field) == GOT_IDENTITY)
+        {
+            printf("┃%20s┃%43s┃%38s┃%3d┃",
+                   table->main_table[record].author_last_name,
+                   table->main_table[record].book_name,
+                   table->main_table[record].publisher,
+                   table->main_table[record].page_count);
+
+            printf("%1d┃%20s┃%1d┃%1d┃%4d┃ ┃ ┃ ┃ ┃ ┃\n",
+                   table->main_table[record].book_type,
+                   table->main_table[record].variative_part.technical_book.field,
+                   table->main_table[record].variative_part.technical_book.is_national,
+                   table->main_table[record].variative_part.technical_book.is_translated,
+                   table->main_table[record].variative_part.technical_book.release_year);
+        }
+    }
+
+    printf("┗━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━"
+           "━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+           "━━━━━━━━┻━━━┻━┻━━━━━━━━━━━━━━━━━━━━"
+           "┻━┻━┻━━━━┻━┻━┻━┻━┻━┛\n");
 }
