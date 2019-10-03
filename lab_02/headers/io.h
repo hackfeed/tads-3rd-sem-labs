@@ -14,4 +14,4 @@ int input_filename(char filename[MAX_FILENAME_LEN]);
 
 void output_main_table(const aio_table_t *const table);
 
-void output_key_table(const aio_table_t *const table)
+void output_key_table(const aio_table_t *const table);
