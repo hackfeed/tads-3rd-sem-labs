@@ -2,9 +2,11 @@
 IO module headers.
 */
 
-#include "data_structures.h"
+#ifndef __IO_H__
+#define __IO_H__
 
-#define MAX_FILENAME_LEN 256
+#include "data_structures.h"
+#include "defines.h"
 
 void welcome_print();
 
@@ -15,3 +17,5 @@ int input_filename(char filename[MAX_FILENAME_LEN]);
 void output_main_table(const aio_table_t *const table);
 
 void output_key_table(const aio_table_t *const table);
+
+#endif

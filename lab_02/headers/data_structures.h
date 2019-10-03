@@ -5,7 +5,7 @@ Data structures for table.
 #ifndef __DATA_STRUCTURES_H__
 #define __DATA_STRUCTURES_H__
 
-#define MAX_STRING_FIELD_SIZE 256
+#include "defines.h"
 
 /*
 Bool enum.
