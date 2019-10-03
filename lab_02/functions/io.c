@@ -6,20 +6,7 @@ IO module.
 #include <stdlib.h>
 
 #include "../headers/data_structures.h"
-
-#define ANSI_COLOR_RED "\x1b[31m"
-#define ANSI_COLOR_GREEN "\x1b[32m"
-#define ANSI_COLOR_YELLOW "\x1b[33m"
-#define ANSI_COLOR_MAGENTA "\x1b[35m"
-#define ANSI_COLOR_RESET "\x1b[0m"
-
-#define OK 0
-#define IN_BETWEEN_ERROR 1
-#define FILENAME_ERROR 2
-
-#define MAX_FILENAME_LEN 256
-
-#define GOT_ARG 1
+#include "../headers/defines.h"
 
 /*
 Welcomming print with available features.
@@ -69,12 +56,16 @@ Input data:
 * const int right_border - right border of between.
 
 Output data:
-* Return code - OK or IN_BETWEEN_ERROR.
+* Return code - OK, INVALID_INT_INPUT_ERROR or IN_BETWEEN_ERROR.
 */
 int input_number_between(int *const number, const int left_border,
                          const int right_border)
 {
-    scanf("%d", number);
+    if (scanf("%d", number) != GOT_ARG)
+    {
+        return INVALID_INT_INPUT_ERROR;
+    }
+
     if (*number < left_border || *number > right_border)
     {
         return IN_BETWEEN_ERROR;
@@ -92,7 +83,7 @@ Input data:
 Output data:
 * Return code - OK of FILENAME_ERROR.
 */
-int input_filename(char filename[MAX_FILENAME_LEN])
+int input_filename(char *const filename[MAX_FILENAME_LEN])
 {
     if (scanf("%s", filename) != GOT_ARG)
     {

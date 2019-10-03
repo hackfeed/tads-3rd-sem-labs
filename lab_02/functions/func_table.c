@@ -8,12 +8,8 @@ Table handling module.
 #include <ctype.h>
 
 #include "../headers/data_structures.h"
-
-#define OK 0
-#define FILE_NOT_EXIST_ERROR 3
-#define EMPTY_FILE_ERROR 4
-
-#define LINE_LEN 1024
+#include "../headers/defines.h"
+#include "../headers/io.h"
 
 /*
 Parse CSV line and get field.
@@ -65,9 +61,9 @@ int parse_table(const char *const filename, aio_table_t *const table)
 
     for (int record = 0; record < table->size_of_table; ++record)
     {
-        char line[LINE_LEN];
-        fgets(line, LINE_LEN, table_file);
-        char tmp[LINE_LEN];
+        char line[MAX_STRING_FIELD_SIZE];
+        fgets(line, MAX_STRING_FIELD_SIZE, table_file);
+        char tmp[MAX_STRING_FIELD_SIZE];
         strcpy(tmp, line);
 
         strcpy(table->main_table[record].author_last_name, get_csv_field(tmp, 1));
@@ -114,6 +110,163 @@ int parse_table(const char *const filename, aio_table_t *const table)
             table->main_table[record].variative_part.kids_book.is_poetry = atoi(get_csv_field(tmp, 7));
         }
     }
+
+    return OK;
+}
+
+/*
+Add record to the table.
+
+Input data:
+* aio_table_t *const table - table to be modified.
+
+Output data:
+* Return code - OK, INVALID_STRING_INPUT_ERROR, INVALID_INT_INPUT_ERROR
+or MULTIPLE_GENRES_ERROR.
+*/
+int add_record(aio_table_t *const table)
+{
+    book_t new_record;
+
+    printf(ANSI_COLOR_MAGENTA
+           "ПРИ ВВОДЕ ТЕКСТОВЫХ ЗНАЧЕНИЙ "
+           "ВВОД МНОГОСЛОВНЫХ ЗНАЧЕНИЙ ОСУЩЕСТВЛЯТЬ ЧЕРЕЗ СИМВОЛ '_'\n" ANSI_COLOR_RESET);
+    printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+           "Введите фамилию автора (в английской раскладке): ");
+    if (scanf("%s", new_record.author_last_name) != GOT_ARG)
+    {
+        return INVALID_STRING_INPUT_ERROR;
+    }
+
+    printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+           "Введите название книги (в английской раскладке): ");
+    if (scanf("%s", new_record.book_name) != GOT_ARG)
+    {
+        return INVALID_STRING_INPUT_ERROR;
+    }
+
+    printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+           "Введите издателя (в английской раскладке): ");
+    if (scanf("%s", new_record.publisher) != GOT_ARG)
+    {
+        return INVALID_STRING_INPUT_ERROR;
+    }
+
+    printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+           "Введите количество страниц: ");
+    if (input_number_between(&new_record.page_count, 1, 999) != OK)
+    {
+        return INVALID_INT_INPUT_ERROR;
+    }
+
+    printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+           "Введите тип литературы от 1 до 3 (1 - техническая, "
+           "2 - художественная, 3 - детская): ");
+    if (input_number_between(&new_record.book_type, 1, 3) != OK)
+    {
+        return INVALID_INT_INPUT_ERROR;
+    }
+
+    if (new_record.book_type == technical)
+    {
+        printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+               "Введите отрасль данной книги:");
+        if (scanf("%s", new_record.variative_part.technical_book.field) != GOT_ARG)
+        {
+            return INVALID_STRING_INPUT_ERROR;
+        }
+
+        printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+               "Является ли данная книга отечественной (1 - да, 0 - нет):");
+        if (input_number_between(&new_record.variative_part.technical_book.is_national, 0, 1) != OK)
+        {
+            return INVALID_INT_INPUT_ERROR;
+        }
+
+        printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+               "Является ли данная книга переведенной (1 - да, 0 - нет):");
+        if (input_number_between(&new_record.variative_part.technical_book.is_translated, 0, 1) != OK)
+        {
+            return INVALID_INT_INPUT_ERROR;
+        }
+
+        printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+               "Введите год издания данной книги:");
+        if (input_number_between(&new_record.variative_part.technical_book.release_year, 1, 2019) != OK)
+        {
+            return INVALID_INT_INPUT_ERROR;
+        }
+    }
+
+    if (new_record.book_type == fiction)
+    {
+        printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+               "Является ли данная книга романом (1 - да, 0 - нет):");
+        if (input_number_between(&new_record.variative_part.fiction_book.is_novel, 0, 1) != OK)
+        {
+            return INVALID_INT_INPUT_ERROR;
+        }
+
+        printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+               "Является ли данная книга пьесой (1 - да, 0 - нет):");
+        if (input_number_between(&new_record.variative_part.fiction_book.is_play, 0, 1) != OK)
+        {
+            return INVALID_INT_INPUT_ERROR;
+        }
+
+        if (new_record.variative_part.fiction_book.is_novel &&
+            new_record.variative_part.fiction_book.is_play)
+        {
+            return MULTIPLE_GENRES_ERROR;
+        }
+
+        printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+               "Является ли данная книга сборником стихов (1 - да, 0 - нет):");
+        if (input_number_between(&new_record.variative_part.fiction_book.is_poetry, 0, 1) != OK)
+        {
+            return INVALID_INT_INPUT_ERROR;
+        }
+
+        if (new_record.variative_part.fiction_book.is_poetry &&
+                (new_record.variative_part.fiction_book.is_novel ||
+                 new_record.variative_part.fiction_book.is_play) ||
+            !(new_record.variative_part.fiction_book.is_poetry ||
+              new_record.variative_part.fiction_book.is_novel ||
+              new_record.variative_part.fiction_book.is_play))
+        {
+            return MULTIPLE_GENRES_ERROR;
+        }
+    }
+
+    if (new_record.book_type == kids)
+    {
+        printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+               "Является ли данная книга сборником сказок (1 - да, 0 - нет):");
+        if (input_number_between(&new_record.variative_part.kids_book.is_fairytale, 0, 1) != OK)
+        {
+            return INVALID_INT_INPUT_ERROR;
+        }
+
+        printf(ANSI_COLOR_YELLOW "%s\n" ANSI_COLOR_RESET,
+               "Является ли данная книга сборником стихов (1 - да, 0 - нет):");
+        if (input_number_between(&new_record.variative_part.kids_book.is_poetry, 0, 1) != OK)
+        {
+            return INVALID_INT_INPUT_ERROR;
+        }
+
+        if (new_record.variative_part.kids_book.is_poetry &&
+                new_record.variative_part.kids_book.is_fairytale ||
+            !(new_record.variative_part.kids_book.is_poetry ||
+              new_record.variative_part.kids_book.is_fairytale))
+        {
+            return MULTIPLE_GENRES_ERROR;
+        }
+    }
+
+    table->main_table[table->size_of_table] = new_record;
+    table->key_table[table->size_of_table].book_table_index = table->size_of_table;
+    table->key_table[table->size_of_table].page_count = new_record.page_count;
+    table->size_of_table += 1;
 
     return OK;
 }
