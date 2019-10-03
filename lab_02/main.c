@@ -4,8 +4,6 @@
 
 int main()
 {
-    welcome_print();
-
     book_t main_table[350];
     book_key_t key_table[350];
 
@@ -14,11 +12,9 @@ int main()
     table.key_table = key_table;
     table.size_of_table = 300;
 
-    parse_table("data/data.txt", &table);
-    output_main_table(&table);
-    output_key_table(&table);
+    welcome_print();
 
-    add_record(&table);
+    parse_table("data/data.txt", &table);
     output_main_table(&table);
     output_key_table(&table);
 

@@ -111,6 +111,8 @@ int parse_table(const char *const filename, aio_table_t *const table)
         }
     }
 
+    fclose(table_file);
+
     return OK;
 }
 

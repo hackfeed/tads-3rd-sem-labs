@@ -6,6 +6,9 @@ boolean constants definition.
 #ifndef __DEFINES_H__
 #define __DEFINES_H__
 
+/*
+Return codes.
+*/
 #define OK 0
 #define IN_BETWEEN_ERROR 1
 #define FILENAME_ERROR 2
@@ -22,6 +25,7 @@ Macroreplacements.
 #define MAX_STRING_FIELD_SIZE 256
 
 #define GOT_ARG 1
+#define GOT_IDENTITY 0
 
 /*
 Colored printf ouptut.
