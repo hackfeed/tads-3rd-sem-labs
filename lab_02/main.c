@@ -76,6 +76,68 @@ int main()
 
                 welcome_print();
             }
+
+            if (cur_command == 3)
+            {
+                int add_res = add_record(&table);
+
+                if (add_res == INVALID_STRING_INPUT_ERROR)
+                {
+                    printf(ANSI_COLOR_RED
+                           "%s\n" ANSI_COLOR_RESET,
+                           "Введено неверное строковое поле!");
+                }
+
+                if (add_res == INVALID_INT_INPUT_ERROR)
+                {
+                    printf(ANSI_COLOR_RED
+                           "%s\n" ANSI_COLOR_RESET,
+                           "Введено число, выходящее за допустимый интервал!");
+                }
+
+                if (add_res == MULTIPLE_GENRES_ERROR)
+                {
+                    printf(ANSI_COLOR_RED
+                           "%s\n" ANSI_COLOR_RESET,
+                           "Логическое поле может быть истинно только в одном случае!");
+                }
+
+                if (add_res == OK)
+                {
+                    printf(ANSI_COLOR_GREEN
+                           "%s\n" ANSI_COLOR_RESET,
+                           "Запись успешно добавлена!");
+                }
+
+                welcome_print();
+            }
+
+            if (cur_command == 4)
+            {
+                printf(ANSI_COLOR_YELLOW
+                       "%s" ANSI_COLOR_RESET,
+                       "Введите количество страниц, по которому "
+                       "нужно удалить записи: ");
+
+                int pages_count;
+                if (input_number_between(&pages_count, 1, 999) != OK)
+                {
+                    printf(ANSI_COLOR_RED
+                           "%s\n" ANSI_COLOR_RESET,
+                           "Введено недопустимое количество страниц!");
+                }
+
+                else
+                {
+                    int deletions_count = delete_record_by_pages(&table, &pages_count);
+
+                    printf(ANSI_COLOR_GREEN
+                           "%s%d%s\n" ANSI_COLOR_RESET,
+                           "Удалено(-а) ", deletions_count, " записей(-ь)");
+                }
+
+                welcome_print();
+            }
         }
     }
 
