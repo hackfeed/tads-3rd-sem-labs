@@ -11,7 +11,7 @@ Return codes.
 */
 #define OK 0
 #define IN_BETWEEN_ERROR 1
-#define FILENAME_ERROR 2
+#define STRINGNAME_ERROR 2
 #define FILE_NOT_EXIST_ERROR 3
 #define EMPTY_FILE_ERROR 4
 #define INVALID_STRING_INPUT_ERROR 5
@@ -21,11 +21,12 @@ Return codes.
 /*
 Macroreplacements.
 */
-#define MAX_FILENAME_LEN 256
 #define MAX_STRING_FIELD_SIZE 256
 
 #define GOT_ARG 1
 #define GOT_IDENTITY 0
+
+#define HZ 3000000000
 
 /*
 Colored printf ouptut.
