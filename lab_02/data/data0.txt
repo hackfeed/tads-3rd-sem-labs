@@ -1,0 +1,50 @@
+Woodrough;American Psycho;Heaney, Weimann and Bahringer;561;1;Technology;1;1;1779
+Guerriero;Dragon Day;Wintheiser LLC;841;1;Finance;0;1;1798
+Britee;Wondrous Oblivion;Mraz and Sons;324;1;n/a;0;0;1782
+Bleby;With a Song in My Heart;Lehner, Goodwin and Bartell;136;1;n/a;0;0;1763
+Windus;Assault on Wall Street ;Reinger-Sauer;600;1;Consumer Services;0;1;1847
+Roake;The D.I.;Boyer Inc;223;1;n/a;0;1;1835
+Whitehall;Private Confessions;Stanton-Kuhlman;417;1;Finance;0;0;1735
+Nand;Don't Look Back;Shields-Treutel;901;1;n/a;1;0;1983
+Sturt;Minuscule: Valley of the Lost Ants;Bauch LLC;481;1;n/a;1;0;1778
+Jozwicki;Dark Tower;Senger, Walter and Kuvalis;370;1;Miscellaneous;1;0;1911
+Stener;Hot Tub Time Machine 2;Dickens Group;145;1;Public Utilities;1;1;1812
+Robarts;Spartan;Wintheiser-Schumm;885;1;Basic Industries;1;0;1761
+Cockrill;Death Wish;Lakin, Cassin and Veum;928;1;Consumer Services;1;1;1964
+O'Lynn;We Feed the World;Koepp LLC;313;1;Capital Goods;0;1;1934
+Trustram;Last House on the Left;Kovacek, Bartell and Rippin;868;1;n/a;1;1;1707
+Hrinchishin;Outlaw;Howell-Smith;679;1;Energy;0;1;1703
+Yakobovitz;Milagro Beanfield War;Fritsch, Corkery and Stamm;805;1;Consumer Services;0;0;1865
+Barnicott;Milka - A Film About Taboos ;Cummings-Senger;599;1;n/a;1;1;1739
+Cullagh;Doctor Zhivago;Klocko-Hyatt;527;1;Energy;1;0;1854
+Sayles;Girl from Jones Beach;D'Amore, Ledner and Corkery;263;1;Finance;0;1;1731
+Arne;From Up on Poppy Hill ;Stoltenberg-Ernser;305;1;Consumer;1;0;1736
+Sharplin;Penny Dreadful;Brown Group;634;1;n/a;1;0;1863
+Over;Cinderella III: A Twist in Time;DuBuque Inc;843;1;Health Care;1;1;1749
+Paffett;God's Sandbox (Tahara);Tremblay-Johns;412;1;Finance;0;1;1898
+Yong;Diary of a Nymphomaniac ;Kemmer-Langworth;700;1;Technology;1;1;1783
+Christofol;Courier;Schimmel LLC;829;1;Health Care;0;0;1879
+Stallebrass;The Vanishing American;Tromp, Kuhic and Hilll;763;1;Technology;0;0;1919
+Shirlaw;Aviator's Wife ;Schoen-Ferry;474;1;Consumer Services;0;1;2018
+Willoughby;Ghost Voyage;Legros Inc;821;1;Consumer Services;0;0;1712
+Lichfield;Zeitgeist: The Movie;Bashirian Inc;112;1;n/a;0;0;1823
+Trundell;More;Tromp, Kunde and Torp;189;1;Consumer Services;1;1;1897
+Bottjer;Hold Back the Dawn;Gutmann Inc;796;1;n/a;0;0;1796
+McAline;Prince Avalanche;Rath-Kohler;134;1;Public Utilities;1;0;1953
+Stormonth;Sweet Karma;Rohan-Zieme;344;1;Consumer Services;0;1;1965
+Zielinski;French Connection;Price-Macejkovic;907;1;Technology;0;1;1937
+Aicheson;54;Prosacco and Sons;976;1;Consumer Durables;0;1;1909
+Dymond;Swing Kids;Fay-Frami;933;1;n/a;1;0;1749
+Wasielewicz;Tenure;Daniel-Mertz;731;1;n/a;0;0;1872
+Jurges;White Darkness;Gutkowski-Stracke;477;1;n/a;1;1;1817
+Dormer;The New Centurions;Feest-Padberg;612;1;Finance;0;0;1866
+Baudry;Twin Falls Idaho;Ullrich, Howell and Wehner;481;1;Capital Goods;0;0;2010
+Cocksedge;Flodder 3;Homenick, Feeney and Cummings;443;1;Consumer Services;1;1;1865
+Mesant;Blade on the Feather;Friesen, Jaskolski and Marvin;735;1;Technology;1;0;1829
+Brame;MirrorMask;Lynch, Grant and Gleichner;630;1;n/a;1;1;1989
+Waby;Decision at Sundown;Kuphal Group;453;1;Consumer Durables;1;1;1864
+Johnigan;Edge of Seventeen;Oberbrunner, Paucek and Hettinger;628;1;Energy;1;0;1803
+Bygreaves;Oxygen;Tremblay LLC;899;1;Technology;1;1;1762
+Petriello;Racing Stripes;Lueilwitz and Sons;272;1;n/a;0;1;1932
+McDonell;Eagle;O'Hara-Gleason;294;1;n/a;1;1;1781
+Clevely;Bathing Beauty;Boyle, Hilpert and Macejkovic;445;1;Consumer Services;0;1;1720

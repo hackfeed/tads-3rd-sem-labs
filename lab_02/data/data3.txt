@@ -1,0 +1,200 @@
+Woodrough;American Psycho;Heaney, Weimann and Bahringer;561;1;Technology;1;1;1779
+Guerriero;Dragon Day;Wintheiser LLC;841;1;Finance;0;1;1798
+Britee;Wondrous Oblivion;Mraz and Sons;324;1;n/a;0;0;1782
+Bleby;With a Song in My Heart;Lehner, Goodwin and Bartell;136;1;n/a;0;0;1763
+Windus;Assault on Wall Street ;Reinger-Sauer;600;1;Consumer Services;0;1;1847
+Roake;The D.I.;Boyer Inc;223;1;n/a;0;1;1835
+Whitehall;Private Confessions;Stanton-Kuhlman;417;1;Finance;0;0;1735
+Nand;Don't Look Back;Shields-Treutel;901;1;n/a;1;0;1983
+Sturt;Minuscule: Valley of the Lost Ants;Bauch LLC;481;1;n/a;1;0;1778
+Jozwicki;Dark Tower;Senger, Walter and Kuvalis;370;1;Miscellaneous;1;0;1911
+Stener;Hot Tub Time Machine 2;Dickens Group;145;1;Public Utilities;1;1;1812
+Robarts;Spartan;Wintheiser-Schumm;885;1;Basic Industries;1;0;1761
+Cockrill;Death Wish;Lakin, Cassin and Veum;928;1;Consumer Services;1;1;1964
+O'Lynn;We Feed the World;Koepp LLC;313;1;Capital Goods;0;1;1934
+Trustram;Last House on the Left;Kovacek, Bartell and Rippin;868;1;n/a;1;1;1707
+Hrinchishin;Outlaw;Howell-Smith;679;1;Energy;0;1;1703
+Yakobovitz;Milagro Beanfield War;Fritsch, Corkery and Stamm;805;1;Consumer Services;0;0;1865
+Barnicott;Milka - A Film About Taboos ;Cummings-Senger;599;1;n/a;1;1;1739
+Cullagh;Doctor Zhivago;Klocko-Hyatt;527;1;Energy;1;0;1854
+Sayles;Girl from Jones Beach;D'Amore, Ledner and Corkery;263;1;Finance;0;1;1731
+Arne;From Up on Poppy Hill ;Stoltenberg-Ernser;305;1;Consumer;1;0;1736
+Sharplin;Penny Dreadful;Brown Group;634;1;n/a;1;0;1863
+Over;Cinderella III: A Twist in Time;DuBuque Inc;843;1;Health Care;1;1;1749
+Paffett;God's Sandbox (Tahara);Tremblay-Johns;412;1;Finance;0;1;1898
+Yong;Diary of a Nymphomaniac ;Kemmer-Langworth;700;1;Technology;1;1;1783
+Christofol;Courier;Schimmel LLC;829;1;Health Care;0;0;1879
+Stallebrass;The Vanishing American;Tromp, Kuhic and Hilll;763;1;Technology;0;0;1919
+Shirlaw;Aviator's Wife ;Schoen-Ferry;474;1;Consumer Services;0;1;2018
+Willoughby;Ghost Voyage;Legros Inc;821;1;Consumer Services;0;0;1712
+Lichfield;Zeitgeist: The Movie;Bashirian Inc;112;1;n/a;0;0;1823
+Trundell;More;Tromp, Kunde and Torp;189;1;Consumer Services;1;1;1897
+Bottjer;Hold Back the Dawn;Gutmann Inc;796;1;n/a;0;0;1796
+McAline;Prince Avalanche;Rath-Kohler;134;1;Public Utilities;1;0;1953
+Stormonth;Sweet Karma;Rohan-Zieme;344;1;Consumer Services;0;1;1965
+Zielinski;French Connection;Price-Macejkovic;907;1;Technology;0;1;1937
+Aicheson;54;Prosacco and Sons;976;1;Consumer Durables;0;1;1909
+Dymond;Swing Kids;Fay-Frami;933;1;n/a;1;0;1749
+Wasielewicz;Tenure;Daniel-Mertz;731;1;n/a;0;0;1872
+Jurges;White Darkness;Gutkowski-Stracke;477;1;n/a;1;1;1817
+Dormer;The New Centurions;Feest-Padberg;612;1;Finance;0;0;1866
+Baudry;Twin Falls Idaho;Ullrich, Howell and Wehner;481;1;Capital Goods;0;0;2010
+Cocksedge;Flodder 3;Homenick, Feeney and Cummings;443;1;Consumer Services;1;1;1865
+Mesant;Blade on the Feather;Friesen, Jaskolski and Marvin;735;1;Technology;1;0;1829
+Brame;MirrorMask;Lynch, Grant and Gleichner;630;1;n/a;1;1;1989
+Waby;Decision at Sundown;Kuphal Group;453;1;Consumer Durables;1;1;1864
+Johnigan;Edge of Seventeen;Oberbrunner, Paucek and Hettinger;628;1;Energy;1;0;1803
+Bygreaves;Oxygen;Tremblay LLC;899;1;Technology;1;1;1762
+Petriello;Racing Stripes;Lueilwitz and Sons;272;1;n/a;0;1;1932
+McDonell;Eagle;O'Hara-Gleason;294;1;n/a;1;1;1781
+Clevely;Bathing Beauty;Boyle, Hilpert and Macejkovic;445;1;Consumer Services;0;1;1720
+Lanyon;Patriot Games;Wiza Inc;155;1;n/a;0;0;1958
+Civitillo;Pan's Labyrinth;Schimmel, Gaylord and Mayer;950;1;n/a;0;1;1934
+Serot;Man on a Mission;Nikolaus Inc;770;1;n/a;1;0;1975
+Collyer;Steamroller and the Violin;Heidenreich Inc;691;1;Health Care;0;0;1994
+Zeplin;Boys on the Side;Breitenberg, Kuvalis and Wolf;943;1;Basic Industries;1;0;1923
+Joddens;Dust Factory;Gerlach, Abshire and Howe;257;1;n/a;0;1;1846
+Bemlott;Star Is Born, A;Sawayn, O'Keefe and Champlin;483;1;Consumer Services;1;1;1819
+Jobin;League of Their Own, A;Bernier Group;582;1;Finance;1;0;1955
+Carnelley;Young & Wild (Joven y alocada);Watsica, Eichmann and Hills;646;1;Health Care;0;0;1949
+Hryniewicki;50 Children;Bartoletti and Sons;470;1;Finance;1;1;2008
+Redd;Prelude to a Kiss;Blanda-Daugherty;727;1;Consumer Services;1;0;1804
+Mountlow;Tinker, Tailor, Soldier, Spy;Skiles LLC;412;1;Public Utilities;0;1;1914
+Blader;Paul Williams Still Alive;Howe, Roob and Ryan;437;1;Health Care;0;0;1902
+Kevis;Laurel Canyon;Metz Inc;515;1;Health Care;1;1;1966
+Spore;Mirror Crack'd;Bogisich, Crona and Sipes;783;1;Consumer Services;0;1;1848
+Pierson;Visions of Light: The Art of Cinematography;Eichmann LLC;663;1;Finance;0;0;1955
+Chaimson;Terumae romae (Thermae Romae);Cassin, Glover and Turcotte;289;1;Finance;1;0;1965
+Obern;Aliisa;Barton LLC;127;1;Consumer Services;0;1;1958
+MacGibbon;Final Fantasy VII: Advent Children;Bashirian, Runolfsdottir and Cremin;113;1;n/a;1;1;2000
+Spearman;Gridiron Gang;Hansen Group;983;1;Finance;0;1;1908
+Stolte;The Conrad Boys;Johnson, Auer and Kuhic;509;1;n/a;0;1;1738
+Aizikovitch;Death Proof;Botsford, Bernhard and Dooley;643;1;Miscellaneous;0;1;1840
+Calbrathe;Trapped in Paradise;Lowe and Sons;534;1;Finance;0;0;1971
+Sofe;Shadowboxer;Purdy Inc;548;1;Finance;0;0;1865
+Parfett;Kiss Them for Me;Kertzmann-Lowe;127;1;n/a;1;0;2013
+Lautie;Biker Boyz;Leffler, Pollich and Marquardt;359;1;n/a;0;0;1822
+Toward;Independence Day (a.k.a. ID4);Koelpin, Maggio and Durgan;521;1;n/a;1;1;1774
+Terrill;Hellraiser: Deader;Hamill, Leannon and Rippin;216;1;Consumer Services;1;0;1791
+Andrzej;Texas Rangers;Grady Group;717;1;n/a;1;1;1856
+Wolfindale;Sabata;O'Keefe Inc;737;1;Energy;0;0;1890
+Winskill;Passing Fancy (Dekigokoro);Cormier and Sons;553;1;n/a;1;1;1897
+Bulward;Drive Hard;Hettinger and Sons;164;1;Consumer Services;0;0;1808
+Bramelt;Asterix: The Land of the Gods;Hermann LLC;599;1;Consumer;1;1;1886
+Orvis;Boogie Nights;Gottlieb-Huel;305;1;n/a;1;1;1952
+Fazzioli;Presenting Lily Mars;Dicki, Lehner and Casper;421;1;n/a;1;0;1761
+Simmen;Last Summer in the Hamptons;Greenfelder-Hudson;121;1;Health Care;1;1;1758
+Rowston;Martin;Thiel, McLaughlin and Nikolaus;180;1;Capital Goods;0;1;1910
+Shapiro;Turtle's Tale: Sammy's Adventures, A;Heathcote-Langworth;954;1;Public Utilities;1;1;1868
+Paterson;Killing of John Lennon;Pagac-Hand;179;1;Capital Goods;0;0;1832
+Glasspoole;Alex in Wonderland;Smith, Runolfsson and Batz;445;1;Health Care;1;1;1857
+Sides;Sounder;Jacobson, Parker and Sipes;949;1;Energy;0;0;1846
+Blatcher;Winning Season;Pfannerstill-Swift;789;1;Technology;1;0;1930
+Monks;South Central;Rutherford-Conn;341;1;n/a;0;1;1917
+Barnes;Biloxi Blues;Green, Lebsack and Hansen;558;1;Technology;1;0;1860
+Lees;Candyman 3: Day of the Dead;Spinka-Lakin;535;1;Finance;1;1;1735
+McCotter;Putty Hill;Schinner Group;294;1;n/a;1;1;1818
+Gregolin;And Then There Were None;Nolan Group;956;1;n/a;1;0;2007
+Alan;Glengarry Glen Ross;Mills Group;166;1;Consumer;0;1;1944
+Sayse;Savannah;Moore LLC;491;1;Health Care;1;1;1854
+Chiplin;Find Love;Romaguera, Hartmann and Gusikowski;305;1;Health Care;0;0;1978
+Eate;Foreign Correspondent;Schoen LLC;562;2;1;0;0
+Finden;Desperate Journey;Hickle, Schultz and Corkery;290;2;1;0;0
+Wigginton;Automata;Lueilwitz, Reichert and Gusikowski;227;2;1;0;0
+Philipsson;Loft;Swift-Schmidt;226;2;1;0;0
+Comber;Koti;Torp, McDermott and Kuphal;449;2;1;0;0
+Corston;What's Up, Scarlet?;Halvorson-Pfannerstill;275;2;1;0;0
+Bretelle;Meet the Fockers;Towne Group;228;2;1;0;0
+Ferraretto;Fear Clinic;Monahan and Sons;889;2;1;0;0
+Whylie;The Forgotten Woman;Collier LLC;716;2;1;0;0
+Ruppele;Rise & Fall of ECW;Zemlak, O'Keefe and Quigley;726;2;1;0;0
+Semonin;Flodder in Amerika!;Auer, Feeney and Hegmann;562;2;1;0;0
+Blowick;So Undercover;Pollich, Hintz and Treutel;255;2;1;0;0
+Marvelley;Waiting for Happiness (Heremakono);Raynor LLC;162;2;1;0;0
+Ping;Pharaoh's Army;Fritsch and Sons;944;2;1;0;0
+Ruseworth;Ten Minutes Older: The Trumpet;Jaskolski-Price;225;2;1;0;0
+Doorey;The Legend of Awesomest Maximus;Murray-Klocko;642;2;1;0;0
+Zarfai;Movie Movie;Bauch-Spencer;918;2;1;0;0
+Heijne;Arrowhead;Prohaska-Koch;929;2;1;0;0
+Padfield;Beyond Enemy Lines;Bahringer, Miller and Graham;561;2;1;0;0
+Yosevitz;Harriet the Spy;Barrows-Borer;755;2;1;0;0
+Kleewein;Kummeli Stories;Larkin, Kohler and Sanford;227;2;1;0;0
+Bilovsky;Neil Young: Heart of Gold;Satterfield LLC;995;2;1;0;0
+Hatherleigh;Five Star Final;Quitzon, Rau and Ward;195;2;1;0;0
+Crenage;Praise;Schowalter-Bernier;201;2;1;0;0
+Oyley;Goodbye to Language 2D;Willms-Braun;842;2;1;0;0
+McGloughlin;Honkytonk Man;Green, Kreiger and Emmerich;254;2;1;0;0
+Duddle;Any Number Can Win;Orn LLC;125;2;1;0;0
+Thebes;Army of Crime;Gerhold Group;282;2;1;0;0
+Beamiss;Twenty-Four Eyes;Cummings, Orn and Hessel;499;2;1;0;0
+Guess;Man's Job;Rohan-Hartmann;810;2;1;0;0
+Calloway;Upstream Color;Fritsch-Veum;968;2;1;0;0
+Mingardo;Prefontaine;Bogan-Littel;277;2;1;0;0
+Sodo;Little Black Book;Schultz, Feil and Leffler;718;2;1;0;0
+Horsey;Dangerous Davies: The Last Detective;Dicki, Eichmann and Adams;951;2;0;1;0
+Edworthye;Pandora's Box;Durgan, Pacocha and Mohr;886;2;0;1;0
+Pedican;Incredible Hulk;Lynch and Sons;912;2;0;1;0
+Possa;Tango Kabaree;Donnelly and Sons;781;2;0;1;0
+Ren;Children Shouldn't Play with Dead Things;Hamill-Lesch;856;2;0;1;0
+Middlebrook;Full Body Massage;Roberts-Ward;182;2;0;1;0
+Adamides;Killshot;Volkman-Heathcote;996;2;0;1;0
+Kirrage;Frozen;Frami and Sons;244;2;0;1;0
+Larkins;Mad About Mambo;Borer-Kunde;926;2;0;1;0
+Beranek;Sheltering Sky;Zboncak, Schoen and Kemmer;959;2;0;1;0
+MacKellen;Big Store;Wilderman, Mosciski and Funk;541;2;0;1;0
+Dwelling;These Are the Damned (a.k.a. The Damned);Lang and Sons;569;2;0;1;0
+Vsanelli;Hollow Triumph (a.k.a. The Scar);Pollich Inc;122;2;0;1;0
+Steuart;Legend II (Fong Sai Yuk juk jaap);Hermiston-Durgan;111;2;0;1;0
+Goshawke;Quebrando o Tabu;Orn-Mraz;505;2;0;1;0
+Dodwell;New Jack City;Cremin Group;896;2;0;1;0
+Crunden;Valley of the Dolls;Heller and Sons;179;2;0;1;0
+Bosket;Splash;Rice-Goldner;299;2;0;1;0
+Lantaph;Brunet Will Call (Brunet wieczorowa pora);Schuppe-Metz;242;2;0;1;0
+Kinzel;Eden;Dietrich Inc;904;2;0;1;0
+Roseveare;Girl in Progress;Koepp and Sons;210;2;0;1;0
+Sporner;Borrowers;Mante, Kassulke and Gutmann;912;2;0;1;0
+Belz;Home Fries;Erdman, Hand and Goodwin;272;2;0;1;0
+Greener;Vice;Lubowitz LLC;470;2;0;1;0
+Wain;Sing Your Song;Skiles LLC;279;2;0;1;0
+Vance;Food;MacGyver-Rogahn;989;2;0;1;0
+Cabrales;Boys and Girls;Hand LLC;212;2;0;1;0
+Surfleet;Jesus Camp;Wiza-Schumm;755;2;0;1;0
+Mamwell;Willard;Turner and Sons;747;2;0;1;0
+Rentelll;Mimino;Wiza, Daniel and Hamill;645;2;0;1;0
+Noblett;Ironiya sudby, ili S legkim parom!;Renner-Gislason;962;2;0;1;0
+Muirhead;Hallelujah I'm a Bum;Schowalter LLC;222;2;0;1;0
+Schachter;Timbuktu;Moen LLC;556;2;0;1;0
+Thurby;Rapt;Beatty, Hauck and Leannon;624;2;0;0;1
+Barson;Two Escobars;Shanahan, Hettinger and Bosco;899;2;0;0;1
+Posthill;American Strays;Lockman, Osinski and Bednar;246;2;0;0;1
+Strangward;Victim;Doyle and Sons;457;2;0;0;1
+Laundon;Bye Bye Braverman;Macejkovic and Sons;451;2;0;0;1
+Asser;Murder, He Says;Jacobi, Gusikowski and Wilderman;986;2;0;0;1
+Chidgey;Castle;Wolf-Rippin;801;2;0;0;1
+Guinane;Popcorn;Pollich and Sons;229;2;0;0;1
+Woolliams;For the Boys;Stamm Inc;798;2;0;0;1
+Boutellier;Never Say Never Again;Ferry Inc;716;2;0;0;1
+Tripett;Good Shepherd;Gorczany, Considine and Rau;854;2;0;0;1
+Paffot;Stateside;Murphy Inc;594;2;0;0;1
+Signori;John Tucker Must Die;Romaguera and Sons;245;2;0;0;1
+Crook;Plaisir, Le;Boehm-Steuber;571;2;0;0;1
+Begwell;Babylon;Conroy-Hills;126;2;0;0;1
+Wickersham;Resurrected;Price, Volkman and Stanton;657;2;0;0;1
+MacCoughan;Star Trek: Generations;Wilderman Inc;771;2;0;0;1
+Dymidowski;Formula 51;Lebsack, Schulist and Bartoletti;252;2;0;0;1
+Lacknor;Dementia 12;Swaniawski-Bauch;156;2;0;0;1
+Sowersby;Campus Man;Jacobs-Lind;225;2;0;0;1
+Klulisek;Valentine's Day;Olson Inc;290;2;0;0;1
+Lower;Love in the Time of Hysteria;Goldner-Buckridge;262;2;0;0;1
+Gooke;Breaking Out;Okuneva, Abbott and Murphy;225;2;0;0;1
+Comer;David Cross: The Pride Is Back;Koch Inc;754;2;0;0;1
+Bowerman;Simon & the Oaks;Weber, Marks and Lakin;152;2;0;0;1
+Jarman;Raiders From Beneath the Sea;Mayer-Mosciski;780;2;0;0;1
+Roy;Lonesome Jim;Schoen-Steuber;517;2;0;0;1
+Brooksbank;With Love... from the Age of Reason;Kuhlman-Carroll;247;2;0;0;1
+Holhouse;Prelude to War (Why We Fight, 1);Marvin, Koepp and Howe;260;2;0;0;1
+Fend;Wadjda;Kunde and Sons;957;2;0;0;1
+Balwin;Collection;Boehm, Mohr and Ziemann;596;2;0;0;1
+McKinie;Dreamlife of Angels;O'Keefe and Sons;678;2;0;0;1
+Forst;Revenge;Weber, Wilkinson and Ankunding;215;2;0;0;1
+Bootes;Blink;Ryan, Cartwright and Gerlach;407;2;0;0;1
