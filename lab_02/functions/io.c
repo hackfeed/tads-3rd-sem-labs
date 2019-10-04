@@ -39,15 +39,15 @@ void welcome_print()
            "4. Удалить запись из таблицы по количеству страниц книги.\n"
            "5. Отсортировать таблицу ключей сортировкой O(n^2).\n"
            "6. Отсортировать таблицу ключей сортировкой O(logn).\n"
-           "7. Вывести отсортированную таблицу ключей.\n"
+           "7. Вывести таблицу ключей.\n"
            "8. Вывести отсортированную исходную таблицу по количеству страниц в книге сортировкой O(n^2).\n"
            "9. Вывести отсортированную исходную таблицу по количеству страниц в книге сортировкой O(logn).\n"
-           "10. Вывести отсортированную исходную таблицу по количеству страниц в книге,\n"
-           "используя упорядоченную таблицу ключей.\n"
+           "10. Вывести исходную таблицу, используя упорядоченную таблицу ключей.\n"
            "11. Вывести сравнение времени сортировки таблицы сортировками со\n"
            "сложностями O(n^2) и O(logn) и сравнение времени обычной сортировки и сортировки с использованием\n"
-           "массива ключей.\n\n"
-           "0. Выход из программы.\n" ANSI_COLOR_RESET);
+           "массива ключей.\n"
+           "12. Вывести список отечетвенной технической литературы по указанной области.\n\n"
+           "0. Выход из программы.\n\n" ANSI_COLOR_RESET);
 }
 
 /*
@@ -86,11 +86,11 @@ Input data:
 Output data:
 * Return code - OK of FILENAME_ERROR.
 */
-int input_filename(char *const filename[MAX_FILENAME_LEN])
+int input_string(char *const stringname[MAX_STRING_FIELD_SIZE])
 {
-    if (scanf("%s", filename) != GOT_ARG)
+    if (scanf("%s", stringname) != GOT_ARG)
     {
-        return FILENAME_ERROR;
+        return STRINGNAME_ERROR;
     }
 
     return OK;
@@ -164,6 +164,59 @@ void output_key_table(const aio_table_t *const table)
     }
 
     printf("┗━━━┻━━━┛\n");
+}
+
+/*
+Output main table by key table to terminal.
+*/
+void output_main_by_key(const aio_table_t *const table)
+{
+    printf("┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━"
+           "━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+           "━━━━━━━━┳━━━┳━┳━━━━━━━━━━━━━━━━━━━━"
+           "┳━┳━┳━━━━┳━┳━┳━┳━┳━┓\n");
+
+    for (int record = 0; record < table->size_of_table; ++record)
+    {
+        printf("┃%20s┃%43s┃%38s┃%3d┃",
+               table->main_table[table->key_table[record].book_table_index].author_last_name,
+               table->main_table[table->key_table[record].book_table_index].book_name,
+               table->main_table[table->key_table[record].book_table_index].publisher,
+               table->main_table[table->key_table[record].book_table_index].page_count);
+
+        if (table->main_table[table->key_table[record].book_table_index].book_type == technical)
+        {
+            printf("%1d┃%20s┃%1d┃%1d┃%4d┃ ┃ ┃ ┃ ┃ ┃\n",
+                   table->main_table[table->key_table[record].book_table_index].book_type,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.technical_book.field,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.technical_book.is_national,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.technical_book.is_translated,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.technical_book.release_year);
+        }
+
+        if (table->main_table[table->key_table[record].book_table_index].book_type == fiction)
+        {
+            printf("%1d┃                    ┃ ┃ ┃    ┃%1d┃%1d┃%1d┃ ┃ ┃\n",
+                   table->main_table[table->key_table[record].book_table_index].book_type,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.fiction_book.is_novel,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.fiction_book.is_play,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.fiction_book.is_poetry);
+        }
+
+        if (table->main_table[table->key_table[record].book_table_index].book_type == kids)
+        {
+            printf("%1d┃                    ┃ ┃ ┃    ┃ ┃ ┃ ┃%1d┃%1d┃\n",
+                   table->main_table[table->key_table[record].book_table_index].book_type,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.fiction_book.is_novel,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.fiction_book.is_play,
+                   table->main_table[table->key_table[record].book_table_index].variative_part.fiction_book.is_poetry);
+        }
+    }
+
+    printf("┗━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━"
+           "━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+           "━━━━━━━━┻━━━┻━┻━━━━━━━━━━━━━━━━━━━━"
+           "┻━┻━┻━━━━┻━┻━┻━┻━┻━┛\n");
 }
 
 /*
