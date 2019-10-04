@@ -5,6 +5,8 @@ Table handling module's headers.
 #ifndef __FUNC_TABLE_H__
 #define __FUNC_TABLE_H__
 
+#include <inttypes.h>
+
 #include "data_structures.h"
 
 char *get_csv_field(const char *const line, int line_num);
@@ -18,5 +20,7 @@ int delete_record_by_pages(aio_table_t *const table, const int *const pages);
 void bubble_sort_table(aio_table_t *const table, const boolean_t table_to_sort);
 
 void quick_sort_table(aio_table_t *const table, const boolean_t table_to_sort, const int first, const int last);
+
+uint64_t tick(void);
 
 #endif

@@ -5,6 +5,7 @@ Table handling module.
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <inttypes.h>
 
 #include "../headers/data_structures.h"
 #include "../headers/defines.h"
@@ -473,4 +474,18 @@ void bubble_sort_table(aio_table_t *const table, const boolean_t table_to_sort)
             }
         }
     }
+}
+
+uint64_t tick(void)
+{
+    uint32_t high, low;
+    __asm__ __volatile__(
+        "rdtsc\n"
+        "movl %%edx, %0\n"
+        "movl %%eax, %1\n"
+        : "=r"(high), "=r"(low)::"%rax", "%rbx", "%rcx", "%rdx");
+
+    uint64_t ticks = ((uint64_t)high << 32) | low;
+
+    return ticks;
 }
