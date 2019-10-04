@@ -476,6 +476,12 @@ void bubble_sort_table(aio_table_t *const table, const boolean_t table_to_sort)
     }
 }
 
+/*
+Processor's tick counter.
+
+Output data:
+* ticks - processor's ticks until return statement.
+*/
 uint64_t tick(void)
 {
     uint32_t high, low;

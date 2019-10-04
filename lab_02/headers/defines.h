@@ -26,8 +26,6 @@ Macroreplacements.
 #define GOT_ARG 1
 #define GOT_IDENTITY 0
 
-#define HZ 3000000000
-
 /*
 Colored printf ouptut.
 */
