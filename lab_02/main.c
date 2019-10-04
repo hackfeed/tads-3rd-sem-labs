@@ -81,22 +81,22 @@ int main()
 
             if (cur_command == 3)
             {
-                if (table.size_of_table == 350)
+                if (is_downloaded == FALSE)
                 {
                     printf(ANSI_COLOR_RED
                            "%s\n" ANSI_COLOR_RESET,
-                           "Достигнут максимальный размер таблицы!");
+                           "Файл не выгружен! Таблица пуста!");
                 }
 
                 else
                 {
                     int add_res = add_record(&table);
 
-                    if (is_downloaded == FALSE)
+                    if (table.size_of_table == 350)
                     {
                         printf(ANSI_COLOR_RED
                                "%s\n" ANSI_COLOR_RESET,
-                               "Файл не выгружен! Таблица пуста!");
+                               "Достигнут максимальный размер таблицы!");
                     }
 
                     else
