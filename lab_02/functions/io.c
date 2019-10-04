@@ -51,6 +51,17 @@ void welcome_print()
 }
 
 /*
+Clean input stream from trash.
+*/
+void clean_input_stream()
+{
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF)
+    {
+    }
+}
+
+/*
 Input number in between.
 
 Input data:
@@ -66,11 +77,13 @@ int input_number_between(int *const number, const int left_border,
 {
     if (scanf("%d", number) != GOT_ARG)
     {
+        clean_input_stream();
         return INVALID_INT_INPUT_ERROR;
     }
 
     if (*number < left_border || *number > right_border)
     {
+        clean_input_stream();
         return IN_BETWEEN_ERROR;
     }
 
@@ -90,6 +103,7 @@ int input_string(char *const stringname[MAX_STRING_FIELD_SIZE])
 {
     if (scanf("%s", stringname) != GOT_ARG)
     {
+        clean_input_stream();
         return STRINGNAME_ERROR;
     }
 

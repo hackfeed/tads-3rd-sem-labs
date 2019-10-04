@@ -10,6 +10,8 @@ IO module headers.
 
 void welcome_print();
 
+void clean_input_stream();
+
 int input_number_between(int *const number, const int left_border, const int right_border);
 
 int input_string(char *const stringname[MAX_STRING_FIELD_SIZE]);
