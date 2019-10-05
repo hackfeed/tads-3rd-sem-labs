@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c99
+CFLAGS = -std=c99 -w
 
 FUNC_C = functions/*.c
 FUNC_O = functions/*.o
