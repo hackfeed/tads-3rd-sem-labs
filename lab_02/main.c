@@ -257,7 +257,6 @@ int main()
 
                     start = tick();
                     bubble_sort_table(&table, TRUE);
-                    output_main_table(&table);
                     end = tick();
 
                     printf(ANSI_COLOR_GREEN
@@ -285,7 +284,6 @@ int main()
 
                     start = tick();
                     quick_sort_table(&table, TRUE, 0, table.size_of_table - 1);
-                    output_main_table(&table);
                     end = tick();
 
                     printf(ANSI_COLOR_GREEN
@@ -313,7 +311,7 @@ int main()
 
                     start = tick();
                     quick_sort_table(&table, FALSE, 0, table.size_of_table - 1);
-                    output_main_by_key(&table);
+                    output_main_table(&table);
                     end = tick();
 
                     printf(ANSI_COLOR_GREEN
@@ -343,23 +341,20 @@ int main()
                     parse_table(filename, &table);
                     start = tick();
                     bubble_sort_table(&table, TRUE);
-                    output_main_table(&table);
                     end = tick();
-                    result_bubble = start - end;
+                    result_bubble = end - start;
 
                     parse_table(filename, &table);
                     start = tick();
                     quick_sort_table(&table, TRUE, 0, table.size_of_table - 1);
-                    output_main_table(&table);
                     end = tick();
-                    result_quick = start - end;
+                    result_quick = end - start;
 
                     parse_table(filename, &table);
                     start = tick();
                     quick_sort_table(&table, FALSE, 0, table.size_of_table - 1);
-                    output_main_by_key(&table);
                     end = tick();
-                    result_by_key = start - end;
+                    result_by_key = end - start;
 
                     printf(ANSI_COLOR_GREEN
                            "%s%ju\n" ANSI_COLOR_RESET,
