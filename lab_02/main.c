@@ -311,7 +311,7 @@ int main()
 
                     start = tick();
                     quick_sort_table(&table, FALSE, 0, table.size_of_table - 1);
-                    output_main_table(&table);
+                    output_main_by_key(&table);
                     end = tick();
 
                     printf(ANSI_COLOR_GREEN
@@ -336,7 +336,7 @@ int main()
                 else
                 {
                     uint64_t start, end;
-                    uint64_t result_bubble, result_quick, result_by_key;
+                    uint64_t result_bubble, result_quick, result_by_key_bubble, result_by_key_quick;
 
                     parse_table(filename, &table);
                     start = tick();
@@ -352,27 +352,39 @@ int main()
 
                     parse_table(filename, &table);
                     start = tick();
+                    bubble_sort_table(&table, FALSE);
+                    end = tick();
+                    result_by_key_bubble = end - start;
+
+                    parse_table(filename, &table);
+                    start = tick();
                     quick_sort_table(&table, FALSE, 0, table.size_of_table - 1);
                     end = tick();
-                    result_by_key = end - start;
+                    result_by_key_quick = end - start;
 
                     printf(ANSI_COLOR_GREEN
                            "%s%ju\n" ANSI_COLOR_RESET,
-                           "Время сортировки и вывода основной таблицы"
-                           " при помощи сортировки пузырьком = ",
+                           "Время сортировки основной таблицы"
+                           " при помощи сортировки пузырьком             = ",
                            result_bubble);
 
                     printf(ANSI_COLOR_GREEN
                            "%s%ju\n" ANSI_COLOR_RESET,
-                           "Время сортировки и вывода основной таблицы"
-                           " при помощи быстрой сортировки   = ",
+                           "Время сортировки основной таблицы"
+                           " при помощи быстрой сортировки               = ",
                            result_quick);
 
                     printf(ANSI_COLOR_GREEN
                            "%s%ju\n" ANSI_COLOR_RESET,
-                           "Время вывода основной таблицы"
-                           " при помощи таблицы ключей                    = ",
-                           result_by_key);
+                           "Время сортировки и вывода основной таблицы"
+                           " при помощи таблицы ключей (bubble) = ",
+                           result_by_key_bubble);
+
+                    printf(ANSI_COLOR_GREEN
+                           "%s%ju\n" ANSI_COLOR_RESET,
+                           "Время сортировки и вывода основной таблицы"
+                           " при помощи таблицы ключей (quick)  = ",
+                           result_by_key_quick);
                 }
 
                 welcome_print();
