@@ -111,12 +111,12 @@ int input(matrix_t *const matrix, const int dots)
     {
         int row, col, cur;
 
-        if (input_interval(&row, 0, matrix->rows - 2))
+        if (input_interval(&row, 0, matrix->rows - 1))
         {
             return INVALID_INT_INPUT_ERROR;
         }
 
-        if (input_interval(&col, 0, matrix->columns - 2))
+        if (input_interval(&col, 0, matrix->columns - 1))
         {
             return INVALID_INT_INPUT_ERROR;
         }

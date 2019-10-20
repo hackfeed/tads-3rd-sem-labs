@@ -9,6 +9,8 @@ Matrix handling module's headers.
 
 #include "data_structures.h"
 
+void classic_sum(const matrix_t matrix_a, const matrix_t matrix_b, matrix_t *const matrix_res);
+
 uint64_t tick(void);
 
 #endif
