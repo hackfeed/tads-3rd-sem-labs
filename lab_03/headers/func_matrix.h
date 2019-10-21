@@ -13,6 +13,8 @@ void classic_sum(const matrix_t matrix_a, const matrix_t matrix_b, matrix_t *con
 
 int sdots(const sparse_t sparse_a, const sparse_t sparse_b, int *const dots);
 
+void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b, sparse_t *const sparse_res);
+
 uint64_t tick(void);
 
 #endif

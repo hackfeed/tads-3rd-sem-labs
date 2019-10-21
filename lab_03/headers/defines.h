@@ -28,6 +28,9 @@ Macroreplacements.
 #define GOT_ARG 1
 #define FALSE 0
 #define TRUE 1
+#define A_LESS 1
+#define B_LESS 2
+#define EQUAL 3
 
 /*
 Colored printf ouptut.
