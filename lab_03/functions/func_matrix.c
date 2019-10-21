@@ -4,6 +4,13 @@
 #include "../headers/defines.h"
 #include "../headers/data_structures.h"
 
+/*
+Classic matrix addition.
+
+Input data:
+* const matrix_t matrix_a, const matrix_t matrix_b - matrices to be added.
+* matrix_t *const matrix_res - result matrix.
+*/
 void classic_sum(const matrix_t matrix_a, const matrix_t matrix_b,
                  matrix_t *const matrix_res)
 {
@@ -17,6 +24,14 @@ void classic_sum(const matrix_t matrix_a, const matrix_t matrix_b,
     }
 }
 
+/*
+Count non-zero dots after sparse addition.
+
+Input data:
+* const sparse_t sparse_a, const sparse_t sparse_b - sparse matrices to be 
+checked.
+* int *const dots - overall dots.
+*/
 int sdots(const sparse_t sparse_a, const sparse_t sparse_b, int *const dots)
 {
     for (int col = 0; col < sparse_a.cols_amount; ++col)
@@ -80,6 +95,17 @@ int sdots(const sparse_t sparse_a, const sparse_t sparse_b, int *const dots)
     return OK;
 }
 
+/*
+Find minimum of two arrays.
+
+Input data:
+* type_t *a_arr, const int a_len, type_t *b_arr, const int b_len - arrays and 
+their properties.
+
+Output data:
+* Return sign: A_LESS (if a_arr less than b_arr), B_LESS (if b_arr less than 
+a_arr) or EQUAL (otherwise).
+*/
 int arrays_min(type_t *a_arr, const int a_len, type_t *b_arr, const int b_len)
 {
     if (a_len == 0)
@@ -139,6 +165,13 @@ int arrays_min(type_t *a_arr, const int a_len, type_t *b_arr, const int b_len)
     return EQUAL;
 }
 
+/*
+Sparse matrix addition.
+
+Input data:
+* const sparse_t sparse_a, const sparse_t sparse_b - matrices to be added.
+* sparse_t *const sparse_res - result matrix.
+*/
 void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
                 sparse_t *const sparse_res)
 {

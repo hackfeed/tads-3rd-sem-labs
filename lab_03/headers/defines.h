@@ -1,9 +1,9 @@
+#ifndef __DEFINES_H__
+#define __DEFINES_H__
+
 /*
 Return codes and macroreplacements.
 */
-
-#ifndef __DEFINES_H__
-#define __DEFINES_H__
 
 /*
 Global return codes.
