@@ -16,6 +16,29 @@ void classic_sum(const matrix_t matrix_a, const matrix_t matrix_b,
     }
 }
 
+int sdots(const sparse_t sparse_a, const sparse_t sparse_b, int *const dots)
+{
+    for (int col = 0; col < sparse_a.cols_amount; ++col)
+    {
+        for (int rp = *(sparse_a.col_entry + col);
+             rp < sparse_a.cols_amount - *(sparse_a.col_entry + col) - 1;
+             ++rp)
+        {
+            if (*(sparse_a.row_entry + rp) != *(sparse_b.row_entry + rp))
+            {
+                (*dots)++;
+            }
+        }
+    }
+
+    return OK;
+}
+
+void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
+                sparse_t *const sparse_res)
+{
+}
+
 /*
 Processor's tick counter.
 
