@@ -2,7 +2,7 @@
 #define __DS_MATRIX_H__
 
 /*
-CDIO headers and matrix_t definition.
+CDIO headers.
 */
 
 #include "data_structures.h"

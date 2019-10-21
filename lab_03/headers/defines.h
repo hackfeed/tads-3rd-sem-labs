@@ -26,6 +26,8 @@ func_io module's return codes.
 Macroreplacements.
 */
 #define GOT_ARG 1
+#define FALSE 0
+#define TRUE 1
 
 /*
 Colored printf ouptut.

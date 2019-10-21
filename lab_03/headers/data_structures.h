@@ -23,6 +23,8 @@ typedef struct
     type_t *elems;
     int *row_entry;
     int *col_entry;
-} spare_t;
+    int elems_amount;
+    int cols_amount;
+} sparse_t;
 
 #endif
