@@ -124,11 +124,11 @@ int sinput(sparse_t *const sparse, const matrix_t matrix)
         }
     }
 
-    for (int ent = 0; ent < cur - 1; ++ent)
+    for (int ent = 0; ent < sparse->cols_amount - 1; ++ent)
     {
         if (*(sparse->col_entry + ent) == -1)
         {
-            for (int search = ent; search < cur - 1; ++search)
+            for (int search = ent + 1; search < sparse->cols_amount; ++search)
             {
                 if (*(sparse->col_entry + search) != -1)
                 {
@@ -136,7 +136,7 @@ int sinput(sparse_t *const sparse, const matrix_t matrix)
                     break;
                 }
 
-                *(sparse->col_entry + search) = cur;
+                *(sparse->col_entry + search) = sparse->elems_amount;
             }
         }
     }
