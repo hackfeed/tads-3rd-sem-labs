@@ -19,4 +19,8 @@ void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b, sparse_t *cons
 
 uint64_t tick(void);
 
+int random(const int offset);
+
+void gorandom(matrix_t *const matrix, const int percent);
+
 #endif

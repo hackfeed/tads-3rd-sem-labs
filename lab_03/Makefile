@@ -8,7 +8,7 @@ OBJ = $(patsubst %.c, %.o, $(wildcard $(FUNC_C)))
 OBJ_MAIN = $(patsubst %.c, %.o, $(wildcard *.c))
 
 app.exe: $(OBJ) $(OBJ_MAIN)
-	$(CC) -o $@ $^
+	$(CC) -o $@ $^ -lm
 
 run:
 	./app.exe
