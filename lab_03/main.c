@@ -108,9 +108,11 @@ int main()
 
                 screate(&sparse_a, dots_a, matrix_a.columns);
                 sinput(&sparse_a, matrix_a);
+                fill_col_entry(&sparse_a, matrix_a);
 
                 screate(&sparse_b, dots_b, matrix_a.columns);
                 sinput(&sparse_b, matrix_b);
+                fill_col_entry(&sparse_b, matrix_b);
 
                 sdots(sparse_a, sparse_b, &dots_sum);
                 screate(&sparse_res, dots_sum, matrix_a.columns);
@@ -187,9 +189,11 @@ int main()
 
                 screate(&sparse_a, a_create, matrix_a.columns);
                 sinput(&sparse_a, matrix_a);
+                fill_col_entry(&sparse_a, matrix_a);
 
                 screate(&sparse_b, b_create, matrix_a.columns);
                 sinput(&sparse_b, matrix_b);
+                fill_col_entry(&sparse_b, matrix_b);
 
                 sdots(sparse_a, sparse_b, &dots_sum);
                 screate(&sparse_res, dots_sum, matrix_a.columns);

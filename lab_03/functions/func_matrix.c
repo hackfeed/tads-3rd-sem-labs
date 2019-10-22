@@ -102,10 +102,12 @@ int sdots(const sparse_t sparse_a, const sparse_t sparse_b, int *const dots)
 
         int matches = 0;
 
+        printf("~ColumnNo %d~\n", col);
         for (int i = 0; i < a_column; ++i)
         {
-            for (int j = 0; j < b_column; ++j)
+            for (int j = i; j < b_column; ++j)
             {
+                printf("~%d~%d~\n", *(a_arr + i), *(b_arr + j));
                 if (*(a_arr + i) == *(b_arr + j))
                 {
                     matches++;
@@ -113,10 +115,10 @@ int sdots(const sparse_t sparse_a, const sparse_t sparse_b, int *const dots)
             }
         }
 
+        *dots += a_column + b_column - matches;
+
         free(a_arr);
         free(b_arr);
-
-        *dots += a_column + b_column - matches;
     }
 
     return OK;
@@ -249,7 +251,7 @@ void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
 
         for (int i = 0; i < a_column; ++i)
         {
-            for (int j = 0; j < b_column; ++j)
+            for (int j = i; j < b_column; ++j)
             {
                 if (*(a_arr + i) == *(b_arr + j))
                 {
