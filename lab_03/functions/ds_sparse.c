@@ -18,6 +18,14 @@ Input data:
 */
 void fill_sparse(sparse_t *const sparse)
 {
+    for (int ent = 0; ent < sparse->elems_amount; ++ent)
+    {
+        *(sparse->elems + ent) = 0;
+    }
+    for (int ent = 0; ent < sparse->elems_amount; ++ent)
+    {
+        *(sparse->row_entry + ent) = 0;
+    }
     for (int ent = 0; ent < sparse->cols_amount; ++ent)
     {
         *(sparse->col_entry + ent) = -1;

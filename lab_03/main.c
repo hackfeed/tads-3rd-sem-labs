@@ -166,12 +166,14 @@ int main()
                 create(&matrix_a);
                 create(&matrix_b);
                 int to_fill_a = floor(matrix_a.rows * matrix_a.columns * (double)percent_a / 100);
+                int a_create = to_fill_a;
                 while (to_fill_a)
                 {
                     gorandom(&matrix_a, percent_a);
                     to_fill_a--;
                 }
                 int to_fill_b = floor(matrix_a.rows * matrix_a.columns * (double)percent_b / 100);
+                int b_create = to_fill_b;
                 while (to_fill_b)
                 {
                     gorandom(&matrix_b, percent_b);
@@ -183,10 +185,10 @@ int main()
 
                 create(&matrix_res);
 
-                screate(&sparse_a, to_fill_a, matrix_a.columns);
+                screate(&sparse_a, a_create, matrix_a.columns);
                 sinput(&sparse_a, matrix_a);
 
-                screate(&sparse_b, to_fill_b, matrix_a.columns);
+                screate(&sparse_b, b_create, matrix_a.columns);
                 sinput(&sparse_b, matrix_b);
 
                 sdots(sparse_a, sparse_b, &dots_sum);
@@ -197,29 +199,27 @@ int main()
 
             if (cur_command == 3)
             {
-                uint64_t start = tick();
-                classic_sum(matrix_a, matrix_b, &matrix_res);
-                uint64_t end = tick();
+                uint64_t ticks = 0;
+                classic_sum(matrix_a, matrix_b, &matrix_res, &ticks);
 
                 printf(ANSI_COLOR_GREEN
                        "%s%ju\n" ANSI_COLOR_RESET,
                        "Время сложения матриц, хранимых стандартным методом = ",
-                       end - start);
+                       ticks);
 
                 welcome();
             }
 
             if (cur_command == 4)
             {
-                uint64_t start = tick();
-                sparse_sum(sparse_a, sparse_b, &sparse_res);
-                uint64_t end = tick();
+                uint64_t ticks = 0;
+                sparse_sum(sparse_a, sparse_b, &sparse_res, &ticks);
 
                 printf(ANSI_COLOR_GREEN
                        "%s%ju\n" ANSI_COLOR_RESET,
                        "Время сложения матриц, хранимых разреженным "
                        "столбцовым методом = ",
-                       end - start);
+                       ticks);
 
                 welcome();
             }

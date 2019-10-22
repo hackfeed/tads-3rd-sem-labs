@@ -7,6 +7,26 @@
 #include "../headers/data_structures.h"
 
 /*
+Processor's tick counter.
+
+Output data:
+* ticks - processor's ticks until return statement.
+*/
+uint64_t tick(void)
+{
+    uint32_t high, low;
+    __asm__ __volatile__(
+        "rdtsc\n"
+        "movl %%edx, %0\n"
+        "movl %%eax, %1\n"
+        : "=r"(high), "=r"(low)::"%rax", "%rbx", "%rcx", "%rdx");
+
+    uint64_t ticks = ((uint64_t)high << 32) | low;
+
+    return ticks;
+}
+
+/*
 Classic matrix addition.
 
 Input data:
@@ -14,8 +34,9 @@ Input data:
 * matrix_t *const matrix_res - result matrix.
 */
 void classic_sum(const matrix_t matrix_a, const matrix_t matrix_b,
-                 matrix_t *const matrix_res)
+                 matrix_t *const matrix_res, uint64_t *const ticks)
 {
+    uint64_t start = tick();
     for (int row = 0; row < matrix_a.rows; ++row)
     {
         for (int col = 0; col < matrix_a.columns; ++col)
@@ -24,6 +45,9 @@ void classic_sum(const matrix_t matrix_a, const matrix_t matrix_b,
                 *(*(matrix_a.matrix + row) + col) + *(*(matrix_b.matrix + row) + col);
         }
     }
+    uint64_t end = tick();
+
+    *ticks = end - start;
 }
 
 /*
@@ -175,7 +199,7 @@ Input data:
 * sparse_t *const sparse_res - result matrix.
 */
 void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
-                sparse_t *const sparse_res)
+                sparse_t *const sparse_res, uint64_t *const ticks)
 {
     int cur_el = 0;
     int a_glob = 0;
@@ -239,6 +263,7 @@ void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
         {
             int where = arrays_min(a_arr, a_column, b_arr, b_column);
 
+            uint64_t start = tick();
             if (where == A_LESS)
             {
                 *(sparse_res->elems + cur_el) = *(sparse_a.elems + a_glob);
@@ -263,6 +288,9 @@ void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
                 a_glob++;
                 b_glob++;
             }
+            uint64_t end = tick();
+
+            *ticks += end - start;
         }
 
         *(sparse_res->col_entry + col) = cur_el - range;
@@ -272,26 +300,6 @@ void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
     }
 
     return OK;
-}
-
-/*
-Processor's tick counter.
-
-Output data:
-* ticks - processor's ticks until return statement.
-*/
-uint64_t tick(void)
-{
-    uint32_t high, low;
-    __asm__ __volatile__(
-        "rdtsc\n"
-        "movl %%edx, %0\n"
-        "movl %%eax, %1\n"
-        : "=r"(high), "=r"(low)::"%rax", "%rbx", "%rcx", "%rdx");
-
-    uint64_t ticks = ((uint64_t)high << 32) | low;
-
-    return ticks;
 }
 
 int random(const int offset)
@@ -318,6 +326,33 @@ int random(const int offset)
 }
 
 /*
+Get amount of empty tiles in matrix.
+
+Input data:
+* const matrix_t matrix - matrix to be checeked.
+
+Output data:
+* Amount of empty tiles.
+*/
+int get_empty_tiles(const matrix_t matrix)
+{
+    int empty_tiles = 0;
+
+    for (int row = 0; row < matrix.rows; ++row)
+    {
+        for (int col = 0; col < matrix.columns; ++col)
+        {
+            if (*(*(matrix.matrix + row) + col) == 0)
+            {
+                empty_tiles++;
+            }
+        }
+    }
+
+    return empty_tiles;
+}
+
+/*
 Fill matrix matrix with 4 (10% chance) or 2 (90% chance).
 
 Input data:
@@ -326,9 +361,10 @@ Input data:
 void gorandom(matrix_t *const matrix, const int percent)
 {
     int to_fill = floor(matrix->rows * matrix->columns * (double)percent / 100);
+    int empty_tiles = get_empty_tiles(*matrix);
 
-    int rand = random(percent) % to_fill;
-    int tile = random(rand);
+    int rand = random(empty_tiles) % to_fill;
+    int tile = random(empty_tiles);
 
     for (int row = 0; row < matrix->rows; ++row)
     {
