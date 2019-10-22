@@ -31,6 +31,7 @@ Macroreplacements.
 #define A_LESS 1
 #define B_LESS 2
 #define EQUAL 3
+#define UB 4
 
 /*
 Colored printf ouptut.

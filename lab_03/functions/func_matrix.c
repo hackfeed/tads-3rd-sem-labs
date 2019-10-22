@@ -101,9 +101,10 @@ int sdots(const sparse_t sparse_a, const sparse_t sparse_b, int *const dots)
         }
 
         int matches = 0;
+
         for (int i = 0; i < a_column; ++i)
         {
-            for (int j = i; j < b_column; ++j)
+            for (int j = 0; j < b_column; ++j)
             {
                 if (*(a_arr + i) == *(b_arr + j))
                 {
@@ -134,12 +135,12 @@ a_arr) or EQUAL (otherwise).
 */
 int arrays_min(type_t *a_arr, const int a_len, type_t *b_arr, const int b_len)
 {
-    if (a_len == 0)
+    if (a_len == 0 && b_len != 0)
     {
         return B_LESS;
     }
 
-    if (b_len == 0)
+    if (b_len == 0 && a_len != 0)
     {
         return A_LESS;
     }
@@ -179,14 +180,13 @@ int arrays_min(type_t *a_arr, const int a_len, type_t *b_arr, const int b_len)
         return B_LESS;
     }
 
-    if (*(a_arr + a_pos) < *(b_arr + b_pos))
+    if (a_min == b_min && a_min == 1000 && b_min == 1000)
     {
-        *(a_arr + a_pos) = 1000;
+        return UB;
     }
-    else
-    {
-        *(b_arr + b_pos) = 1000;
-    }
+
+    *(a_arr + a_pos) = 1000;
+    *(b_arr + b_pos) = 1000;
 
     return EQUAL;
 }
@@ -246,9 +246,10 @@ void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
         }
 
         int matches = 0;
+
         for (int i = 0; i < a_column; ++i)
         {
-            for (int j = i; j < b_column; ++j)
+            for (int j = 0; j < b_column; ++j)
             {
                 if (*(a_arr + i) == *(b_arr + j))
                 {
@@ -259,11 +260,11 @@ void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
 
         int range = a_column + b_column - matches;
 
+        uint64_t start = tick();
         for (int i = 0; i < range; ++i)
         {
             int where = arrays_min(a_arr, a_column, b_arr, b_column);
 
-            uint64_t start = tick();
             if (where == A_LESS)
             {
                 *(sparse_res->elems + cur_el) = *(sparse_a.elems + a_glob);
@@ -288,18 +289,35 @@ void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
                 a_glob++;
                 b_glob++;
             }
-            uint64_t end = tick();
-
-            *ticks += end - start;
         }
 
-        *(sparse_res->col_entry + col) = cur_el - range;
+        uint64_t end = tick();
+        *ticks += end - start;
 
         free(a_arr);
         free(b_arr);
     }
 
     return OK;
+}
+
+int fill_col_entry(sparse_t *const sparse, const matrix_t matrix)
+{
+    int elems = 0;
+    for (int col = 0; col < matrix.columns; ++col)
+    {
+        int col_elems = 0;
+        for (int row = 0; row < matrix.rows; ++row)
+        {
+            if (*(*(matrix.matrix + row) + col) != 0)
+            {
+                col_elems++;
+                elems++;
+            }
+        }
+
+        *(sparse->col_entry + col) = elems - col_elems;
+    }
 }
 
 int random(const int offset)
@@ -358,12 +376,11 @@ Fill matrix matrix with 4 (10% chance) or 2 (90% chance).
 Input data:
 * matrix_t *const matrix - matrix to be filled.
 */
-void gorandom(matrix_t *const matrix, const int percent)
+void gorandom(matrix_t *const matrix, int percent)
 {
-    int to_fill = floor(matrix->rows * matrix->columns * (double)percent / 100);
     int empty_tiles = get_empty_tiles(*matrix);
 
-    int rand = random(empty_tiles) % to_fill;
+    int rand = random(empty_tiles) % empty_tiles;
     int tile = random(empty_tiles);
 
     for (int row = 0; row < matrix->rows; ++row)

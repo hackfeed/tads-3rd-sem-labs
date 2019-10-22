@@ -165,14 +165,14 @@ int main()
 
                 create(&matrix_a);
                 create(&matrix_b);
-                int to_fill_a = floor(matrix_a.rows * matrix_a.columns * (double)percent_a / 100);
+                int to_fill_a = floor(matrix_a.rows * matrix_a.columns * percent_a / 100.0);
                 int a_create = to_fill_a;
                 while (to_fill_a)
                 {
                     gorandom(&matrix_a, percent_a);
                     to_fill_a--;
                 }
-                int to_fill_b = floor(matrix_a.rows * matrix_a.columns * (double)percent_b / 100);
+                int to_fill_b = floor(matrix_a.rows * matrix_a.columns * percent_b / 100.0);
                 int b_create = to_fill_b;
                 while (to_fill_b)
                 {
@@ -213,7 +213,12 @@ int main()
             if (cur_command == 4)
             {
                 uint64_t ticks = 0;
+                classic_sum(matrix_a, matrix_b, &matrix_res, &ticks);
+                ticks = 0;
+                fill_col_entry(&sparse_a, matrix_a);
+                fill_col_entry(&sparse_b, matrix_b);
                 sparse_sum(sparse_a, sparse_b, &sparse_res, &ticks);
+                fill_col_entry(&sparse_res, matrix_res);
 
                 printf(ANSI_COLOR_GREEN
                        "%s%ju\n" ANSI_COLOR_RESET,
