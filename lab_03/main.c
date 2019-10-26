@@ -230,6 +230,14 @@ int main()
                        "столбцовым методом = ",
                        ticks);
 
+                int mat_size = sizeof(type_t **) * matrix_res.rows * sizeof(type_t *) +
+                               2 * sizeof(int);
+                int sparse_size = sizeof(type_t *) * sparse_res.elems_amount +
+                                  sizeof(int *) * sparse_res.elems_amount + sizeof(int *) * sparse_res.cols_amount +
+                                  2 * sizeof(int);
+
+                printf("~%d~%d\n", sparse_size, mat_size);
+
                 welcome();
             }
 
