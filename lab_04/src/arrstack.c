@@ -1,4 +1,7 @@
-#include <stdio.h>
+/*
+Stack realization based on array.
+*/
+
 #include <stdlib.h>
 
 #include "include/rc.h"
@@ -13,7 +16,7 @@ Input data:
 Output data:
 * stack - pointer to created stack.
 */
-arrstack_t *create_stacka(int capacity)
+arrstack_t *create_stacka(const int capacity)
 {
     arrstack_t *stack = (arrstack_t *)malloc(sizeof(arrstack_t));
     if (!stack)
@@ -71,7 +74,7 @@ Input data:
 Output data:
 * Return code - OK or STACK_OVERFLOW.
 */
-int pusha(arrstack_t *stack, int data)
+int pusha(arrstack_t *stack, const int data)
 {
     if (is_fulla(stack))
     {
@@ -114,9 +117,16 @@ Output data:
 */
 int free_stacka(arrstack_t *stack)
 {
-    if (stack && stack->arr)
+    if (stack)
     {
-        free(stack->arr);
+        if (stack->arr)
+        {
+            free(stack->arr);
+            free(stack);
+
+            return OK;
+        }
+
         free(stack);
 
         return OK;

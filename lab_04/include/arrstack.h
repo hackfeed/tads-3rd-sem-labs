@@ -11,7 +11,7 @@ typedef struct
     int *arr;
 } arrstack_t;
 
-arrstack_t *create_stacka(int capacity);
+arrstack_t *create_stacka(const int capacity);
 
 int free_stacka(arrstack_t *stack);
 
@@ -19,7 +19,7 @@ int is_fulla(arrstack_t *stack);
 
 int is_emptya(arrstack_t *stack);
 
-int pusha(arrstack_t *stack, int data);
+int pusha(arrstack_t *stack, const int data);
 
 int popa(arrstack_t *stack);
 

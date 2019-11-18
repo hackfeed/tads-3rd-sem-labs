@@ -1,7 +1,11 @@
-#include <stdio.h>
+/*
+Stack realization based on linked list.
+*/
+
 #include <stdlib.h>
 
 #include "include/rc.h"
+#include "include/array.h"
 #include "include/liststack.h"
 
 /*
@@ -13,7 +17,7 @@ Input data:
 Output data:
 * node - pointer to created node.
 */
-liststack_t *create_node(int data)
+liststack_t *create_node(const int data)
 {
     liststack_t *node = (liststack_t *)malloc(sizeof(liststack_t));
     if (!node)
@@ -37,9 +41,9 @@ Input data:
 Output data:
 * Binary sign - 1 if full, 0 - otherwise.
 */
-int is_fulll(liststack_t *root, int limit)
+int is_fulll(liststack_t *root, size_t limit)
 {
-    return &root->next == limit;
+    return root >= limit;
 }
 
 /*
@@ -67,7 +71,7 @@ Input data:
 Output data:
 * Return code - OK, STACK_OVERFLOW or STACK_MEMORY_ERROR.
 */
-int pushl(liststack_t **root, int data, int limit)
+int pushl(liststack_t **root, const int data, size_t limit)
 {
     if (is_fulll(*root, limit))
     {
@@ -96,7 +100,7 @@ Output data:
 * Return code - STACK_EMPTY.
 * Popped data.
 */
-int popl(liststack_t **root)
+int popl(liststack_t **root, arr_t *arr)
 {
     if (is_emptyl(*root))
     {
@@ -106,6 +110,7 @@ int popl(liststack_t **root)
     liststack_t *temp = *root;
     *root = (*root)->next;
     int popped = temp->data;
+    arr->arr[arr->ind++] = temp;
     free(temp);
 
     return popped;
@@ -120,11 +125,11 @@ Input data:
 Output data:
 * Return code - OK.
 */
-int free_stackl(liststack_t **root)
+int free_stackl(liststack_t **root, arr_t *arr)
 {
     while (!is_emptyl(*root))
     {
-        popl(root);
+        popl(root, arr);
     }
 
     return OK;
