@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <math.h>
+#include <inttypes.h>
 
 #include "include/rc.h"
 #include "include/array.h"
@@ -14,11 +14,12 @@ Input data:
 * arrstack_t *stack - stack.
 
 Output data:
-* Decreasing subsequences.
+* Amount of decreasing subsequences.
 */
-void decsubseq_arr(arrstack_t *stack)
+int decsubseq_arr(arrstack_t *stack)
 {
     int el = popa(stack);
+    int count = 0;
 
     while (!is_emptya(stack))
     {
@@ -42,6 +43,8 @@ void decsubseq_arr(arrstack_t *stack)
 
         if (i != 1)
         {
+            count++;
+
             for (int j = 0; j < i; ++j)
             {
                 printf("%d ", arr[j]);
@@ -51,6 +54,8 @@ void decsubseq_arr(arrstack_t *stack)
 
         free(arr);
     }
+
+    return count;
 }
 
 /*
@@ -62,11 +67,12 @@ Input data:
 * arr_t *const fmem - free memory slices.
 
 Output data:
-* Decreasing subsequences.
+* Amount of decreasing subsequences.
 */
-void decsubseq_list(liststack_t **root, arr_t *const fmem)
+int decsubseq_list(liststack_t **root, arr_t *const fmem)
 {
     int el = popl(root, fmem);
+    int count = 0;
 
     while (!is_emptyl(*root))
     {
@@ -90,6 +96,8 @@ void decsubseq_list(liststack_t **root, arr_t *const fmem)
 
         if (i != 1)
         {
+            count++;
+
             for (int j = 0; j < i; ++j)
             {
                 printf("%d ", arr[j]);
@@ -99,4 +107,26 @@ void decsubseq_list(liststack_t **root, arr_t *const fmem)
 
         free(arr);
     }
+
+    return count;
+}
+
+/*
+Processor's tick counter.
+
+Output data:
+* ticks - processor's ticks until return statement.
+*/
+uint64_t tick(void)
+{
+    uint32_t high, low;
+    __asm__ __volatile__(
+        "rdtsc\n"
+        "movl %%edx, %0\n"
+        "movl %%eax, %1\n"
+        : "=r"(high), "=r"(low)::"%rax", "%rbx", "%rcx", "%rdx");
+
+    uint64_t ticks = ((uint64_t)high << 32) | low;
+
+    return ticks;
 }
