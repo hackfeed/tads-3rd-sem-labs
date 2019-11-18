@@ -3,6 +3,15 @@
 #include "include/rc.h"
 #include "include/array.h"
 
+/*
+Create array.
+
+Input data:
+* const int capacity - array capacity.
+
+Output data:
+* arr - pointer to created array.
+*/
 arr_t *create_array(const int capacity)
 {
     arr_t *arr = (arr_t *)malloc(sizeof(arr_t));
@@ -18,6 +27,9 @@ arr_t *create_array(const int capacity)
     return arr;
 }
 
+/*
+Output filled array to ind element.
+*/
 void output_array(const arr_t arr)
 {
     for (int i = 0; i < arr.ind; ++i)
@@ -27,6 +39,15 @@ void output_array(const arr_t arr)
     printf("\n");
 }
 
+/*
+Free memory allocated for array.
+
+Input data:
+* arr_t *arr - array to be freed.
+
+Output data:
+* Return code - OK or ARRAY_MEMORY_ERROR.
+*/
 int free_array(arr_t *arr)
 {
     if (arr)
