@@ -21,7 +21,7 @@ arr_t *create_array(const int capacity)
     }
 
     arr->capacity = capacity;
-    arr->ind = 0;
+    arr->ind = -1;
     arr->arr = (size_t *)malloc(arr->capacity * sizeof(size_t));
 
     return arr;
@@ -32,10 +32,18 @@ Output filled array to ind element.
 */
 void output_array(const arr_t arr)
 {
-    for (int i = 0; i < arr.ind; ++i)
+    if (arr.ind == -1)
     {
-        printf("%zx ", arr.arr[i]);
+        printf("%s", "Массив пуст");
     }
+    else
+    {
+        for (int i = 0; i < arr.ind + 1; ++i)
+        {
+            printf("%zx ", arr.arr[i]);
+        }
+    }
+
     printf("\n");
 }
 

@@ -110,7 +110,7 @@ int popl(liststack_t **root, arr_t *arr)
     liststack_t *temp = *root;
     *root = (*root)->next;
     int popped = temp->data;
-    arr->arr[arr->ind++] = temp;
+    arr->arr[++arr->ind] = temp;
     free(temp);
 
     return popped;
