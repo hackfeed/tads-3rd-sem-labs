@@ -36,7 +36,8 @@ void welcome()
            "2. Добавить элемент в стек.\n"
            "3. Удалить элемент из стека.\n"
            "4. Вывести массив освободившихся адрессов.\n"
-           "5. Вывести убывающие подпоследовательности в обратном порядке.\n\n"
+           "5. Вывести убывающие подпоследовательности в обратном порядке \n"
+           "и вывести количественную характеристику обработки.\n\n"
            "0. Выход из программы.\n\n" ANSI_COLOR_RESET);
 }
 
@@ -98,10 +99,11 @@ int input_stack(const int count, arrstack_t *stack, liststack_t **root, size_t l
     {
         if (scanf("%d", &el) != GOT_ARG)
         {
+            clean_input_stream();
             return INVALID_INT_INPUT_ERROR;
         }
 
-        if (i == 0)
+        if (!(*root))
         {
             *root = create_node(el);
         }
