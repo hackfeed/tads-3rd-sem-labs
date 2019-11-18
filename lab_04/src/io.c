@@ -90,7 +90,7 @@ Input data:
 Output data:
 * Return code - OK or INVALID_INT_INPUT_ERROR.
 */
-int input_stack(const int count, arrstack_t *stack, liststack_t **root, const int limit)
+int input_stack(const int count, arrstack_t *stack, liststack_t **root, size_t limit)
 {
     int el;
 
