@@ -12,7 +12,7 @@ Stack realization based on array.
 Stack on array creation.
 
 Input data:
-* int capacity - stack capacity.
+* const int capacity - stack capacity.
 
 Output data:
 * stack - pointer to created stack.
@@ -70,7 +70,7 @@ Push item to stack.
 
 Input data:
 * arrstack_t *stack - pointer to stack.
-* int data - item to be pushed.
+* const int data - item to be pushed.
 
 Output data:
 * Return code - OK or STACK_OVERFLOW.
@@ -95,7 +95,7 @@ Input data:
 * arrstack_t *stack - stack realizations.
 
 Output data:
-* Return code - OK or INVALID_INT_INPUT_ERROR.
+* Return code - OK, STACK_OVERFLOW or INVALID_INT_INPUT_ERROR.
 */
 int input_stacka(const int count, arrstack_t *stack)
 {
@@ -122,10 +122,10 @@ int input_stacka(const int count, arrstack_t *stack)
 Output stack based on array.
 
 Input data:
-* arrstack_t *stack - stack realizations.
+* arrstack_t *stack - stack realization.
 
 Output data:
-* Return code - OK or INVALID_INT_INPUT_ERROR.
+* Return code - OK or STACK_EMPTY.
 */
 int output_stacka(arrstack_t *stack)
 {

@@ -11,7 +11,6 @@
 
 int main()
 {
-    size_t limit;
     int capacity, max_capacity;
     arr_t *fmem = NULL;
     liststack_t *root = NULL;
@@ -189,7 +188,7 @@ int main()
                         return OK;
                     }
 
-                    fmem = create_array(max_capacity);
+                    fmem = create_array(max_capacity * max_capacity);
 
                     printf("%s\n", "Введите начальное число элементов в стеке:");
                     if (input_interval(&capacity, 0, max_capacity))
@@ -239,6 +238,8 @@ int main()
 
                         return OK;
                     }
+                    
+                    check_top(root, fmem);
 
                     printf(ANSI_COLOR_GREEN "%s\n" ANSI_COLOR_RESET,
                            "Значение успешно помещено в стек.");

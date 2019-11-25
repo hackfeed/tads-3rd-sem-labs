@@ -15,14 +15,16 @@ int is_fulll(liststack_t *root, const int limit);
 
 int is_emptyl(liststack_t *root);
 
-int pushl(liststack_t **root, const int data, size_t limit);
+int pushl(liststack_t **root, const int data, const int limit);
 
 int input_stackl(const int count, liststack_t **root, const int limit);
 
 int output_stackl(liststack_t *root);
 
-int popl(liststack_t **root, arr_t *arr);
+void check_top(liststack_t *root, arr_t *fmem);
 
-int free_stackl(liststack_t **root, arr_t *arr);
+int popl(liststack_t **root, arr_t *fmem);
+
+int free_stackl(liststack_t **root, arr_t *fmem);
 
 #endif
