@@ -8,7 +8,7 @@
 
 int decsubseq_arr(arrstack_t *stack);
 
-int decsubseq_list(liststack_t **root, const int capacity);
+int decsubseq_list(liststack_t **root, arr_t *fmem);
 
 uint64_t tick(void);
 

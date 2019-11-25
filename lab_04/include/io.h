@@ -10,8 +10,4 @@ void clean_input_stream();
 
 int input_interval(int *const num, const int left, const int right);
 
-int input_stack(const int count, arrstack_t *stack, liststack_t **root, size_t limit);
-
-int pop_stack(arrstack_t *stack, liststack_t **root, arr_t *const arr);
-
 #endif

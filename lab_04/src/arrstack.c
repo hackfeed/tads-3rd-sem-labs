@@ -5,6 +5,7 @@ Stack realization based on array.
 #include <stdlib.h>
 
 #include "include/rc.h"
+#include "include/macro.h"
 #include "include/arrstack.h"
 
 /*
@@ -82,6 +83,63 @@ int pusha(arrstack_t *stack, const int data)
     }
 
     stack->arr[++stack->top] = data;
+
+    return OK;
+}
+
+/*
+Input stack based on array.
+
+Input data:
+* const int count - count of stack elements.
+* arrstack_t *stack - stack realizations.
+
+Output data:
+* Return code - OK or INVALID_INT_INPUT_ERROR.
+*/
+int input_stacka(const int count, arrstack_t *stack)
+{
+    int el;
+
+    for (int i = 0; i < count; ++i)
+    {
+        if (scanf("%d", &el) != GOT_ARG)
+        {
+            clean_input_stream();
+            return INVALID_INT_INPUT_ERROR;
+        }
+
+        if (pusha(stack, el))
+        {
+            return STACK_OVERFLOW;
+        }
+    }
+
+    return OK;
+}
+
+/*
+Output stack based on array.
+
+Input data:
+* arrstack_t *stack - stack realizations.
+
+Output data:
+* Return code - OK or INVALID_INT_INPUT_ERROR.
+*/
+int output_stacka(arrstack_t *stack)
+{
+    if (is_emptya(stack))
+    {
+        return STACK_EMPTY;
+    }
+
+    int size = stack->top;
+
+    while (size >= 0)
+    {
+        printf("%d\n", stack->arr[size--]);
+    }
 
     return OK;
 }

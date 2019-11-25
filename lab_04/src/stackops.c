@@ -64,12 +64,12 @@ Linkedlist-based stack implementation.
 
 Input data:
 * liststack_t **root - pointer to stack root.
-* arr_t *const fmem - free memory slices.
+* arr_t *fmem - free memory slices.
 
 Output data:
 * Amount of decreasing subsequences.
 */
-int decsubseq_list(liststack_t **root, arr_t *const fmem)
+int decsubseq_list(liststack_t **root, arr_t *fmem)
 {
     int el = popl(root, fmem);
     int count = 0;

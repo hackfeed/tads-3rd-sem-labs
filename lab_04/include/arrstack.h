@@ -21,6 +21,10 @@ int is_emptya(arrstack_t *stack);
 
 int pusha(arrstack_t *stack, const int data);
 
+int input_stacka(const int count, arrstack_t *stack);
+
+int output_stacka(arrstack_t *stack);
+
 int popa(arrstack_t *stack);
 
 #endif

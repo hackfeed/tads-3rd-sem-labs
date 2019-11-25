@@ -23,7 +23,7 @@ int main()
 
     while (cmd)
     {
-        if (input_interval(&cmd, 0, 5))
+        if (input_interval(&cmd, 0, 11))
         {
             printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
                    "Введена недопустимая команда! Повторите попытку.");
@@ -35,7 +35,7 @@ int main()
         {
             if (cmd == 1)
             {
-                if (fmem || stack || root)
+                if (stack)
                 {
                     printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
                            "Стек уже существует! Выход из программы..");
@@ -57,15 +57,6 @@ int main()
                         return OK;
                     }
 
-                    printf("%s\n", "Введите максимальный допустимый адрес (в 16-ричной форме):");
-                    if (scanf("%zx", &limit) != GOT_ARG)
-                    {
-                        printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
-                               "Введено недопустимое значение! Повторите попытку.");
-
-                        return OK;
-                    }
-
                     printf("%s\n", "Введите начальное число элементов в стеке:");
                     if (input_interval(&capacity, 0, max_capacity))
                     {
@@ -76,10 +67,9 @@ int main()
                     }
 
                     stack = create_stacka(max_capacity);
-                    fmem = create_array(max_capacity);
 
                     printf("%s\n", "Введите элементы стека (целые числа):");
-                    if (input_stack(capacity, stack, &root, limit))
+                    if (input_stacka(capacity, stack))
                     {
                         printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
                                "Введено недопустимое значение! Повторите попытку.");
@@ -108,14 +98,12 @@ int main()
                 }
                 else
                 {
-                    if (input_stack(1, stack, &root, limit))
+                    if (input_stacka(1, stack))
                     {
                         printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
                                "Введено недопустимое значение! Повторите попытку.");
 
                         free_stacka(stack);
-                        free_stackl(&root, fmem);
-                        free_array(fmem);
 
                         return OK;
                     }
@@ -136,27 +124,15 @@ int main()
                 }
                 else
                 {
-                    int popped = pop_stack(stack, &root, fmem);
-                    if (popped != STACK_EMPTY)
-                    {
-                        printf(ANSI_COLOR_GREEN "%s%d\n" ANSI_COLOR_RESET,
-                               "Значение успешно извлечено: ", popped);
-                    }
+                    int popped = popa(stack);
+                    printf(ANSI_COLOR_GREEN "%s%d\n" ANSI_COLOR_RESET,
+                            "Значение успешно извлечено: ", popped);
                 }
 
                 welcome();
             }
 
             if (cmd == 4)
-            {
-                printf(ANSI_COLOR_GREEN "%s\n" ANSI_COLOR_RESET,
-                       "Освободившиеся адреса:");
-                output_array(*fmem);
-
-                welcome();
-            }
-
-            if (cmd == 5)
             {
                 uint64_t start, end;
 
@@ -177,14 +153,138 @@ int main()
                            "Время выполнения: ", end - start);
                 }
 
+                welcome();
+            }
+
+            if (cmd == 5)
+            {
+                printf(ANSI_COLOR_GREEN "%s\n" ANSI_COLOR_RESET,
+                       "Текущее состояние стека:");
+                output_stacka(stack);
+
+                welcome();
+            }
+
+            if (cmd == 6)
+            {
+                if (root)
+                {
+                    printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                           "Стек уже существует! Выход из программы..");
+
+                    free_stacka(stack);
+                    free_stackl(&root, fmem);
+                    free_array(fmem);
+
+                    return OK;
+                }
+                else
+                {
+                    printf("%s\n", "Введите максимальное число элементов в стеке:");
+                    if (input_interval(&max_capacity, 0, INT8_MAX))
+                    {
+                        printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                               "Введено недопустимое значение! Повторите попытку.");
+
+                        return OK;
+                    }
+
+                    fmem = create_array(max_capacity);
+
+                    printf("%s\n", "Введите начальное число элементов в стеке:");
+                    if (input_interval(&capacity, 0, max_capacity))
+                    {
+                        printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                               "Введено недопустимое значение! Повторите попытку.");
+
+                        return OK;
+                    }
+
+                    printf("%s\n", "Введите элементы стека (целые числа):");
+                    if (input_stackl(capacity, &root, max_capacity))
+                    {
+                        printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                               "Введено недопустимое значение! Повторите попытку.");
+
+                        free_stacka(stack);
+                        free_stackl(&root, fmem);
+                        free_array(fmem);
+
+                        return OK;
+                    }
+
+                    printf(ANSI_COLOR_GREEN "%s\n" ANSI_COLOR_RESET,
+                           "Стек успешно заполнен.");
+                }
+
+                welcome();
+            }
+
+            if (cmd == 7)
+            {
+                printf("%s\n", "Введите элемент для добавления в стек:");
+                if (is_fulll(root, max_capacity))
+                {
+                    printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                           "Размер стека достиг максимального значения!");
+                }
+                else
+                {
+                    if (input_stackl(1, &root, max_capacity))
+                    {
+                        printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                               "Введено недопустимое значение! Повторите попытку.");
+
+                        free_stackl(&root, fmem);
+
+                        return OK;
+                    }
+
+                    printf(ANSI_COLOR_GREEN "%s\n" ANSI_COLOR_RESET,
+                           "Значение успешно помещено в стек.");
+                }
+
+                welcome();
+            }
+
+            if (cmd == 8)
+            {
+                if (is_emptyl(root))
+                {
+                    printf(ANSI_COLOR_MAGENTA "%s\n" ANSI_COLOR_RESET,
+                           "Стек пуст!");
+                }
+                else
+                {
+                    int popped = popl(&root, fmem);
+                    printf(ANSI_COLOR_GREEN "%s%d\n" ANSI_COLOR_RESET,
+                            "Значение успешно извлечено: ", popped);
+                }
+
+                welcome();
+            }
+
+            if (cmd == 9)
+            {
+                printf(ANSI_COLOR_GREEN "%s\n" ANSI_COLOR_RESET,
+                       "Массив освободившихся адресов:");
+                output_array(*fmem);
+
+                welcome();
+            }
+
+            if (cmd == 10)
+            {
+                uint64_t start, end;
+
                 printf(ANSI_COLOR_GREEN "%s\n" ANSI_COLOR_RESET,
                        "Результат и время, полученное на стеке на основе списка:");
 
                 start = tick();
-                int list_status = decsubseq_list(&root, fmem);
+                int stack_status = decsubseq_list(&root, fmem);
                 end = tick();
 
-                if (!list_status)
+                if (!stack_status)
                 {
                     printf("%s\n", "Подпоследовательности не найдены.");
                 }
@@ -193,6 +293,15 @@ int main()
                     printf(ANSI_COLOR_MAGENTA "%s%ju\n" ANSI_COLOR_RESET,
                            "Время выполнения: ", end - start);
                 }
+
+                welcome();
+            }
+
+            if (cmd == 11)
+            {
+                printf(ANSI_COLOR_GREEN "%s\n" ANSI_COLOR_RESET,
+                       "Текущее состояние стека:");
+                output_stackl(root);
 
                 welcome();
             }

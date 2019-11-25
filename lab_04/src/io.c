@@ -32,12 +32,19 @@ void welcome()
            "Выберите действие из списка, введя соответствуюший номер:\n" ANSI_COLOR_RESET);
     printf("%s",
            ANSI_COLOR_GREEN
-           "1. Ввести элементы стека.\n"
-           "2. Добавить элемент в стек.\n"
-           "3. Удалить элемент из стека.\n"
-           "4. Вывести массив освободившихся адрессов.\n"
-           "5. Вывести убывающие подпоследовательности в обратном порядке \n"
-           "и вывести количественную характеристику обработки.\n\n"
+           "1. МАССИВ: Ввести элементы стека.\n"
+           "2. МАССИВ: Добавить элемент в стек.\n"
+           "3. МАССИВ: Удалить элемент из стека.\n"
+           "4. МАССИВ: Вывести убывающие подпоследовательности в обратном порядке \n"
+           "и вывести количественную характеристику обработки.\n"
+           "5. МАССИВ: Вывести текущее состояние стека.\n\n"
+           "6. СПИСОК: Ввести элементы стека.\n"
+           "7. СПИСОК: Добавить элемент в стек.\n"
+           "8. СПИСОК: Удалить элемент из стека.\n"
+           "9. СПИСОК: Вывести массив освободившихся адрессов.\n"
+           "10. СПИСОК: Вывести убывающие подпоследовательности в обратном порядке \n"
+           "и вывести количественную характеристику обработки.\n"
+           "11. СПИСОК: Вывести текущее состояние стека.\n\n"
            "0. Выход из программы.\n\n" ANSI_COLOR_RESET);
 }
 
@@ -78,61 +85,4 @@ int input_interval(int *const num, const int left, const int right)
     }
 
     return OK;
-}
-
-/*
-Input stack.
-
-Input data:
-* const int count - count of stack elements.
-* arrstack_t *stack, liststack_t **root - stack realizations.
-* const int limit - address limit.
-
-Output data:
-* Return code - OK or INVALID_INT_INPUT_ERROR.
-*/
-int input_stack(const int count, arrstack_t *stack, liststack_t **root, size_t limit)
-{
-    int el;
-
-    for (int i = 0; i < count; ++i)
-    {
-        if (scanf("%d", &el) != GOT_ARG)
-        {
-            clean_input_stream();
-            return INVALID_INT_INPUT_ERROR;
-        }
-
-        if (!(*root))
-        {
-            *root = create_node(el);
-        }
-        else
-        {
-            pushl(root, el, limit);
-        }
-
-        pusha(stack, el);
-    }
-
-    return OK;
-}
-
-/*
-Pop element from both realizations.
-
-Input array:
-* arrstack_t *stack, liststack_t **root - stack realizations.
-
-Output array:
-* status - popped element or STACK_EMPTY status.
-*/
-int pop_stack(arrstack_t *stack, liststack_t **root, arr_t *const arr)
-{
-    int status;
-
-    status = popa(stack);
-    popl(root, arr);
-
-    return status;
 }
