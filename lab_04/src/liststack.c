@@ -120,10 +120,12 @@ int input_stackl(const int count, liststack_t **root, const int limit)
         {
             *root = create_node(el);
         }
-
-        if (pushl(root, el, limit))
+        else
         {
-            return STACK_MEMORY_ERROR;
+            if (pushl(root, el, limit))
+            {
+                return STACK_MEMORY_ERROR;
+            }
         }
     }
 
@@ -149,7 +151,7 @@ int output_stackl(liststack_t *root)
     int size = root->ind;
     liststack_t *out = root;
 
-    while (size)
+    while (size >= 0)
     {
         printf("%d ~ %zx\n", out->data, out);
         out = out->next;
