@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <inttypes.h>
-
-#include "include/rc.h"
-#include "include/macro.h"
-#include "include/queuearr.h"
-#include "include/queuelist.h"
+#include "include/queueops.h"
 
 int main()
 {
@@ -13,27 +7,12 @@ int main()
     queuelist_t *queuelist = NULL;
     queuearr_t *queuearr = NULL;
 
-    fmem = create_array(capacity);
-
     queuelist = create_queuelist();
-    enqueuelist(queuelist, 5);
-    enqueuelist(queuelist, 6);
-    enqueuelist(queuelist, 2);
-    enqueuelist(queuelist, 3);
-    enqueuelist(queuelist, 8);
-    int data = dequeuelist(queuelist, fmem);
-    printf("Dequeued data: %d\n", data);
-    data = dequeuelist(queuelist, fmem);
-    printf("Dequeued data: %d\n", data);
-    data = dequeuelist(queuelist, fmem);
-    printf("Dequeued data: %d\n", data);
-    data = dequeuelist(queuelist, fmem);
-    printf("Dequeued data: %d\n", data);
-    data = dequeuelist(queuelist, fmem);
-    printf("Dequeued data: %d\n", data);
+    fmem = create_array(30000);
 
-    freequeuelist(queuelist, fmem);
-    free_array(fmem);
+    list_model(queuelist, fmem, 0, 6, 0, 1, 5);
+    // freequeuearr(queuelist);
+    // free_array(fmem);
 
     return EOK;
 
@@ -259,7 +238,7 @@ int main()
 
     //                     return OK;
     //                 }
-                    
+
     //                 check_top(root, fmem);
 
     //                 printf(ANSI_COLOR_GREEN "%s\n" ANSI_COLOR_RESET,

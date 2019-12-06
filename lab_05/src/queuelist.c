@@ -1,3 +1,5 @@
+#include <errno.h>
+
 #include "include/rc.h"
 #include "include/queuelist.h"
 
@@ -10,15 +12,15 @@ Input data:
 Output data:
 * node - pointer to created node.
 */
-queuenode_t *create_queuenode(const int item)
+queuenode_t *create_queuenode(const task_t task)
 {
     queuenode_t *node = (queuenode_t *)malloc(sizeof(queuenode_t));
     if (!node)
     {
         return NULL;
     }
-    node->item = item;
-    node->ind = 0;
+    node->task.num = task.num;
+    node->task.time_out = task.time_out;
     node->next = NULL;
 
     return node;
@@ -39,7 +41,7 @@ queuelist_t *create_queuelist()
     }
     queue->rear = NULL;
     queue->front = NULL;
-    
+
     return queue;
 }
 
@@ -64,9 +66,9 @@ Input data:
 * queuelist_t *const queue - pointer to queue.
 * const int item - item to be added.
 */
-void enqueuelist(queuelist_t *const queue, const int item)
+void enqueuelist(queuelist_t *const queue, const task_t task)
 {
-    queuenode_t *node = create_queuenode(item);
+    queuenode_t *node = create_queuenode(task);
 
     if (queue->rear == NULL)
     {
@@ -76,7 +78,6 @@ void enqueuelist(queuelist_t *const queue, const int item)
         return;
     }
 
-    node->ind = queue->rear->ind + 1;
     queue->rear->next = node;
     queue->rear = node;
 }
@@ -91,22 +92,25 @@ Input data:
 Output data:
 * Got data.
 */
-int dequeuelist(queuelist_t *const queue, arr_t *const fmem)
+task_t dequeuelist(queuelist_t *const queue, arr_t *const fmem)
 {
     if (queue->front == NULL)
     {
-        return NULL;
+        errno = EQUEUEEMPTY;
     }
 
     queuenode_t *node = queue->front;
     fmem->arr[++fmem->ind] = node;
-    int data = node->item;
+    task_t data = node->task;
 
-    queue->front = queue->front->next;
-
-    if (queue->front == NULL)
+    if (queue->front == queue->rear)
     {
         queue->rear = NULL;
+        queue->front = NULL;
+    }
+    else
+    {
+        queue->front = queue->front->next;
     }
 
     free(node);
@@ -132,28 +136,38 @@ void freequeuelist(queuelist_t *queue, arr_t *const fmem)
 }
 
 /*
-Check root's address existance in fmem array and delete if so.
+Check queue's rear's address existance in fmem array and delete if so.
 
-Input address:
-* liststack_t *root - stack realization.
+Input data:
+* queuelist_t *queue - queue realization.
 * arr_t *fmem - free memory slices.
+
+Output data:
+* Binary sign - 1 if address present, 0 otherwise.
 */
-// void check_top(liststack_t *root, arr_t *fmem)
-// {
-//     size_t top = root;
+int check_rear(queuelist_t *queue, arr_t *fmem)
+{
+    size_t top = queue->rear;
+    int is_found = 0;
 
-//     for (int i = 0; i < fmem->ind; ++i)
-//     {
-//         if (top == fmem->arr[i])
-//         {
-//             for (int j = i; j < fmem->ind - 1; ++j)
-//             {
-//                 size_t temp = fmem->arr[j];
-//                 fmem->arr[j] = fmem->arr[j + 1];
-//                 fmem->arr[j + 1] = temp;
-//             }
-//         }
-//     }
+    for (int i = 0; i < fmem->ind; ++i)
+    {
+        if (top == fmem->arr[i])
+        {
+            is_found = 1;
+            for (int j = i; j < fmem->ind - 1; ++j)
+            {
+                size_t temp = fmem->arr[j];
+                fmem->arr[j] = fmem->arr[j + 1];
+                fmem->arr[j + 1] = temp;
+            }
+        }
+    }
 
-//     fmem->ind--;
-// }
+    if (is_found)
+    {
+        fmem->ind--;
+    }
+
+    return is_found;
+}

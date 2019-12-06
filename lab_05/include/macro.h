@@ -3,6 +3,8 @@
 
 #define GOT_ARG 1
 
+#define EPS 1e-6
+
 /*
 Colored printf ouptut.
 */

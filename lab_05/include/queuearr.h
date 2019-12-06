@@ -21,4 +21,6 @@ void enqueuearr(queuearr_t *const queue, const int item);
 
 int dequeuearr(queuearr_t *const queue);
 
+void freequeuearr(queuearr_t *queue);
+
 #endif
