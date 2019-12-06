@@ -21,7 +21,7 @@ queuearr_t *create_queuearr(const unsigned capacity)
     queue->front = 0;
     queue->size = 0;
     queue->rear = capacity - 1;
-    queue->arr = (int *)malloc(queue->capacity * sizeof(int));
+    queue->arr = (task_t *)malloc(queue->capacity * sizeof(task_t));
     if (!queue->arr)
     {
         free(queue);
@@ -64,9 +64,9 @@ Add item to queue.
 
 Input data:
 * queuearr_t *const queue - pointer to queue.
-* const int item - item to be added.
+* const task_t task - task to be added.
 */
-void enqueuearr(queuearr_t *const queue, const int item)
+void enqueuearr(queuearr_t *const queue, const task_t task)
 {
     if (is_fullarr(queue))
     {
@@ -74,7 +74,7 @@ void enqueuearr(queuearr_t *const queue, const int item)
         return;
     }
     queue->rear = (queue->rear + 1) % queue->capacity;
-    queue->arr[queue->rear] = item;
+    queue->arr[queue->rear] = task;
     queue->size++;
 }
 
@@ -87,18 +87,18 @@ Input data:
 Output data:
 * Got data.
 */
-int dequeuearr(queuearr_t *const queue)
+task_t dequeuearr(queuearr_t *const queue)
 {
     if (is_emptyarr(queue))
     {
         errno = EQUEUEEMPTY;
-        return INT_MIN;
+        return;
     }
-    int item = queue->arr[queue->front];
+    task_t task = queue->arr[queue->front];
     queue->front = (queue->front + 1) % queue->capacity;
     queue->size--;
 
-    return item;
+    return task;
 }
 
 /*

@@ -17,4 +17,9 @@ void list_model(queuelist_t *const queue, arr_t *const fmem,
                 const int llim_out, const int rlim_out,
                 const int repeats);
 
+void array_model(queuearr_t *const queue,
+                 const int llim_in, const int rlim_in,
+                 const int llim_out, const int rlim_out,
+                 const int repeats);
+
 #endif

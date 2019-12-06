@@ -7,10 +7,12 @@ int main()
     queuelist_t *queuelist = NULL;
     queuearr_t *queuearr = NULL;
 
-    queuelist = create_queuelist();
+    queuelist = create_queuelist(10000);
+    queuearr = create_queuearr(10000);
     fmem = create_array(30000);
 
     list_model(queuelist, fmem, 0, 6, 0, 1, 5);
+    array_model(queuearr, 0, 6, 0, 1, 5);
     // freequeuearr(queuelist);
     // free_array(fmem);
 

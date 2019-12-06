@@ -32,7 +32,7 @@ Queue on linked list creation.
 Output data:
 * queue - pointer to created empty queue.
 */
-queuelist_t *create_queuelist()
+queuelist_t *create_queuelist(const unsigned capacity)
 {
     queuelist_t *queue = (queuelist_t *)malloc(sizeof(queuelist_t));
     if (!queue)
@@ -41,6 +41,8 @@ queuelist_t *create_queuelist()
     }
     queue->rear = NULL;
     queue->front = NULL;
+    queue->size = 0;
+    queue->capacity = capacity;
 
     return queue;
 }
@@ -60,6 +62,20 @@ int is_emptylist(queuelist_t *const queue)
 }
 
 /*
+Check queue overflow.
+
+Input data:
+* queuelist_t *const queue - pointer to queue.
+
+Output data:
+* Binary sign - 1 if empty, 0 - otherwise.
+*/
+int is_fulllist(queuelist_t *const queue)
+{
+    return queue->size == queue->capacity;
+}
+
+/*
 Add item to queue.
 
 Input data:
@@ -70,16 +86,23 @@ void enqueuelist(queuelist_t *const queue, const task_t task)
 {
     queuenode_t *node = create_queuenode(task);
 
+    if (is_fulllist(queue))
+    {
+        errno = EQUEUEOVERFLOW;
+        return;
+    }
+
     if (queue->rear == NULL)
     {
         queue->front = node;
         queue->rear = node;
-
+        queue->size++;
         return;
     }
 
     queue->rear->next = node;
     queue->rear = node;
+    queue->size++;
 }
 
 /*
@@ -97,6 +120,7 @@ task_t dequeuelist(queuelist_t *const queue, arr_t *const fmem)
     if (queue->front == NULL)
     {
         errno = EQUEUEEMPTY;
+        return;
     }
 
     queuenode_t *node = queue->front;
@@ -114,6 +138,8 @@ task_t dequeuelist(queuelist_t *const queue, arr_t *const fmem)
     }
 
     free(node);
+
+    queue->size--;
 
     return data;
 }

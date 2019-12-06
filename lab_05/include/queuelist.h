@@ -13,6 +13,8 @@ typedef struct queuenode
 
 typedef struct
 {
+    int size;
+    unsigned capacity;
     queuenode_t *front, *rear;
 } queuelist_t;
 
@@ -21,6 +23,8 @@ queuenode_t *create_queuenode(const task_t task);
 queuelist_t *create_queuelist();
 
 int is_emptylist(queuelist_t *const queue);
+
+int is_fulllist(queuelist_t *const queue);
 
 void enqueuelist(queuelist_t *const queue, const task_t task);
 
