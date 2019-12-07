@@ -85,7 +85,12 @@ int main()
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
                 queuearr = create_queuearr(capacity);
+                uint64_t start, end;
+                start = tick();
                 array_model(queuearr, ltime_in, rtime_in, ltime_out, rtime_out, repeats);
+                end = tick();
+                printf(ANSI_COLOR_MAGENTA "%s %ju\n" ANSI_COLOR_RESET,
+                       "Время выполнения моделирования на основе массива:", end - start);
             }
 
             welcome();
@@ -104,7 +109,7 @@ int main()
             }
             end = tick();
 
-            printf(ANSI_COLOR_MAGENTA "%s %d\n" ANSI_COLOR_RESET,
+            printf(ANSI_COLOR_MAGENTA "%s %ju\n" ANSI_COLOR_RESET,
                    "Добавление элементов в очередь на основе массива:",
                    (end - start) / 1000);
 
@@ -115,7 +120,7 @@ int main()
             }
             end = tick();
 
-            printf(ANSI_COLOR_MAGENTA "%s %d\n" ANSI_COLOR_RESET,
+            printf(ANSI_COLOR_MAGENTA "%s %ju\n" ANSI_COLOR_RESET,
                    "Удаление элементов из очереди на основе массива:",
                    (end - start) / 1000);
 
@@ -171,7 +176,12 @@ int main()
 
                 queuelist = create_queuelist(capacity);
                 fmem = create_array(capacity);
+                uint64_t start, end;
+                start = tick();
                 list_model(queuelist, fmem, ltime_in, rtime_in, ltime_out, rtime_out, repeats);
+                end = tick();
+                printf(ANSI_COLOR_MAGENTA "%s %ju\n" ANSI_COLOR_RESET,
+                       "Время выполнения моделирования на основе списка:", end - start);
             }
 
             welcome();
@@ -203,7 +213,7 @@ int main()
             }
             end = tick();
 
-            printf(ANSI_COLOR_MAGENTA "%s %d\n" ANSI_COLOR_RESET,
+            printf(ANSI_COLOR_MAGENTA "%s %ju\n" ANSI_COLOR_RESET,
                    "Добавление элементов в очередь на основе списка:",
                    (end - start) / 1000);
 
@@ -214,7 +224,7 @@ int main()
             }
             end = tick();
 
-            printf(ANSI_COLOR_MAGENTA "%s %d\n" ANSI_COLOR_RESET,
+            printf(ANSI_COLOR_MAGENTA "%s %ju\n" ANSI_COLOR_RESET,
                    "Удаление элементов из очереди на основе списка:",
                    (end - start) / 1000);
 
