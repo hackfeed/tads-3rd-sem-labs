@@ -130,8 +130,19 @@ void list_model(queuelist_t *const queue, arr_t *const fmem,
         }
     }
 
+    double expected_time;
+    if ((llim_in + rlim_in) / 2 * 1000 > (llim_out + rlim_out) / 2 * repeats * 1000)
+    {
+        expected_time = (llim_in + rlim_in) / 2 * 1000;
+    }
+    else
+    {
+        expected_time = calls;
+    }
+    double delta = fabs(service_time - expected_time) / expected_time * 100;
+
     printf(ANSI_COLOR_GREEN
-           "Рабочее время автомата: %lf\n"
+           "Рабочее время автомата: %lf (ожидаемое рабочее время: %lf, погрешность: %lf%)\n"
            "Число вошедших заявок: %d\n"
            "Число вышедших заявок: %d\n"
            "Число необработанных заявок: %d\n"
@@ -139,7 +150,8 @@ void list_model(queuelist_t *const queue, arr_t *const fmem,
            "Время простоя автомата: %lf\n"
            "Количество адресов, взятых из использованной памяти: %d\n"
            "Количество адресов, взятых из новой памяти: %d\n" ANSI_COLOR_RESET,
-           service_time, in_tasks, out_tasks, failed_tasks, calls, hold_time, reusedmem, newmem);
+           service_time, expected_time, delta, in_tasks, out_tasks, failed_tasks,
+           calls, hold_time, reusedmem, newmem);
 }
 
 /*
@@ -246,12 +258,24 @@ void array_model(queuearr_t *const queue,
         }
     }
 
+    double expected_time;
+    if ((llim_in + rlim_in) / 2 * 1000 > (llim_out + rlim_out) / 2 * repeats * 1000)
+    {
+        expected_time = (llim_in + rlim_in) / 2 * 1000;
+    }
+    else
+    {
+        expected_time = calls;
+    }
+    double delta = fabs(service_time - expected_time) / expected_time * 100;
+
     printf(ANSI_COLOR_GREEN
-           "Рабочее время автомата: %lf\n"
+           "Рабочее время автомата: %lf (ожидаемое рабочее время: %lf, погрешность: %lf%)\n"
            "Число вошедших заявок: %d\n"
            "Число вышедших заявок: %d\n"
            "Число необработанных заявок: %d\n"
            "Число срабатываний автомата: %d\n"
            "Время простоя автомата: %lf\n" ANSI_COLOR_RESET,
-           service_time, in_tasks, out_tasks, failed_tasks, calls, hold_time);
+           service_time, expected_time, delta, in_tasks, out_tasks,
+           failed_tasks, calls, hold_time);
 }

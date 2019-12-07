@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <inttypes.h>
+#include <math.h>
 
 #include "include/rc.h"
 #include "include/macro.h"
