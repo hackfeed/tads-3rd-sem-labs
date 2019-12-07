@@ -137,7 +137,7 @@ void list_model(queuelist_t *const queue, arr_t *const fmem,
     }
     else
     {
-        expected_time = calls;
+        expected_time = calls * (llim_out + rlim_out) / 2;
     }
     double delta = fabs(service_time - expected_time) / expected_time * 100;
 
@@ -265,7 +265,7 @@ void array_model(queuearr_t *const queue,
     }
     else
     {
-        expected_time = calls;
+        expected_time = calls * (llim_out + rlim_out) / 2;
     }
     double delta = fabs(service_time - expected_time) / expected_time * 100;
 
