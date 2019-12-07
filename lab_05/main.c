@@ -68,6 +68,14 @@ int main()
                          fmem, queuearr, queuelist,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
+                if (rtime_in < ltime_in)
+                {
+                    printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                           "Правая граница должна быть больше левой! Повторите попытку.");
+
+                    return EOK;
+                }
+
                 printf("%s\n", "Введите интервал обработки заявки в очереди (2 целых числа через пробел):");
                 input_interval(&ltime_out, 0, 99999);
                 errcheck(inputerr, 2,
@@ -77,6 +85,14 @@ int main()
                 errcheck(inputerr, 2,
                          fmem, queuearr, queuelist,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
+
+                if (rtime_out < ltime_out)
+                {
+                    printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                           "Правая граница должна быть больше левой! Повторите попытку.");
+
+                    return EOK;
+                }
 
                 printf("%s\n", "Введите количество обслуживаний одной заявки:");
                 input_interval(&repeats, 1, 99999);
@@ -158,6 +174,14 @@ int main()
                          fmem, queuearr, queuelist,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
+                if (rtime_in < ltime_in)
+                {
+                    printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                           "Правая граница должна быть больше левой! Повторите попытку.");
+
+                    return EOK;
+                }
+
                 printf("%s\n", "Введите интервал обработки заявки в очереди (2 целых числа через пробел):");
                 input_interval(&ltime_out, 0, 99999);
                 errcheck(inputerr, 2,
@@ -167,6 +191,14 @@ int main()
                 errcheck(inputerr, 2,
                          fmem, queuearr, queuelist,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
+
+                if (rtime_out < ltime_out)
+                {
+                    printf(ANSI_COLOR_RED "%s\n" ANSI_COLOR_RESET,
+                           "Правая граница должна быть больше левой! Повторите попытку.");
+
+                    return EOK;
+                }
 
                 printf("%s\n", "Введите количество обслуживаний одной заявки:");
                 input_interval(&repeats, 1, 99999);
