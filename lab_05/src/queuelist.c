@@ -153,6 +153,11 @@ Input data:
 */
 void freequeuelist(queuelist_t *queue, arr_t *const fmem)
 {
+    if (queue == NULL)
+    {
+        return;
+    }
+
     while (!is_emptylist(queue))
     {
         dequeuelist(queue, fmem);

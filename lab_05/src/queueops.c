@@ -108,11 +108,12 @@ void list_model(queuelist_t *const queue, arr_t *const fmem,
                 out_tasks++;
                 if (out_tasks % 100 == 0)
                 {
-                    printf("\n---\n"
+                    printf(ANSI_COLOR_YELLOW
+                           "\n---\n"
                            "Обработано %d заявок.\n"
                            "Длина очереди: %d\n"
                            "Средняя длина очереди: %d\n"
-                           "---\n",
+                           "---\n" ANSI_COLOR_RESET,
                            out_tasks, queue->size, overall_len / out_tasks);
                 }
             }
@@ -129,14 +130,15 @@ void list_model(queuelist_t *const queue, arr_t *const fmem,
         }
     }
 
-    printf("Рабочее время автомата: %lf\n"
+    printf(ANSI_COLOR_GREEN
+           "Рабочее время автомата: %lf\n"
            "Число вошедших заявок: %d\n"
            "Число вышедших заявок: %d\n"
            "Число необработанных заявок: %d\n"
            "Число срабатываний автомата: %d\n"
            "Время простоя автомата: %lf\n"
            "Количество адресов, взятых из использованной памяти: %d\n"
-           "Количество адресов, взятых из новой памяти: %d\n",
+           "Количество адресов, взятых из новой памяти: %d\n" ANSI_COLOR_RESET,
            service_time, in_tasks, out_tasks, failed_tasks, calls, hold_time, reusedmem, newmem);
 }
 
@@ -222,11 +224,12 @@ void array_model(queuearr_t *const queue,
                 out_tasks++;
                 if (out_tasks % 100 == 0)
                 {
-                    printf("\n---\n"
+                    printf(ANSI_COLOR_YELLOW
+                           "\n---\n"
                            "Обработано %d заявок.\n"
                            "Длина очереди: %d\n"
                            "Средняя длина очереди: %d\n"
-                           "---\n",
+                           "---\n" ANSI_COLOR_RESET,
                            out_tasks, queue->size, overall_len / out_tasks);
                 }
             }
@@ -243,11 +246,12 @@ void array_model(queuearr_t *const queue,
         }
     }
 
-    printf("Рабочее время автомата: %lf\n"
+    printf(ANSI_COLOR_GREEN
+           "Рабочее время автомата: %lf\n"
            "Число вошедших заявок: %d\n"
            "Число вышедших заявок: %d\n"
            "Число необработанных заявок: %d\n"
            "Число срабатываний автомата: %d\n"
-           "Время простоя автомата: %lf\n",
+           "Время простоя автомата: %lf\n" ANSI_COLOR_RESET,
            service_time, in_tasks, out_tasks, failed_tasks, calls, hold_time);
 }

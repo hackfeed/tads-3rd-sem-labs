@@ -125,6 +125,4 @@ void freequeuearr(queuearr_t *queue)
 
         return;
     }
-
-    errno = EARRAYMEMORY;
 }

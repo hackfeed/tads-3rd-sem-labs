@@ -2,6 +2,7 @@
 #define __QUEUELIST_H__
 
 #include <stdlib.h>
+
 #include "include/array.h"
 #include "include/task.h"
 
@@ -13,8 +14,7 @@ typedef struct queuenode
 
 typedef struct
 {
-    int size;
-    unsigned capacity;
+    unsigned capacity, size;
     queuenode_t *front, *rear;
 } queuelist_t;
 
