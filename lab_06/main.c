@@ -3,14 +3,18 @@
 #include "include/hash_utils.h"
 #include "include/search.h"
 #include "include/timer.h"
+#include "include/io.h"
 
 int main(int argc, char *argv[])
 {
+    welcome();
+
     FILE *f = fopen(argv[1], "r");
 
     if (f == NULL)
     {
-        fprintf(stderr, "Неверное имя файла\n");
+        printf(ANSI_COLOR_RED
+               "Неверное имя файла! Повторите попытку.\n" ANSI_COLOR_RESET);
         return FILE_ERROR;
     }
 
@@ -20,17 +24,28 @@ int main(int argc, char *argv[])
     fill_tree(&root, f);
     time = tick() - time;
 
-    printf("Бинарное дерево из файла\n");
+    printf(ANSI_COLOR_YELLOW
+           "БИНАРНОЕ ДЕРЕВО НА ОСНОВЕ ДАННЫХ ИЗ ФАЙЛА:\n" ANSI_COLOR_RESET);
+    printf(ANSI_COLOR_GREEN);
     print_tree(root, 0);
-    printf("Построено за = %ld тиков (в данное время включено время чтения из файла)\n\n", time);
+    printf(ANSI_COLOR_RESET);
+    printf(ANSI_COLOR_MAGENTA
+           "Дерево построено за = %ld тактов процессора "
+           "(в данное время включено время чтения из файла).\n\n" ANSI_COLOR_RESET,
+           time);
 
     int unique;
     time = tick();
     root = balance_tree(root, &unique);
     time = tick() - time;
-    printf("Бинарное дерево после балансировки\n");
+    printf(ANSI_COLOR_YELLOW
+           "БИНАРНОЕ ДЕРЕВО ПОСЛЕ БАЛАНСИРОВКИ:\n" ANSI_COLOR_YELLOW);
+    printf(ANSI_COLOR_GREEN);
     print_tree(root, 0);
-    printf("Сбалансировано за = %ld тиков\n\n", time);
+    printf(ANSI_COLOR_RESET);
+    printf(ANSI_COLOR_MAGENTA
+           "Дерево сбалансировано за = %ld тактов процессора.\n\n" ANSI_COLOR_RESET,
+           time);
 
     int n = file_len(f);
     list_t *hash_list = calloc(n, sizeof(list_t));
@@ -39,30 +54,40 @@ int main(int argc, char *argv[])
     int (*hash)(char *, int);
 
     time = tick();
-    unsafe_hash("sleeping", 10);
+    unsafe_hash("chill", 10);
     time = tick() - time;
-    printf("%ld ----- LAME HASH TIME\n", time);
+    printf(ANSI_COLOR_YELLOW
+           "%ld - генерация простой хеш-функции (в тактах процессора).\n" ANSI_COLOR_RESET,
+           time);
 
     time = tick();
-    safe_hash("sleeping", 10);
+    safe_hash("chill", 10);
     time = tick() - time;
-    printf("%ld ----- COOL HASH TIME\n", time);
+    printf(ANSI_COLOR_GREEN
+           "%ld - генерация сложной хеш-функции (в тактах процессора).\n" ANSI_COLOR_RESET,
+           time);
 
     hash = &unsafe_hash;
     time = tick();
     cmpr = build_hash_table(&hash_list, n, f, hash);
     time = tick() - time;
 
-    printf("\nХеш таблица простым методом");
+    printf(ANSI_COLOR_YELLOW
+           "\nХЕШ-ТАБЛИЦА НА ОСНОВЕ ПРОСТОЙ ФУНКЦИИ:" ANSI_COLOR_RESET);
     print_hash_table(hash_list, n);
-    printf("Количество сравнений = %f\n", cmpr);
-    printf("Построена за = %ld тиков (внимание, читает из файла)\n\n", time);
+    printf(ANSI_COLOR_MAGENTA
+           "Количество сравнений = %f.\n" ANSI_COLOR_RESET,
+           cmpr);
+    printf(ANSI_COLOR_MAGENTA
+           "Хеш-таблица построена за = %ld тактов процессора "
+           "(в данное время включено время чтения из файла).\n\n" ANSI_COLOR_RESET,
+           time);
 
     printf("\nВведите желаемое количество сравнений: ");
     int ec = scanf("%f", &desired_cmpr);
     if (ec != 1)
     {
-        printf("Ошибка ввода\n");
+        printf(ANSI_COLOR_RED "Введено неверное значение!\n" ANSI_COLOR_RESET);
 
         return VAL_ERROR;
     }
@@ -71,7 +96,6 @@ int main(int argc, char *argv[])
     {
         while (cmpr - desired_cmpr > 0.000001)
         {
-            printf("%f \n", fabs(cmpr - desired_cmpr));
             free_list_arr(hash_list, n);
             n = next_prime(n);
             hash_list = calloc(n, sizeof(list_t));
@@ -81,14 +105,21 @@ int main(int argc, char *argv[])
             cmpr = build_hash_table(&hash_list, n, f, hash);
             time = tick() - time;
         }
-        printf("\nХеш таблица улучшенным методом");
+        printf(ANSI_COLOR_GREEN
+               "\nХЕШ-ТАБЛИЦА НА ОСНОВЕ УЛУЧШЕННОЙ ФУНКЦИИ:" ANSI_COLOR_RESET);
         print_hash_table(hash_list, n);
-        printf("Количество сравнений = %f\n", cmpr);
-        printf("Построена за = %ld тиков (внимание, читает из файла)\n\n", time);
+        printf(ANSI_COLOR_MAGENTA
+               "Количество сравнений = %f.\n" ANSI_COLOR_RESET,
+               cmpr);
+        printf(ANSI_COLOR_MAGENTA
+               "Хеш-таблица построена за = %ld тактов процессора "
+               "(в данное время включено время чтения из файла).\n\n" ANSI_COLOR_RESET,
+               time);
     }
     else
     {
-        printf("Все хорошо, продолжаем\n");
+        printf(ANSI_COLOR_GREEN
+               "Результат достижим за желаемое количество сравнений.\n" ANSI_COLOR_RESET);
     }
 
     char to_find[STR_SIZE];
@@ -102,13 +133,18 @@ int main(int argc, char *argv[])
     time = tick() - time;
     if (ec > 0)
     {
-        printf("Слово %s найдено за %ld тиков. Бинарное дерево занимает - %ld байт. Количество сравнений - %d \n",
+        printf(ANSI_COLOR_MAGENTA "ПОИСК В БИНАРНОМ ДЕРЕВЕ\n" ANSI_COLOR_RESET);
+        printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
+               "Бинарное дерево занимает - %ld байт.\n"
+               "Количество сравнений для достижения результата - %d.\n",
                to_find, time,
                unique * sizeof(tree_node), ec);
     }
     else
     {
-        printf("Слово %s не найдено.\n", to_find);
+        printf(ANSI_COLOR_RED
+               "Слово \"%s\" не найдено.\n" ANSI_COLOR_RESET,
+               to_find);
 
         return VAL_ERROR;
     }
@@ -119,11 +155,18 @@ int main(int argc, char *argv[])
     time = tick() - time;
     if (ec > 0)
     {
-        printf("Слово %s найдено за %ld тиков. Бинарное сбалансированное дерево занимает - %ld байт. Количество сравнений - %d\n", to_find, time, unique * sizeof(tree_node), ec);
+        printf(ANSI_COLOR_MAGENTA "ПОИСК В БИНАРНОМ СБАЛАНСИРОВАННОМ ДЕРЕВЕ\n" ANSI_COLOR_RESET);
+        printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
+               "Бинарное сбалансированное дерево занимает - %ld байт.\n"
+               "Количество сравнений для достижения результата - %d.\n",
+               to_find, time,
+               unique * sizeof(tree_node), ec);
     }
     else
     {
-        printf("Слово %s не найдено.\n", to_find);
+        printf(ANSI_COLOR_RED
+               "Слово \"%s\" не найдено.\n" ANSI_COLOR_RESET,
+               to_find);
 
         return VAL_ERROR;
     }
@@ -134,13 +177,18 @@ int main(int argc, char *argv[])
     time = tick() - time;
     if (ec > 0)
     {
-        printf("Слово %s найдено за %ld тиков. Хэш таблица занимает - %ld байт. Количество сравнений - %d\n",
+        printf(ANSI_COLOR_MAGENTA "ПОИСК В ХЕШ-ТАБЛИЦЕ\n" ANSI_COLOR_RESET);
+        printf("Слово \"%s\" найдено за %ld тактов-процессора.\n"
+               "Хеш-таблица занимает - %ld байт.\n"
+               "Количество сравнений для достижения результата - %d.\n",
                to_find, time,
                (n + unique - list_occupation(hash_list, n)) * sizeof(list_t) + sizeof(list_t *), ec);
     }
     else
     {
-        printf("Слово %s не найдено.\n", to_find);
+        printf(ANSI_COLOR_RED
+               "Слово \"%s\" не найдено.\n" ANSI_COLOR_RESET,
+               to_find);
 
         return VAL_ERROR;
     }
@@ -151,13 +199,17 @@ int main(int argc, char *argv[])
     time = tick() - time;
     if (ec > 0)
     {
-        printf("Слово %s найдено за %ld тиков. Файловый дескриптор занимает - %ld байт. Количество сравнений - %d\n",
+        printf(ANSI_COLOR_MAGENTA "ПОИСК В ФАЙЛЕ\n" ANSI_COLOR_RESET);
+        printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
+               "Файловый дескриптор занимает - %ld байт.\n"
+               "Количество сравнений для достижения результата - %d.\n",
                to_find, time,
                sizeof(FILE *), ec);
     }
     else
     {
-        printf("Слово %s не найдено.\n",
+        printf(ANSI_COLOR_RED
+               "Слово \"%s\" не найдено.\n" ANSI_COLOR_RESET,
                to_find);
 
         return VAL_ERROR;

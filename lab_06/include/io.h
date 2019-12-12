@@ -8,6 +8,4 @@
 
 void welcome();
 
-void clean_input_stream();
-
 #endif

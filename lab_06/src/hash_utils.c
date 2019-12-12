@@ -89,7 +89,10 @@ float build_hash_table(list_t **arr, int size, FILE *f, int (*hash)(char *, int)
 
 void print_hash_table(list_t *arr, int size)
 {
-    printf("\n...........................................\n");
+    printf(ANSI_COLOR_GREEN
+           "\n------------------------------------------\n"
+           "  ХЕШ | СООТВЕТСТВУЮЩИЕ ДАННЫЕ\n"
+           "------------------------------------------\n" ANSI_COLOR_RESET);
     list_t *entry;
 
     int f = 0;
@@ -101,7 +104,7 @@ void print_hash_table(list_t *arr, int size)
         entry = &arr[i];
         if (entry->value != NULL)
         {
-            printf("HASH %d | ", i);
+            printf("%5d | ", i);
             f = 1;
         }
         while (entry != NULL)
@@ -111,7 +114,6 @@ void print_hash_table(list_t *arr, int size)
             entry = entry->next;
         }
         if (f)
-            printf("\n");
+            printf("\n------------------------------------------\n");
     }
-    printf("...........................................\n");
 }
