@@ -102,7 +102,9 @@ int main(int argc, char *argv[])
     time = tick() - time;
     if (ec > 0)
     {
-        printf("Слово %s найдено за %ld тиков. Бинарное дерево занимает - %ld байт. Количество сравнений - %d \n", to_find, time, unique * sizeof(tree_node), ec);
+        printf("Слово %s найдено за %ld тиков. Бинарное дерево занимает - %ld байт. Количество сравнений - %d \n",
+               to_find, time,
+               unique * sizeof(tree_node), ec);
     }
     else
     {
@@ -132,7 +134,9 @@ int main(int argc, char *argv[])
     time = tick() - time;
     if (ec > 0)
     {
-        printf("Слово %s найдено за %ld тиков. Хэш таблица занимает - %ld байт. Количество сравнений - %d\n", to_find, time, (n + unique - list_occupation(hash_list, n)) * sizeof(list) + sizeof(list *), ec);
+        printf("Слово %s найдено за %ld тиков. Хэш таблица занимает - %ld байт. Количество сравнений - %d\n",
+               to_find, time,
+               (n + unique - list_occupation(hash_list, n)) * sizeof(list_t) + sizeof(list_t *), ec);
     }
     else
     {
@@ -147,11 +151,14 @@ int main(int argc, char *argv[])
     time = tick() - time;
     if (ec > 0)
     {
-        printf("Слово %s найдено за %ld тиков. Файловый дескриптор занимает - %ld байт. Количество сравнений - %d\n", to_find, time, sizeof(FILE *), ec);
+        printf("Слово %s найдено за %ld тиков. Файловый дескриптор занимает - %ld байт. Количество сравнений - %d\n",
+               to_find, time,
+               sizeof(FILE *), ec);
     }
     else
     {
-        printf("Слово %s не найдено.\n", to_find);
+        printf("Слово %s не найдено.\n",
+               to_find);
 
         return VAL_ERROR;
     }
