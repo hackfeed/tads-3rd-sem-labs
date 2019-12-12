@@ -181,7 +181,7 @@ int main(int argc, char *argv[])
         printf("Слово \"%s\" найдено за %ld тактов-процессора.\n"
                "Хеш-таблица занимает - %ld байт.\n"
                "Количество сравнений для достижения результата - %d.\n",
-               to_find, time,
+               to_find, time / 4,
                (n + unique - list_occupation(hash_list, n)) * sizeof(list_t) + sizeof(list_t *), ec);
     }
     else
