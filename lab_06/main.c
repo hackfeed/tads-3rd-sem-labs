@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
     int n = file_len(f);
     list_t *hash_list = calloc(n, sizeof(list_t));
-    float cmpr, desired_cmpr;
+    int cmpr, desired_cmpr;
 
     int (*hash)(char *, int);
 
@@ -76,15 +76,15 @@ int main(int argc, char *argv[])
            "\nХЕШ-ТАБЛИЦА НА ОСНОВЕ ПРОСТОЙ ФУНКЦИИ:" ANSI_COLOR_RESET);
     print_hash_table(hash_list, n);
     printf(ANSI_COLOR_MAGENTA
-           "Количество коллизий = %f.\n" ANSI_COLOR_RESET,
+           "Максимальное количество коллизий = %d.\n" ANSI_COLOR_RESET,
            cmpr);
     printf(ANSI_COLOR_MAGENTA
            "Хеш-таблица построена за = %ld тактов процессора "
            "(в данное время включено время чтения из файла).\n\n" ANSI_COLOR_RESET,
            time);
 
-    printf("\nВведите среднее значение для допускаемого количества коллизий: ");
-    int ec = scanf("%f", &desired_cmpr);
+    printf("\nВведите допустимое количество коллизий: ");
+    int ec = scanf("%d", &desired_cmpr);
     if (ec != 1)
     {
         printf(ANSI_COLOR_RED "Введено неверное значение!\n" ANSI_COLOR_RESET);
@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 
     if (cmpr > desired_cmpr)
     {
-        while (cmpr - desired_cmpr > 0.000001)
+        while (cmpr != desired_cmpr)
         {
             free_list_arr(hash_list, n);
             n = next_prime(n);
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
                "\nХЕШ-ТАБЛИЦА НА ОСНОВЕ УЛУЧШЕННОЙ ФУНКЦИИ:" ANSI_COLOR_RESET);
         print_hash_table(hash_list, n);
         printf(ANSI_COLOR_MAGENTA
-               "Количество коллизий = %f.\n" ANSI_COLOR_RESET,
+               "Количество коллизий = %d.\n" ANSI_COLOR_RESET,
                cmpr);
         printf(ANSI_COLOR_MAGENTA
                "Хеш-таблица построена за = %ld тактов процессора "
