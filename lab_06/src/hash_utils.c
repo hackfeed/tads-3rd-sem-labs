@@ -28,7 +28,7 @@ unsigned int next_prime(int n)
 int safe_hash(char *s, int n)
 {
     unsigned long pow = 1, code_pow = 0;
-    int pow_mult = 2;
+    int pow_mult = 26;
 
     do
     {
