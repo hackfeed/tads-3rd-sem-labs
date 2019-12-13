@@ -100,7 +100,7 @@ void push_back(dynarr_t *arr, tree_node *to_add)
     if (arr->size >= arr->mem_size)
     {
         arr->mem_size *= 2;
-        arr->arr = realloc(arr->arr, arr->mem_size * sizeof(tree_node *)); // криво
+        arr->arr = realloc(arr->arr, arr->mem_size * sizeof(tree_node *));
     }
 
     for (int i = arr->size; i > 0; i--)
@@ -144,7 +144,7 @@ tree_node *balance_tree(tree_node *root, int *unique)
     dynarr_t arr;
     arr.mem_size = 8;
     arr.size = 0;
-    arr.arr = malloc(sizeof(tree_node *) * arr.mem_size); // криво
+    arr.arr = malloc(sizeof(tree_node *) * arr.mem_size);
     store_nodes(root, &arr);
 
     int n = arr.size;
