@@ -64,27 +64,31 @@ int file_len(FILE *f)
     return lines;
 }
 
-float build_hash_table(list_t **arr, int size, FILE *f, int (*hash)(char *, int))
+int build_hash_table(list_t **arr, int size, FILE *f, int (*hash)(char *, int))
 {
     char buffer[STR_SIZE];
-    int cmpr = 0;
-    int i = 0;
+    int max_collisions = 0;
 
     while (fgets(buffer, STR_SIZE, f) != NULL)
     {
+        int cur_collisions = 0;
         if (buffer[strlen(buffer) - 1] == '\n')
             buffer[strlen(buffer) - 1] = '\0';
 
         if (deepcmp(buffer, (*arr)[hash(buffer, size)]) == 0)
         {
-            cmpr += linsert(&(*arr)[hash(buffer, size)], buffer);
-            i++;
+            cur_collisions = linsert(&(*arr)[hash(buffer, size)], buffer);
+        }
+
+        if (cur_collisions > max_collisions)
+        {
+            max_collisions = cur_collisions;
         }
     }
 
     rewind(f);
 
-    return (float)cmpr / i;
+    return max_collisions;
 }
 
 void print_hash_table(list_t *arr, int size)

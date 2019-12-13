@@ -19,7 +19,7 @@ int safe_hash(char *s, int n);
 
 int unsafe_hash(char *s, int n);
 
-float build_hash_table(list_t **arr, int size, FILE *f, int (*hash)(char *, int));
+int build_hash_table(list_t **arr, int size, FILE *f, int (*hash)(char *, int));
 
 void print_hash_table(list_t *arr, int size);
 
