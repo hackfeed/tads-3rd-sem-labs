@@ -76,14 +76,14 @@ int main(int argc, char *argv[])
            "\nХЕШ-ТАБЛИЦА НА ОСНОВЕ ПРОСТОЙ ФУНКЦИИ:" ANSI_COLOR_RESET);
     print_hash_table(hash_list, n);
     printf(ANSI_COLOR_MAGENTA
-           "Количество сравнений = %f.\n" ANSI_COLOR_RESET,
+           "Количество коллизий = %f.\n" ANSI_COLOR_RESET,
            cmpr);
     printf(ANSI_COLOR_MAGENTA
            "Хеш-таблица построена за = %ld тактов процессора "
            "(в данное время включено время чтения из файла).\n\n" ANSI_COLOR_RESET,
            time);
 
-    printf("\nВведите желаемое количество сравнений: ");
+    printf("\nВведите среднее значение для допускаемого количества коллизий: ");
     int ec = scanf("%f", &desired_cmpr);
     if (ec != 1)
     {
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
                "\nХЕШ-ТАБЛИЦА НА ОСНОВЕ УЛУЧШЕННОЙ ФУНКЦИИ:" ANSI_COLOR_RESET);
         print_hash_table(hash_list, n);
         printf(ANSI_COLOR_MAGENTA
-               "Количество сравнений = %f.\n" ANSI_COLOR_RESET,
+               "Количество коллизий = %f.\n" ANSI_COLOR_RESET,
                cmpr);
         printf(ANSI_COLOR_MAGENTA
                "Хеш-таблица построена за = %ld тактов процессора "
@@ -119,7 +119,8 @@ int main(int argc, char *argv[])
     else
     {
         printf(ANSI_COLOR_GREEN
-               "Результат достижим за желаемое количество сравнений.\n" ANSI_COLOR_RESET);
+               "Результат достижим за введенное количество коллизий.\n"
+               "Пересоздание таблицы не требуется.\n" ANSI_COLOR_RESET);
     }
 
     char to_find[STR_SIZE];
