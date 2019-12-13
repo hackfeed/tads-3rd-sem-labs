@@ -81,7 +81,20 @@ void print_tree(tree_node *root, int space)
     print_tree(root->left, space);
 }
 
-void push_back(dynarr *arr, tree_node *to_add)
+void tree_depth(tree_node *root, int *vrtxs, int *cmprs, int depth)
+{
+    if (!root)
+    {
+        return 0;
+    }
+    (*vrtxs)++;
+    (*cmprs) += depth;
+
+    tree_depth(root->right, vrtxs, cmprs, depth + 1);
+    tree_depth(root->left, vrtxs, cmprs, depth + 1);
+}
+
+void push_back(dynarr_t *arr, tree_node *to_add)
 {
     arr->size++;
     if (arr->size >= arr->mem_size)
@@ -98,7 +111,7 @@ void push_back(dynarr *arr, tree_node *to_add)
     arr->arr[0] = to_add;
 }
 
-void store_nodes(tree_node *root, dynarr *arr)
+void store_nodes(tree_node *root, dynarr_t *arr)
 {
     if (root == NULL)
     {
@@ -110,7 +123,7 @@ void store_nodes(tree_node *root, dynarr *arr)
     store_nodes(root->right, arr);
 }
 
-tree_node *build_tree(dynarr *arr, int start, int end)
+tree_node *build_tree(dynarr_t *arr, int start, int end)
 {
     if (start > end)
     {
@@ -128,7 +141,7 @@ tree_node *build_tree(dynarr *arr, int start, int end)
 
 tree_node *balance_tree(tree_node *root, int *unique)
 {
-    dynarr arr;
+    dynarr_t arr;
     arr.mem_size = 8;
     arr.size = 0;
     arr.arr = malloc(sizeof(tree_node *) * arr.mem_size); // криво

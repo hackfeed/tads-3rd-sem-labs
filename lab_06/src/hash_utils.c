@@ -51,6 +51,8 @@ int unsafe_hash(char *s, const int n)
 
 int file_len(FILE *f)
 {
+    rewind(f);
+
     int lines = 0;
     char buffer[STR_SIZE];
 
@@ -62,6 +64,16 @@ int file_len(FILE *f)
     rewind(f);
 
     return lines;
+}
+
+int fbytes(FILE *f)
+{
+    rewind(f);
+    fseek(f, 0, SEEK_END);
+    unsigned size = ftell(f);
+    rewind(f);
+
+    return size;
 }
 
 int build_hash_table(list_t **arr, int size, FILE *f, int (*hash)(char *, int))

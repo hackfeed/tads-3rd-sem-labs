@@ -15,6 +15,8 @@ unsigned int next_prime(int n);
 
 int file_len(FILE *f);
 
+int fbytes(FILE *f);
+
 int safe_hash(char *s, int n);
 
 int unsafe_hash(char *s, int n);
