@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
 
     rewind(f);
 
+    char **words = fill_words(f);
+    unsigned long flen = file_len(f);
     tree_node *root = NULL;
 
     uint64_t time = tick();
@@ -149,10 +151,11 @@ int main(int argc, char *argv[])
     {
         printf(ANSI_COLOR_MAGENTA "ПОИСК В БИНАРНОМ ДЕРЕВЕ\n" ANSI_COLOR_RESET);
         printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
+               "Среднее время поиска в бинарном дереве - %lf тактов процессора.\n"
                "Бинарное дерево занимает - %ld байт.\n"
                "Количество сравнений для достижения результата - %d.\n"
                "Среднее количество сравнений - %f.\n",
-               to_find, time,
+               to_find, time, search_tree_av(*root2, words, flen),
                unique * sizeof(tree_node), ec,
                (double)cmprs / vrtxs);
     }
@@ -177,10 +180,11 @@ int main(int argc, char *argv[])
     {
         printf(ANSI_COLOR_MAGENTA "ПОИСК В БИНАРНОМ СБАЛАНСИРОВАННОМ ДЕРЕВЕ\n" ANSI_COLOR_RESET);
         printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
+               "Среднее время поиска в бинарном сбалансированном дереве - %lf тактов процессора.\n"
                "Бинарное сбалансированное дерево занимает - %ld байт.\n"
                "Количество сравнений для достижения результата - %d.\n"
                "Среднее количество сравнений - %f.\n",
-               to_find, time,
+               to_find, time, search_tree_av(*root, words, flen),
                unique * sizeof(tree_node), ec,
                (double)cmprs / vrtxs);
     }
@@ -201,10 +205,11 @@ int main(int argc, char *argv[])
     {
         printf(ANSI_COLOR_MAGENTA "ПОИСК В ХЕШ-ТАБЛИЦЕ\n" ANSI_COLOR_RESET);
         printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
+               "Среднее время поиска в хеш-таблице - %lf тактов процессора.\n"
                "Хеш-таблица занимает - %ld байт.\n"
                "Количество сравнений для достижения результата - %d.\n"
                "Среднее количество сравнений - %f.\n",
-               to_find, time / 4,
+               to_find, time / 4, search_hashtable_av(hash_list, n, hash, words, flen),
                (n + unique - list_occupation(hash_list, n)) * sizeof(list_t) + sizeof(list_t *), ec,
                (double)(1 + desired_cmpr) / 2);
     }
@@ -225,10 +230,11 @@ int main(int argc, char *argv[])
     {
         printf(ANSI_COLOR_MAGENTA "ПОИСК В ФАЙЛЕ\n" ANSI_COLOR_RESET);
         printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
+               "Среднее время поиска в файле - %lf тактов процессора.\n"
                "Файл занимает - %u байт.\n"
                "Количество сравнений для достижения результата - %d.\n"
                "Среднее количество сравнений - %f.\n",
-               to_find, time,
+               to_find, time, search_file_av(f, words, flen),
                fbytes(f), ec, (double)file_len(f) / 2);
     }
     else
