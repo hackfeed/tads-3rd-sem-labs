@@ -18,6 +18,15 @@ int main(int argc, char *argv[])
         return FILE_ERROR;
     }
 
+    if (fgetc(f) == EOF)
+    {
+        printf(ANSI_COLOR_RED
+               "Файл пуст! Проверьте файл.\n" ANSI_COLOR_RESET);
+        return FILE_ERROR;
+    }
+
+    rewind(f);
+
     tree_node *root = NULL;
 
     uint64_t time = tick();
@@ -127,19 +136,25 @@ int main(int argc, char *argv[])
     printf("\nВведите слово которое хотите найти: ");
     scanf("%s", to_find);
 
+    int depth = 0;
+    int vrtxs = 0;
+    int cmprs = 0;
     tree_node *root2 = NULL;
     fill_tree(&root2, f);
     time = tick();
     ec = search_tree(to_find, *root2);
     time = tick() - time;
+    tree_depth(root2, &vrtxs, &cmprs, depth);
     if (ec > 0)
     {
         printf(ANSI_COLOR_MAGENTA "ПОИСК В БИНАРНОМ ДЕРЕВЕ\n" ANSI_COLOR_RESET);
         printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
                "Бинарное дерево занимает - %ld байт.\n"
-               "Количество сравнений для достижения результата - %d.\n",
+               "Количество сравнений для достижения результата - %d.\n"
+               "Среднее количество сравнений - %f.\n",
                to_find, time,
-               unique * sizeof(tree_node), ec);
+               unique * sizeof(tree_node), ec,
+               (double)cmprs / vrtxs);
     }
     else
     {
@@ -151,17 +166,23 @@ int main(int argc, char *argv[])
     }
     free_tree(root2);
 
+    depth = 0;
+    vrtxs = 0;
+    cmprs = 0;
     time = tick();
     ec = search_tree(to_find, *root);
     time = tick() - time;
+    tree_depth(root, &vrtxs, &cmprs, depth);
     if (ec > 0)
     {
         printf(ANSI_COLOR_MAGENTA "ПОИСК В БИНАРНОМ СБАЛАНСИРОВАННОМ ДЕРЕВЕ\n" ANSI_COLOR_RESET);
         printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
                "Бинарное сбалансированное дерево занимает - %ld байт.\n"
-               "Количество сравнений для достижения результата - %d.\n",
+               "Количество сравнений для достижения результата - %d.\n"
+               "Среднее количество сравнений - %f.\n",
                to_find, time,
-               unique * sizeof(tree_node), ec);
+               unique * sizeof(tree_node), ec,
+               (double)cmprs / vrtxs);
     }
     else
     {
@@ -179,11 +200,13 @@ int main(int argc, char *argv[])
     if (ec > 0)
     {
         printf(ANSI_COLOR_MAGENTA "ПОИСК В ХЕШ-ТАБЛИЦЕ\n" ANSI_COLOR_RESET);
-        printf("Слово \"%s\" найдено за %ld тактов-процессора.\n"
+        printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
                "Хеш-таблица занимает - %ld байт.\n"
-               "Количество сравнений для достижения результата - %d.\n",
+               "Количество сравнений для достижения результата - %d.\n"
+               "Среднее количество сравнений - %f.\n",
                to_find, time / 4,
-               (n + unique - list_occupation(hash_list, n)) * sizeof(list_t) + sizeof(list_t *), ec);
+               (n + unique - list_occupation(hash_list, n)) * sizeof(list_t) + sizeof(list_t *), ec,
+               (double)(1 + desired_cmpr) / 2);
     }
     else
     {
@@ -202,10 +225,11 @@ int main(int argc, char *argv[])
     {
         printf(ANSI_COLOR_MAGENTA "ПОИСК В ФАЙЛЕ\n" ANSI_COLOR_RESET);
         printf("Слово \"%s\" найдено за %ld тактов процессора.\n"
-               "Файловый дескриптор занимает - %ld байт.\n"
-               "Количество сравнений для достижения результата - %d.\n",
+               "Файл занимает - %u байт.\n"
+               "Количество сравнений для достижения результата - %d.\n"
+               "Среднее количество сравнений - %f.\n",
                to_find, time,
-               sizeof(FILE *), ec);
+               fbytes(f), ec, (double)file_len(f) / 2);
     }
     else
     {
