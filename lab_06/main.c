@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
            "Дерево сбалансировано за = %ld тактов процессора.\n\n" ANSI_COLOR_RESET,
            time);
 
-    int n = file_len(f);
+    int n = next_prime(file_len(f));
     list_t *hash_list = calloc(n, sizeof(list_t));
     int cmpr, desired_cmpr;
 
