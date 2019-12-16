@@ -27,24 +27,30 @@ unsigned int next_prime(int n)
 
 int safe_hash(char *s, int n)
 {
-    unsigned long pow = 1, code_pow = 0;
-    int pow_mult = 26;
+    unsigned long hash = 0;
+    int c;
 
-    do
+    while (c = *s++)
     {
-        code_pow += *s * pow;
-        pow *= pow_mult;
-    } while (*(s++));
+        hash = ((hash << 5) + hash) + c;
+    }
 
-    return code_pow % n;
+    return hash % n;
 }
 
 int unsafe_hash(char *s, const int n)
 {
-    int hash = 0;
+    unsigned long hash = 0;
 
-    for (; *s; hash += *(s++))
-        ;
+    while (*s)
+    {
+        hash += *s++;
+        hash += (hash << 10);
+        hash ^= (hash >> 6);
+    }
+    hash += (hash << 3);
+    hash ^= (hash >> 11);
+    hash += (hash << 15);
 
     return hash % n;
 }
