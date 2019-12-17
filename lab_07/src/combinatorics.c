@@ -80,7 +80,6 @@ adjmat_t *ckcut(adjmat_t matrix, edge_t **vars, const int cmbs, const int len)
         copy = amcopy(matrix);
         for (int j = 0; j < len; ++j)
         {
-            amouptut(stdout, *copy);
             copy->matrix[vars[i][j].fvertex][vars[i][j].svertex] = 0;
             copy->matrix[vars[i][j].svertex][vars[i][j].fvertex] = 0;
         }
