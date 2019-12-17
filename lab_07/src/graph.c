@@ -56,6 +56,12 @@ chain_t *chcreate(adjmat_t matrix)
     return chain;
 }
 
+void chfree(chain_t *chain)
+{
+    free(chain->edges);
+    free(chain);
+}
+
 edge_t **alrows(const int n, const int m)
 {
     edge_t **data = (edge_t **)malloc(sizeof(edge_t *) * n);
@@ -78,6 +84,14 @@ edge_t **alrows(const int n, const int m)
     }
 
     return data;
+}
+
+void frrows(edge_t **data, const int n)
+{
+    for (int i = 0; i < n; ++i)
+    {
+        free(data[i]);
+    }
 }
 
 void gvexport(adjmat_t matrix, adjmat_t result)

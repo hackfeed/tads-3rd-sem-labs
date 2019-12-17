@@ -14,4 +14,4 @@ run:
 	./app.exe
 
 clean:
-	rm -f *.o *.exe $(FUNC_O) vgcore*
+	rm -f *.o *.exe $(FUNC_O) vgcore* graph.txt graph.png

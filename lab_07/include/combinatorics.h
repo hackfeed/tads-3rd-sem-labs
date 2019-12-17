@@ -7,13 +7,13 @@ unsigned long fact(const int num);
 
 int combs(const int n, const int k);
 
-void mkcombs(edge_t **ans, edge_t *tmp, const chain_t chain, const int tmp_size, const int n,
-             const int left, const int k, int *const idx, int *const crow);
+void mkcombs(edge_t **ans, edge_t *tmp, chain_t chain, const int tmp_size, const int n,
+             const int left, const int k, int *const idx, int *crow);
 
-edge_t **mkcombsvect(const chain_t chain, const int rows, const int n,
-                     const int k, int *const idx, int *const crow);
+edge_t **mkcombsvect(chain_t chain, const int rows, const int n,
+                     const int k, int *const idx, int *crow);
 
-int is_conn(const adjmat_t matrix);
+int is_conn(adjmat_t matrix);
 
 adjmat_t *ckcut(adjmat_t matrix, edge_t **vars, const int combs, const int len);
 

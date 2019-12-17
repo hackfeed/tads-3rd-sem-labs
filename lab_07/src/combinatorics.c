@@ -17,8 +17,8 @@ int combs(const int n, const int k)
     return (fact(n) / (fact(k) * fact(n - k)));
 }
 
-void mkcombs(edge_t **ans, edge_t *tmp, const chain_t chain, const int tmp_size, const int n,
-             const int left, const int k, int *const idx, int *const crow)
+void mkcombs(edge_t **ans, edge_t *tmp, chain_t chain, const int tmp_size, const int n,
+             const int left, const int k, int *const idx, int *crow)
 {
     if (k == 0)
     {
@@ -38,13 +38,14 @@ void mkcombs(edge_t **ans, edge_t *tmp, const chain_t chain, const int tmp_size,
     }
 }
 
-edge_t **mkcombsvect(const chain_t chain, const int rows, const int n,
-                     const int k, int *const idx, int *const crow)
+edge_t **mkcombsvect(chain_t chain, const int rows, const int n,
+                     const int k, int *const idx, int *crow)
 {
     edge_t **ans = alrows(rows, k);
     edge_t *tmp = (edge_t *)malloc(sizeof(edge_t) * k);
 
     mkcombs(ans, tmp, chain, k, n, 1, k, idx, crow);
+    free(tmp);
 
     return ans;
 }
@@ -59,12 +60,12 @@ int is_conn(adjmat_t matrix)
         if (visited[i] == 0)
         {
             free(visited);
-            return 0;
+            return FALSE;
         }
     }
     free(visited);
 
-    return 1;
+    return TRUE;
 }
 
 adjmat_t *ckcut(adjmat_t matrix, edge_t **vars, const int cmbs, const int len)
@@ -84,6 +85,7 @@ adjmat_t *ckcut(adjmat_t matrix, edge_t **vars, const int cmbs, const int len)
             copy->matrix[vars[i][j].svertex][vars[i][j].fvertex] = 0;
         }
     }
+    amfree(copy);
 
     return NULL;
 }
@@ -100,11 +102,17 @@ adjmat_t *cutgraph(adjmat_t matrix)
         edge_t **vars = mkcombsvect(*chain, cmbs, chain->size, i, &idx, &crow);
 
         result = ckcut(matrix, vars, cmbs, i);
+
         if (result)
         {
+            chfree(chain);
+            frrows(vars, cmbs);
             return result;
         }
+        frrows(vars, cmbs);
     }
+    chfree(chain);
+    amfree(result);
 
     return NULL;
 }

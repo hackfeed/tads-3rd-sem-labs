@@ -66,7 +66,7 @@ int amfill(FILE *const stream, adjmat_t *const matrix)
     int fvertex, svertex;
     int ec;
 
-    while (1)
+    while (TRUE)
     {
         ec = rnginput(&fvertex, -1, matrix->size - 1);
         if (ec)
@@ -85,7 +85,7 @@ int amfill(FILE *const stream, adjmat_t *const matrix)
 
         if (fvertex == svertex)
         {
-            return EINVALIDINTEGER;
+            return EINVALIDVERTEXPAIR;
         }
 
         matrix->matrix[fvertex][svertex] = GOT_CONNECTION;
@@ -109,7 +109,7 @@ void amouptut(FILE *const stream, const adjmat_t matrix)
 
 void dfs(const adjmat_t matrix, const int vertex, int *visited)
 {
-    visited[vertex] = 1;
+    visited[vertex] = TRUE;
 
     for (int i = 0; i < matrix.size; ++i)
     {
