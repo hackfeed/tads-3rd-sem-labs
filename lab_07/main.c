@@ -17,13 +17,12 @@ int main()
     {
         return 1;
     }
-    amouptut(stdout, *matrix);
 
     result = cutgraph(*matrix);
 
     if (result)
     {
-        amouptut(stdout, *result);
+        gvexport(*matrix, *result);
         return 0;
     }
 

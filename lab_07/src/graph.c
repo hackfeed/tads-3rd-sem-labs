@@ -79,3 +79,50 @@ edge_t **alrows(const int n, const int m)
 
     return data;
 }
+
+void gvexport(adjmat_t matrix, adjmat_t result)
+{
+    FILE *export = fopen("graphviz.txt", "w");
+    fprintf(export, "graph {\n");
+
+    for (int i = 0; i < matrix.size; ++i)
+    {
+        for (int j = 0; j < matrix.size; ++j)
+        {
+            if (matrix.matrix[i][j])
+            {
+                matrix.matrix[j][i] = 0;
+            }
+        }
+    }
+
+    for (int i = 0; i < result.size; ++i)
+    {
+        for (int j = 0; j < result.size; ++j)
+        {
+            if (result.matrix[i][j])
+            {
+                result.matrix[j][i] = 0;
+            }
+        }
+    }
+
+    for (int i = 0; i < matrix.size; ++i)
+    {
+        for (int j = 0; j < matrix.size; ++j)
+        {
+            if (matrix.matrix[i][j] && result.matrix[i][j])
+            {
+                fprintf(export, "%d -- %d;\n", i, j);
+            }
+            if (matrix.matrix[i][j] && !result.matrix[i][j])
+            {
+                fprintf(export, "%d -- %d[color=red,penwidth=3.0];\n", i, j);
+            }
+        }
+        fprintf(export, "%d;\n", i);
+    }
+
+    fprintf(export, "}\n");
+    fclose(export);
+}

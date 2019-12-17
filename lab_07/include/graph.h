@@ -21,4 +21,6 @@ chain_t *chcreate(adjmat_t matrix);
 
 edge_t **alrows(const int n, const int m);
 
+void gvexport(adjmat_t matrix, adjmat_t result);
+
 #endif
