@@ -71,7 +71,6 @@ int is_conn(adjmat_t matrix)
 adjmat_t *ckcut(adjmat_t matrix, edge_t **vars, const int cmbs, const int len)
 {
     adjmat_t *copy = amcopy(matrix);
-    adjmat_t *stable = copy;
 
     for (int i = 0; i < cmbs; ++i)
     {
@@ -79,7 +78,8 @@ adjmat_t *ckcut(adjmat_t matrix, edge_t **vars, const int cmbs, const int len)
         {
             return copy;
         }
-        copy = stable;
+        amfree(copy);
+        copy = amcopy(matrix);
         for (int j = 0; j < len; ++j)
         {
             copy->matrix[vars[i][j].fvertex][vars[i][j].svertex] = 0;
