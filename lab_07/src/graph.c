@@ -52,6 +52,7 @@ chain_t *chcreate(adjmat_t matrix)
             }
         }
     }
+    amfree(copy);
 
     return chain;
 }
@@ -78,8 +79,9 @@ edge_t **alrows(const int n, const int m)
             for (int j = 0; j < i; ++j)
             {
                 free(data[j]);
-                return NULL;
             }
+
+            return NULL;
         }
     }
 
@@ -92,6 +94,7 @@ void frrows(edge_t **data, const int n)
     {
         free(data[i]);
     }
+    free(data);
 }
 
 void gvexport(adjmat_t matrix, adjmat_t result)
