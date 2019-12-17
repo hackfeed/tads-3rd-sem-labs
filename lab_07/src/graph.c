@@ -82,7 +82,7 @@ edge_t **alrows(const int n, const int m)
 
 void gvexport(adjmat_t matrix, adjmat_t result)
 {
-    FILE *export = fopen("graphviz.txt", "w");
+    FILE *export = fopen("graph.txt", "w");
     fprintf(export, "graph {\n");
 
     for (int i = 0; i < matrix.size; ++i)
@@ -125,4 +125,7 @@ void gvexport(adjmat_t matrix, adjmat_t result)
 
     fprintf(export, "}\n");
     fclose(export);
+
+    system("dot -Tpng graph.txt -o graph.png");
+    system("gwenview graph.png");
 }
