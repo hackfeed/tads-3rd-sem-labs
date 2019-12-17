@@ -21,7 +21,7 @@ int main()
     adjmat_t *matrix = amcreate(size);
     printf(ANSI_COLOR_GREEN
            "Введите связи в графе (в формате 'номер_вершины номер_вершины').\n"
-           "Для завершения ввода введите '-1':\n" ANSI_COLOR_RESET);
+           "Для завершения ввода введите '-1' (нумерация вершин начинается с 0):\n" ANSI_COLOR_RESET);
     ec = amfill(stdin, matrix);
     if (ec)
     {
