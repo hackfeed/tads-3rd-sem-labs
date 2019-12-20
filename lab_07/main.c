@@ -1,4 +1,5 @@
 #include "include/combinatorics.h"
+#include "include/utils.h"
 
 int main()
 {
@@ -41,13 +42,20 @@ int main()
         }
     }
 
+    uint64_t start, end, time;
+    start = tick();
     result = cutgraph(*matrix);
+    end = tick();
+    time = end - start;
 
     if (result)
     {
         printf(ANSI_COLOR_YELLOW
                "Удаленные рёбра на графе отмечены красным цветом!\n" ANSI_COLOR_RESET);
         gvexport(*matrix, *result);
+        printf(ANSI_COLOR_YELLOW
+               "Время выполнения алгоритма: %ju" ANSI_COLOR_RESET,
+               time);
         amfree(matrix);
         amfree(result);
         return EOK;
