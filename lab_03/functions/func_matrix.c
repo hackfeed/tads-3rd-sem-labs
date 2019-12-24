@@ -297,8 +297,6 @@ void sparse_sum(const sparse_t sparse_a, const sparse_t sparse_b,
         free(a_arr);
         free(b_arr);
     }
-
-    return OK;
 }
 
 int fill_col_entry(sparse_t *const sparse, const matrix_t matrix)
@@ -318,6 +316,8 @@ int fill_col_entry(sparse_t *const sparse, const matrix_t matrix)
 
         *(sparse->col_entry + col) = elems - col_elems;
     }
+
+    return OK;
 }
 
 int random(const int offset)
