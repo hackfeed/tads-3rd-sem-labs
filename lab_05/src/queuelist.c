@@ -117,15 +117,16 @@ Output data:
 */
 task_t dequeuelist(queuelist_t *const queue, arr_t *const fmem)
 {
+    task_t task = {.time_out = 0, .num = 0};
     if (queue->front == NULL)
     {
         errno = EQUEUEEMPTY;
-        return;
+        return task;
     }
 
     queuenode_t *node = queue->front;
-    fmem->arr[++fmem->ind] = node;
-    task_t data = node->task;
+    fmem->arr[++fmem->ind] = (size_t)node;
+    task = node->task;
 
     if (queue->front == queue->rear)
     {
@@ -141,7 +142,7 @@ task_t dequeuelist(queuelist_t *const queue, arr_t *const fmem)
 
     queue->size--;
 
-    return data;
+    return task;
 }
 
 /*
@@ -178,7 +179,7 @@ Output data:
 */
 int check_rear(queuelist_t *queue, arr_t *fmem)
 {
-    size_t top = queue->rear;
+    size_t top = (size_t)queue->rear;
     int is_found = 0;
 
     for (int i = 0; i < fmem->ind; ++i)

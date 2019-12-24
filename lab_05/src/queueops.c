@@ -142,7 +142,7 @@ void list_model(queuelist_t *const queue, arr_t *const fmem,
     double delta = fabs(service_time - expected_time) / expected_time * 100;
 
     printf(ANSI_COLOR_GREEN
-           "Рабочее время автомата: %lf (ожидаемое рабочее время: %lf, погрешность: %lf%)\n"
+           "Рабочее время автомата: %lf (ожидаемое рабочее время: %lf, погрешность: %lf%%)\n"
            "Число вошедших заявок: %d\n"
            "Число вышедших заявок: %d\n"
            "Число необработанных заявок: %d\n"
@@ -270,7 +270,7 @@ void array_model(queuearr_t *const queue,
     double delta = fabs(service_time - expected_time) / expected_time * 100;
 
     printf(ANSI_COLOR_GREEN
-           "Рабочее время автомата: %lf (ожидаемое рабочее время: %lf, погрешность: %lf%)\n"
+           "Рабочее время автомата: %lf (ожидаемое рабочее время: %lf, погрешность: %lf%%)\n"
            "Число вошедших заявок: %d\n"
            "Число вышедших заявок: %d\n"
            "Число необработанных заявок: %d\n"

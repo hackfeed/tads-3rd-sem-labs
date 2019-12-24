@@ -34,7 +34,7 @@ int main()
     {
         input_interval(&cmd, 0, 4);
         errcheck(inputerr, 2,
-                 fmem, queuearr, queuelist,
+                 queuearr, queuelist, fmem,
                  ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
         if (cmd == 1)
@@ -55,17 +55,17 @@ int main()
                 printf("%s\n", "Введите максимальное число элементов в очереди:");
                 input_interval(&capacity, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
                 printf("%s\n", "Введите интервал прибытия заявки в очередь (2 целых числа через пробел):");
                 input_interval(&ltime_in, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
                 input_interval(&rtime_in, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
                 if (rtime_in < ltime_in)
@@ -79,11 +79,11 @@ int main()
                 printf("%s\n", "Введите интервал обработки заявки в очереди (2 целых числа через пробел):");
                 input_interval(&ltime_out, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
                 input_interval(&rtime_out, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
                 if (rtime_out < ltime_out)
@@ -97,7 +97,7 @@ int main()
                 printf("%s\n", "Введите количество обслуживаний одной заявки:");
                 input_interval(&repeats, 1, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
                 queuearr = create_queuearr(capacity);
@@ -161,17 +161,17 @@ int main()
                 printf("%s\n", "Введите максимальное число элементов в очереди:");
                 input_interval(&capacity, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
                 printf("%s\n", "Введите интервал прибытия заявки в очередь (2 целых числа через пробел):");
                 input_interval(&ltime_in, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
                 input_interval(&rtime_in, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
                 if (rtime_in < ltime_in)
@@ -185,11 +185,11 @@ int main()
                 printf("%s\n", "Введите интервал обработки заявки в очереди (2 целых числа через пробел):");
                 input_interval(&ltime_out, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
                 input_interval(&rtime_out, 0, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
                 if (rtime_out < ltime_out)
@@ -203,7 +203,7 @@ int main()
                 printf("%s\n", "Введите количество обслуживаний одной заявки:");
                 input_interval(&repeats, 1, 99999);
                 errcheck(inputerr, 2,
-                         fmem, queuearr, queuelist,
+                         queuearr, queuelist, fmem,
                          ANSI_COLOR_RED "Введено недопустимое значение! Повторите попытку." ANSI_COLOR_RESET);
 
                 queuelist = create_queuelist(capacity);

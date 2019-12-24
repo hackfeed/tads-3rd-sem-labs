@@ -89,12 +89,13 @@ Output data:
 */
 task_t dequeuearr(queuearr_t *const queue)
 {
+    task_t task = {.time_out = 0, .num = 0};
     if (is_emptyarr(queue))
     {
         errno = EQUEUEEMPTY;
-        return;
+        return task;
     }
-    task_t task = queue->arr[queue->front];
+    task = queue->arr[queue->front];
     queue->front = (queue->front + 1) % queue->capacity;
     queue->size--;
 
