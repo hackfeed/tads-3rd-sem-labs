@@ -85,7 +85,7 @@ void tree_depth(tree_node *root, int *vrtxs, int *cmprs, int depth)
 {
     if (!root)
     {
-        return 0;
+        return;
     }
     (*vrtxs)++;
     (*cmprs) += depth;

@@ -1,3 +1,4 @@
+#include "include/hash_utils.h"
 #include "include/search.h"
 
 char **fill_words(FILE *f)

@@ -30,7 +30,7 @@ int safe_hash(char *s, int n)
     unsigned long hash = 0;
     int c;
 
-    while (c = *s++)
+    while ((c = *s++))
     {
         hash = ((hash << 5) + hash) + c;
     }
