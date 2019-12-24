@@ -3,6 +3,7 @@ Table handling module.
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <inttypes.h>
@@ -274,10 +275,10 @@ int add_record(aio_table_t *const table)
             return INVALID_INT_INPUT_ERROR;
         }
 
-        if (new_record.variative_part.kids_book.is_fairytale == TRUE &&
-                new_record.variative_part.kids_book.is_poetry == TRUE ||
-            new_record.variative_part.kids_book.is_fairytale == FALSE &&
-                new_record.variative_part.kids_book.is_poetry == FALSE)
+        if ((new_record.variative_part.kids_book.is_fairytale == TRUE &&
+             new_record.variative_part.kids_book.is_poetry == TRUE) ||
+            (new_record.variative_part.kids_book.is_fairytale == FALSE &&
+             new_record.variative_part.kids_book.is_poetry == FALSE))
         {
             return MULTIPLE_GENRES_ERROR;
         }

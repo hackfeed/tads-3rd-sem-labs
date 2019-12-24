@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c99 -w
+CFLAGS = -std=c99 -Wall -pedantic
 
 FUNC_C = functions/*.c
 FUNC_O = functions/*.o

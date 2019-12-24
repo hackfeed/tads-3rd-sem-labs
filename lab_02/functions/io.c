@@ -99,7 +99,7 @@ Input data:
 Output data:
 * Return code - OK of FILENAME_ERROR.
 */
-int input_string(char *const stringname[MAX_STRING_FIELD_SIZE])
+int input_string(char *stringname)
 {
     if (scanf("%s", stringname) != GOT_ARG)
     {
@@ -239,8 +239,6 @@ Output table by user-defined techfield.
 void output_table_by_techfield(const aio_table_t *const table,
                                char needed_field[MAX_STRING_FIELD_SIZE])
 {
-    int entries_count = 0;
-
     printf("┏━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━"
            "━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
            "━━━━━━━━┳━━━┳━┳━━━━━━━━━━━━━━━━━━━━"
