@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "include/adjmat.h"
+#include "adjmat.h"
 
 typedef struct
 {

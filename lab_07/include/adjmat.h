@@ -2,9 +2,10 @@
 #define __ADJMAT_H__
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <limits.h>
 
-#include "include/io.h"
+#include "io.h"
 
 typedef struct
 {

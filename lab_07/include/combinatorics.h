@@ -1,7 +1,7 @@
 #ifndef __COMBINATORICS_H__
 #define __COMBINATORICS_H__
 
-#include "include/graph.h"
+#include "graph.h"
 
 unsigned long fact(const int num);
 

@@ -3,8 +3,8 @@
 
 #include <stdio.h>
 
-#include "include/rc.h"
-#include "include/macro.h"
+#include "rc.h"
+#include "macro.h"
 
 void welcome();
 
