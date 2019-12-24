@@ -2,12 +2,14 @@
 Stack realization based on linked list.
 */
 
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "include/rc.h"
 #include "include/macro.h"
 #include "include/array.h"
 #include "include/liststack.h"
+#include "include/io.h"
 
 /*
 Stack on linked list creation.
@@ -153,7 +155,7 @@ int output_stackl(liststack_t *root)
 
     while (size >= 0)
     {
-        printf("%d ~ %zx\n", out->data, out);
+        printf("%d ~ %zx\n", out->data, (size_t)out);
         out = out->next;
         size--;
     }
@@ -182,7 +184,7 @@ int popl(liststack_t **root, arr_t *fmem)
     liststack_t *temp = *root;
     *root = (*root)->next;
     int popped = temp->data;
-    fmem->arr[++fmem->ind] = temp;
+    fmem->arr[++fmem->ind] = (size_t)temp;
     free(temp);
 
     return popped;
@@ -197,7 +199,7 @@ Input address:
 */
 void check_top(liststack_t *root, arr_t *fmem)
 {
-    size_t top = root;
+    size_t top = (size_t)root;
 
     for (int i = 0; i < fmem->ind; ++i)
     {

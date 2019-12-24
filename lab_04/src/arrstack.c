@@ -2,11 +2,13 @@
 Stack realization based on array.
 */
 
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "include/rc.h"
 #include "include/macro.h"
 #include "include/arrstack.h"
+#include "include/io.h"
 
 /*
 Stack on array creation.
