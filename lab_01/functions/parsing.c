@@ -146,10 +146,10 @@ int parse_mantissa_part(const long_t entered_num, num_t *const parsed_num)
     short int end_cut_pos =
         parsed_num->exp_position == -1 ? strlen(entered_num) : parsed_num->exp_position;
 
-    if (parsed_num->dot_position == -2 &&
-            end_cut_pos - start_cut_pos > MAX_INT_NUM_LEN ||
-        parsed_num->dot_position != -2 &&
-            end_cut_pos - start_cut_pos > MAX_INT_NUM_LEN + 1)
+    if ((parsed_num->dot_position == -2 &&
+         end_cut_pos - start_cut_pos > MAX_INT_NUM_LEN) ||
+        (parsed_num->dot_position != -2 &&
+         end_cut_pos - start_cut_pos > MAX_INT_NUM_LEN + 1))
     {
         return MANTISSA_PARSE_ERROR;
     }

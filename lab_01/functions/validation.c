@@ -34,7 +34,7 @@ int validate_mantissa_part(num_t *const parsed_num)
 
     else
     {
-        short int start_cut_pos = 0, end_cut_pos = parsed_num->dot_position;
+        short int end_cut_pos = parsed_num->dot_position;
 
         parsed_num->mantissa_part[parsed_num->dot_position] = '1';
 
